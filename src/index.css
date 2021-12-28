@@ -1,0 +1,179 @@
+body {
+	overflow-x: hidden;
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	margin: 0;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+a {
+	text-decoration: none;
+}
+
+.gui-show{
+	width: 400px;
+	position: fixed;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	animation: gui-show 5s linear;
+	z-index: 4;
+}
+.gui-show span{
+	position: absolute;
+	text-shadow: 3px 2px 4px #0b0b0b;
+	transform: rotate(270deg);
+	top: 45vh;
+	left: -13vw;
+	font-size: 3vh;
+	animation: gui-span 5s linear;
+	opacity: 0;
+	z-index: 4;
+}
+
+.gui{
+	background-color: #323233;
+	color: #fff;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	position: fixed;
+	z-index: 10;
+	width: 400px;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	padding: 20px 20px 20px 20px;
+	animation: gui 1s cubic-bezier(.65,.05,.36,1);	
+}
+.guiBack{
+	background-color: #3232339c;
+	position: fixed;
+	z-index: 9;
+	width: 100vw;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	animation: gui-back 1s cubic-bezier(.65,.05,.36,1);	
+}
+
+input{
+	background-color: #00000000;
+	border: 2px solid #4f474e61;
+	color: #fff;
+	padding: 5px;
+    border-radius: 5px;
+	outline: 0;
+	height: 32px;
+	display: block;
+	width: calc(100% - 13px);
+	background-color: inherit;
+	font-weight: bold;
+	font-size: 25px;
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+input:hover, input:active{
+	background-color: #0000000a;
+	border: 2px solid #4f474eb7;
+}
+input:focus{
+	background-color: #0000000a;
+	border: 2px solid #0064aab7;
+}
+.overmouse, .overmouse2{
+	color: #fff;
+	text-decoration: none;
+
+	position: initial;
+	padding: 10px;
+
+	display: block;
+
+	border-radius: 10px;
+	transition: background-color 250ms;
+	cursor: pointer;
+}
+.overmouse{
+	background-color: #fff0;
+}
+.overmouse2{
+	background-color: #0063aa40;
+}
+.overmouse:hover{
+	background-color: #0063aa40;
+}
+.overmouse2:hover{
+	background-color: #0063aa80;
+}
+.close{
+	text-align: end;
+	cursor: pointer;
+}
+.stopList{
+	overflow-x: hidden;
+	overflow-y: scroll;
+	height: calc(100vh - 175px);
+}
+
+.progress-bck{
+	position: relative;
+	height: 1vmin;
+	width: 100%;
+	border-radius: 10px;
+	float: left;
+	background-color: #4f474e61;	
+}
+.progress{
+	position: relative;
+	height: 1vmin;
+	top: -1vmin;
+	width: 0;
+	border-radius: 10px;
+	float: left;
+	background-color: #0064aab7;	
+	transition: all 0.5s;
+}
+.indeterminate{
+	animation: indeterminate 1.3s ease infinite;
+}
+
+@keyframes indeterminate {
+	0%{
+		width: 0px;
+		left: 0%;
+	}
+	50%{
+		width: 100%;
+		left: 0%;
+	}
+	100%{
+		width: 0px;
+		left: 100%;
+	}
+}
+@keyframes gui-show {
+	0% {
+	  background: linear-gradient(to right, #ffffff70, #0000);
+	  opacity: 1;
+	}
+	80% {
+	  background: linear-gradient(to right, #ffffff70, #0000);
+	  opacity: 1;
+	}
+	100% {
+	  background: linear-gradient(to right, #ffffff70, #0000);
+	  opacity: 0;
+	}
+  }
+@keyframes gui-span {
+	0% { opacity: 1; }
+	80% { opacity: 1; }
+	100% { opacity: 0; }
+}
+@keyframes gui {
+	0% { left: -40vw; }
+	100% { left: 0; }
+}
+@keyframes gui-back {
+	0% { background-color: #32323300; }
+	100% { background-color: #3232339c; }
+}

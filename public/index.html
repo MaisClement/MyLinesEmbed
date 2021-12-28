@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/icon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="MyLines Embed"
+    />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <title>MyLines Embed</title>
+  </head>
+  <body>
+
+    <noscript>MyLines ne fonctionne pas sans JavaScript</noscript>
+    
+    <div id="root">
+      <div class="start" id="start">
+        <style>
+          body{
+            margin: 0;
+          }
+          .loader {
+            --color: #1F5EA0;
+            --size-mid: 6vmin;
+            --size-dot: 1.5vmin;
+            --size-bar: 0.4vmin;
+            --size-square: 3vmin;
+            position: absolute;
+            margin-left: -3vmin;
+          }
+          .loader::before,
+          .loader::after {
+            content: '';
+            box-sizing: border-box;
+            position: absolute;
+          }
+          .loader.--4::before {
+            height: var(--size-bar);
+            width: 6vmin;
+            background-color: var(--color);
+            animation: loader-4 0.8s cubic-bezier(0, 0, 0.03, 0.9) infinite;
+          }
+          @keyframes loader-4 {
+            0%, 44%, 88.1%, 100% {
+              transform-origin: left;
+            }	
+            0%, 100%, 88% {
+              transform: scaleX(0);
+            }	
+            44.1%, 88% {
+              transform-origin: right;
+            }
+            33%, 44% {
+              transform: scaleX(1);
+            }
+          }
+          .start {
+            width: 100vw;
+            height: 60vh;
+            padding-top: 40vh;     
+            background-size: cover;
+            background-position: center center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #297CD3;
+            text-align: center;
+            letter-spacing: 0.3px;
+          }
+          </style> 
+        <h1> MyLines </h1>
+        <div class="container">
+          <i class="loader --4"></i>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

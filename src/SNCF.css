@@ -1,0 +1,173 @@
+body {
+  width: 100vw;
+  overflow-x: hidden;
+  font-family: "Achemine",Arial,sans-serif;
+  color: #fff;
+  margin: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+@font-face {
+  font-family: 'Achemine';
+  src: url('achemine-webfont.ttf')  format('truetype'); /* Legacy iOS */
+}
+.from, .to{
+  width: 100vw;
+  height: 100vh;
+}
+.from{
+  background-color: #003a79;
+}
+.to{
+  background-color: #1f5628;
+}
+table, tr{
+  border-spacing: 0;
+  width: 100vw;
+}
+img{
+  max-height: 5.5vh;
+  margin-left: 1.2vw;
+}
+.img, .void { width: 9.4vw; padding-right: 1vw; }
+.trafic { width: 12vw; }
+
+.track { width: 7.5vw; }
+
+.load{
+  background-color: #fff2;
+  border-radius: 10px;
+}
+
+.from .départ1{
+    background-color: #0064AA;
+    height: 10vh;
+  }
+.from .départ2{
+    background-color: #003A79;
+    height: 10vh;
+  }
+.from .arr{
+    color: #4B84CA;
+  }
+.from .curentTime{
+    background-color: #003A79;
+  }
+.from .colon {
+    color: #003A79;
+}
+
+
+.to .départ1{
+    background-color: #187936;
+    height: 10vh;
+  }
+.to .départ2{
+    background-color: #1F5628;
+    height: 10vh;
+  }
+.to .arr{
+    color: #458C4D;
+  }
+.to .curentTime{
+    background-color: #1F5628;
+  }
+.to .colon {
+    color: #1F5628;
+}
+
+.info, .Id{
+  display: inline-block;
+}
+.retard{
+  color: #fcfd02;
+  font-weight: bold;
+}
+.deleted{
+  color: #ffa500;
+  font-weight: bold;
+}
+.space{
+  position: relative;
+  border-radius: 50%;
+  background: yellow;
+  margin: 1vh;
+  top: 1vh;
+  width: 2vh;
+  height: 2vh;
+  display: inline-block;
+}
+.trafic{    
+  font-size: 3.8vh;
+  overflow: hidden; 
+  max-width: 12vw;
+  min-width: 12vw;
+}
+.time{    
+  font-size: 6.6vh;
+  font-weight: bold;
+  color: yellow;
+  padding-right: 1vw;
+}
+.curentTime{
+  width: 27vh;
+  position: fixed;
+  bottom: -4px;
+  height: 8.5vh;
+  border-radius: 5px;
+  right: 15px;
+  box-shadow: rgb(255, 255, 255) 0px 1px 4px, rgb(255, 255, 255) 0px 0px 0px 3px;
+  z-index: 2;
+}
+.arr{
+  transform: rotate(270deg);
+  position: absolute;
+  color: #458C4D;
+  font-weight: bold;
+  right: -25vh;
+  font-size: 24vh;
+  top: 33vh;
+  z-index: 1;
+}
+.hour{
+  position: relative;
+  font-size: 6vh;
+  left: 1.5vw;
+  top: 0.5vh;
+  font-weight: bold;
+}
+.minute{
+  color: yellow;
+  font-size: 4vh;
+}
+.dest, .stop, .time{
+  z-index: 2;
+  position: relative;
+  max-width: 92vw;
+}
+.stop{
+  font-size: 6vh;
+  overflow: hidden;
+}
+
+.marqueeSpace{
+  width: 100vw;
+}
+
+/*-- Grand affichage --*/
+.max .dest{
+    font-size: 9.2vh;
+}
+/*-- Petit affichage --*/
+.min .dest{
+    font-size: 7.8vh;
+}
+
+@keyframes defilement {
+  0% {
+    transform: translate3d(0, 0, 0); /* position initiale à droite */
+  }
+  100% {
+    transform: translate3d(-100%, 0, 0); /* position finale à gauche */
+  }
+}
