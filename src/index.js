@@ -18,9 +18,9 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route exact path="" element={<Home />} />
         <Route path="/SNCF/departure/:stop" element={<SNCFd />} />
         <Route path="/SNCF/arrival/:stop" element={<SNCFa />} />
+        <Route path="*" element={<Home />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,

@@ -92,26 +92,28 @@ class SNCFDeparture extends React.Component {
             );
         } else {
             return (
-                <div className='from'>
-                    <table>
-                    <tbody>
-                    {this.state.trains.slice(0, 7).map((train, i) => (
-                        <SNCFDepartureTrain 
-                            key={i} 
-                            train = {train}
-                            number={i}
-                            showInfo = {this.state.showInfo}
-                        />
-                    ))}
-                    </tbody>
-                    </table>
-                    <Gui 
+                <> 
+                    <div className='from'>
+                        <table>
+                        <tbody>
+                        {this.state.trains.slice(0, 7).map((train, i) => (
+                            <SNCFDepartureTrain 
+                                key={i} 
+                                train = {train}
+                                number={i}
+                                showInfo = {this.state.showInfo}
+                            />
+                        ))}
+                        </tbody>
+                        </table>
+                        <Clock />
+                        <Back />
+                    </div>
+                        <Gui 
                         style = {'SNCF'}
                         type = {'departure'}
                     />
-                    <Clock />
-				    <Back />
-                </div>    
+                </>      
             );
         }
 	}

@@ -5,6 +5,11 @@ import { useParams, Link, Router, BrowserRouter } from "react-router-dom";
 
 import Error from './error';
 import whiteLogo from './SNCF_white.png';
+import logo from './image/Logo.png';
+import github from './image/github.svg';
+import discord from './image/discord.svg';
+import mail from './image/mail.svg';
+
 import './SNCF.css';
 
 class GuiSearch extends React.Component {
@@ -78,11 +83,11 @@ class GuiSearch extends React.Component {
         return (
             <>
                 <div className="gui">
-                    <div onClick={this.props.show} className="close">Fermer</div>
+                    {this.props.displayForce == false ? <div onClick={this.props.show} className="close">Fermer</div> : <></>}                    
                         <br/>
                     <input type="text" placeholder="Rechercher une autre gare" ref={inputEl => (this.searchInput = inputEl)} onChange={this.handleChange} onKeyDown={this.handleKey} autocomplete="off" /> 
                     {this.state.load ? <div> <div class="progress-bck"></div> <div class="progress indeterminate"></div></div> : <></>}
-                    <br /><br />
+                        <br />
                     <div className="stopList"> 
                         {this.state.stops.map((stop, i) => (
                             <GuiStop 
@@ -95,8 +100,23 @@ class GuiSearch extends React.Component {
                                 show = {this.props.show}
                             />
                         ))}
+                        {this.state.stops.length == 0 ? <div className="center">Aucun résultat</div> : <></>}
+                        <div className="about">
+                                <br/>
+                            <div className="hr"></div>
+                                <br/>
+                            <img src={logo} className="logo" alt="Logo MyLines Embed" />
+                                <br/>
+                            <span>
+                                MyLines 2020 - {new Date().getFullYear()} • Version 1.0.1 <br/>
+                                Made with 💖
+                            </span>
+                                <br/>    
+                            <a href="https://github.com/MaisClement/MyLinesEmbed" className="mini_fluent_btn"> <img src={github} /> </a>
+                            <a href="http://discord.mylines.fr" className="mini_fluent_btn"> <img src={discord} /> </a>
+                            <a href="mailto:admin@mylines.fr" className="mini_fluent_btn"> <img src={mail} /> </a>
+                        </div>
                     </div>
-                    A propos - MyLines 2020 - 2021
                 </div>
                 <div className='guiBack' onClick={this.props.show}> </div>
             </>
@@ -131,27 +151,33 @@ class Gui extends React.Component {
 	constructor(props) {
 		super(props);
         this.state = {
-            show: false
+            show: false,
+            displayForce: false
         };
         
         this.show = this.show.bind(this);
 	}
 
+    componentDidMount(){
+        if (typeof this.props.display !== 'undefined' && this.props.display == true)
+            this.setState({
+                show: true,
+                displayForce: true
+            });
+    }
+
     show() {
-        this.setState({
-            show: (!this.state.show)
-        });
+        if (this.state.displayForce == false)
+            this.setState({
+                show: (!this.state.show)
+            });
     }
 
 	render(){
         return (
             <>
-                <div className="gui-show" onClick={this.show}>
-                    <span>
-                        Options disponible en appuyant sur la gauche
-                    </span>
-                </div>
-                {this.state.show == true ? <GuiSearch show={this.show} style={this.props.style} type={this.props.type} /> : <></>}
+                {this.state.displayForce == false ? <div className="gui-show" onClick={this.show}> <span> Options disponible en appuyant sur la gauche </span> </div> : <></>}
+                {this.state.show == true ? <GuiSearch show={this.show} style={this.props.style} type={this.props.type} displayForce={this.state.displayForce} version={this.props.version} /> : <></>}
             </>
         );
 	}

@@ -92,26 +92,29 @@ class SNCFArrival extends React.Component {
             );
         } else {
             return (
-                <div className='to'>
-                    <table>
-                    <tbody>
-                    {this.state.trains.slice(0, 7).map((train, i) => (
-                        <SNCFArrivalTrain 
-                            key={i} 
-                            train = {train}
-                            number={i}
-                            showInfo = {this.state.showInfo}
-                        />
-                    ))}
-                    </tbody>
-                    </table>
+                <>
+                    <div className='to'>
+                        <table>
+                        <tbody>
+                        {this.state.trains.slice(0, 7).map((train, i) => (
+                            <SNCFArrivalTrain 
+                                key={i} 
+                                train = {train}
+                                number={i}
+                                showInfo = {this.state.showInfo}
+                            />
+                        ))}
+                        </tbody>
+                        </table>
+                        
+                        <Clock />
+                        <Back />
+                    </div>
                     <Gui 
                         style = {'SNCF'}
                         type = {'arrival'}
                     />
-                    <Clock />
-				    <Back />
-                </div>    
+                </>  
             );
         }
 	}
@@ -343,9 +346,9 @@ function createDate(date){
     return el;
 }
 
-function SNCFd() {
+function SNCFa() {
     let params = useParams();
     return <SNCFArrival stop = {params.stop} />;
 } 
 
-export default SNCFd;
+export default SNCFa;

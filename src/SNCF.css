@@ -1,7 +1,5 @@
 body {
-  width: 100vw;
   overflow-x: hidden;
-  font-family: "Achemine",Arial,sans-serif;
   color: #fff;
   margin: 0;
   overflow: hidden;
@@ -12,6 +10,7 @@ body {
   src: url('achemine-webfont.ttf')  format('truetype'); /* Legacy iOS */
 }
 .from, .to{
+  font-family: "Achemine",Arial,sans-serif;
   width: 100vw;
   height: 100vh;
 }
@@ -28,6 +27,7 @@ table, tr{
 img{
   max-height: 5.5vh;
   margin-left: 1.2vw;
+  max-width: 7vw;
 }
 .img, .void { width: 9.4vw; padding-right: 1vw; }
 .trafic { width: 12vw; }
@@ -108,6 +108,7 @@ img{
   font-weight: bold;
   color: yellow;
   padding-right: 1vw;
+  width: 10vw;
 }
 .curentTime{
   width: 27vh;

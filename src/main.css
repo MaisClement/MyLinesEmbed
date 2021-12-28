@@ -24,14 +24,6 @@
   margin: 0 auto;
 }
 
-.hr{
-  background-color: #777;
-  border-radius: 5px;
-  width: 90%;
-  height: 2px;
-  display: inline-block;
-}
-
 @keyframes noise-anim {
   0% {
     clip: rect(40px, 9999px, 53px, 0);
@@ -282,6 +274,7 @@
   position: fixed;
   bottom: 10px;
 	padding: 50px 50px 0 50px;
+  right: 0;
 }
 .column span{
 	color: #868686;
@@ -294,7 +287,3 @@
 	margin-bottom: 5px;
 }
 
-.mini_fluent_btn{
-	position: relative;
-	top: 2px;
-}

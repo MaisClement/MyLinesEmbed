@@ -58,14 +58,6 @@ class ErrorDef extends React.Component  {
                         <br/><br/>
                 
                 </div>
-                <div class="column">
-                    <img src={logo} className="logo" />
-                        <br/>
-                    <span>
-                        MyLines 2020 - 2021 • Version 1.0.0 <br/>
-                        Made with 💖
-                    </span>
-                </div>
             </div>
         );
     }

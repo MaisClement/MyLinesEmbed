@@ -1,8 +1,10 @@
 # MyLines Embed
 
+### See in action : [MyLines Embed](https://embed.mylines.fr)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Based on [SNCF API](https://www.digital.sncf.com/startup/api).
+Based on [SNCF API](https://www.digital.sncf.com/startup/api). 
 
 # Getting Started
 
