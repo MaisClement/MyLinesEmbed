@@ -7,15 +7,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-a {
-	text-decoration: none;
+h3 {
+	margin: 17px;
 }
 
-
-.center{
-	text-align: center;
-	color: #7c7c7c;
-}
 .mini_fluent_btn{
 	border: 2px solid #4f474e00;
 	width: 35px;
@@ -37,6 +32,7 @@ a {
 	background-color: #0000000a;
 	border: 2px solid #4f474e61;
 }
+
 .hr{
 	background-color: #868686;
 	border-radius: 2px;
@@ -71,17 +67,17 @@ a {
 	color: #fff;
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 	position: fixed;
-	z-index: 10;
+	z-index: 11;
 	width: 400px;
-	max-width: 100vw;
+	max-width: calc(100vw - 40px);
 	height: 100vh;
 	top: 0;
 	left: 0;
-	padding: 20px 20px 20px 20px;
+	padding: 20px;
 	animation: gui 1s cubic-bezier(.65,.05,.36,1);	
 }
 .guiBack{
-	background-color: #3232339c;
+	background-color: #1f1f1ff0;
 	position: fixed;
 	z-index: 9;
 	width: 100vw;
@@ -91,7 +87,48 @@ a {
 	animation: gui-back 1s cubic-bezier(.65,.05,.36,1);	
 }
 
-input{
+.guiOpt{
+	padding: 20px;
+	position: fixed;
+	font-size: 20px;
+	color: #7c7c7c;
+	animation: guiOpt 1s cubic-bezier(.65,.05,.36,1);
+}
+.guiOpt input{
+    margin: 0;
+	padding: 0;
+    display: none;
+}
+
+.departure-card{
+	background-image:url("../../assets/img/departure.png");
+}
+.arrival-card{
+	background-image:url("../../assets/img/arrival.png");
+}
+.guiOpt input:active +.selectcard-cc{
+	opacity: 0.9;
+}
+.guiOpt input:checked +.selectcard-cc{
+    filter: none;
+}
+.selectcard-cc{
+    cursor: pointer;
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 20vw;
+	height: 11.2vw;
+	margin-left: 20px;
+	border-radius: 10px;
+	transition: all 250ms cubic-bezier(.65,.05,.36,1);
+    filter: brightness(1.2) grayscale(1) opacity(1);
+}
+.selectcard-cc:hover{
+    filter: brightness(1.2) grayscale(.5) opacity(1);
+}
+
+input[type=text]{
 	background-color: #00000000;
 	border: 2px solid #4f474e61;
 	color: #fff;
@@ -106,7 +143,7 @@ input{
 	font-size: 20px;
 	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
-input:hover, input:active{
+input[type=text]:hover, input:active{
 	background-color: #0000000a;
 	border: 2px solid #4f474eb7;
 }
@@ -114,15 +151,16 @@ input:focus{
 	background-color: #0000000a;
 	border: 2px solid #0064aab7;
 }
+.center{
+	text-align: center;
+	color: #7c7c7c;
+}
 .overmouse, .overmouse2{
 	color: #fff;
 	text-decoration: none;
-
 	position: initial;
 	padding: 10px;
-
 	display: block;
-
 	border-radius: 10px;
 	transition: background-color 250ms;
 	cursor: pointer;
@@ -153,6 +191,9 @@ input:focus{
 	bottom: 0px;
 	position: fixed;
 }
+.logo{
+	max-width: 100px;
+}
 .progress-bck{
 	position: relative;
 	height: 1vmin;
@@ -172,8 +213,43 @@ input:focus{
 	transition: all 0.5s;
 }
 .indeterminate{
-	animation: indeterminate 1.3s ease infinite;
+	animation: indeterminate 1.3s cubic-bezier(.65,.05,.36,1) infinite;
 }
+
+@media only screen and (min-width: 1000px) {
+	.guiOpt{
+		top: 0;
+		left: 440px;
+		z-index: 10;
+		max-width: calc(100vw - 440px);
+		animation: guiOpt1 1s cubic-bezier(.65,.05,.36,1);
+	}
+	.guiOpt .hr{
+		display: none;
+	}
+}
+@media only screen and (max-width: 1000px) {
+	.guiOpt{
+		bottom: 0;
+		left: 0;
+		z-index: 11;
+		max-width: 400px;
+		animation: guiOpt2 1s cubic-bezier(.65,.05,.36,1);
+	}
+	.guiOpt .selectcard-cc{
+		width: 170px;
+		max-width: 40vw;
+		height: 95px;
+	}
+	.gui .hr{
+		margin: 17px;
+	}
+	.about{
+		display: none;
+	}
+}
+
+/* --- Animation --- */
 
 @keyframes indeterminate {
 	0%{
@@ -191,28 +267,62 @@ input:focus{
 }
 @keyframes gui-show {
 	0% {
-	  background: linear-gradient(to right, #ffffff70, #0000);
-	  opacity: 1;
+		background: linear-gradient(to right, #ffffff70, #0000);
+		opacity: 1;
 	}
 	80% {
-	  background: linear-gradient(to right, #ffffff70, #0000);
-	  opacity: 1;
+		background: linear-gradient(to right, #ffffff70, #0000);
+		opacity: 1;
 	}
 	100% {
-	  background: linear-gradient(to right, #ffffff70, #0000);
-	  opacity: 0;
+		background: linear-gradient(to right, #ffffff70, #0000);
+		opacity: 0;
 	}
-  }
+}
 @keyframes gui-span {
-	0% { opacity: 1; }
-	80% { opacity: 1; }
-	100% { opacity: 0; }
+	0% {
+		opacity: 1;
+	}
+	80% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
 }
 @keyframes gui {
-	0% { left: -40vw; }
-	100% { left: 0; }
+	0% {
+		left: -440px;
+	}
+	100% {
+		left: 0;
+	}
+}
+@keyframes guiOpt1 {
+	0% {
+		opacity: 0;
+		left: -0px;
+	}
+	100% {
+		opacity: 1;
+		left: 440px;
+	}
+}
+@keyframes guiOpt2 {
+	0% {
+		opacity: 0;
+		left: -400px;
+	}
+	100% {
+		opacity: 1;
+		left: 0px;
+	}
 }
 @keyframes gui-back {
-	0% { background-color: #32323300; }
-	100% { background-color: #3232339c; }
+	0% {
+		background-color: #1f1f1f00;
+	}
+	100% {
+		background-color: #1f1f1ff0;
+	}
 }

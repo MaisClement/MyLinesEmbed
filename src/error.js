@@ -1,62 +1,37 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 
-import './main.css';
-import logo from './image/Logo.png';
+import './assets/error/win.css';
+import win_error from './assets/error/win_error.png';
 
 class Error extends React.Component  {
     render (){
-        if (this.props.type == 404){
-            return( <Error404/> )
-        
-        } else {
-            return( 
-                <ErrorDef
-                    error = {this.props.error}
-                    error_message = {this.props.error_message}
-                /> 
-            )
-        }
-    }
-}
-
-class Error404 extends React.Component  {
-    render(){
         return (
-            <div className="error">
-                <div className="error2">
-                    <div class="glitch" data-text="404 - Not Found !">404 - Not Found !</div>
-                        <br/>
-                    Malheureusement, la page que vous demandez n’existe pas ou plus. <br/>
-                    Vérifiez l'url saisie et si besoin, contactez l'administration. <br/>
+            <div class="desktop">
+                <div class="windows">
+                    <div class="title">
+                        <span>{this.props.error}</span>
+                        <div class="close"><div class="button">×</div></div>
+                    </div>
 
-                        <br/><br/>
-                
-                </div>
-                <div class="column">
-                    <img src={logo} className="logo" />
-                        <br/>
-                    <span>
-                        MyLines 2020 - 2021 • Version 1.0.0 <br/>
-                        Made with 💖
-                    </span>
-                </div>
-            </div>
-        );
-    }
-}
-
-class ErrorDef extends React.Component  {
-    render(){
-        return (
-            <div className="error">
-                <div className="error2">
-                    <div class="glitch" data-text={this.props.error}>{this.props.error}</div>
-                        <br/>
-                    {this.props.error_message}<br/>
-                    Reesayer dans quelques minutes et vérifiez l'url saisie. Si besoin, contactez l'administration. <br/>
-
-                        <br/><br/>
-                
+                    <table class="content">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <img src={win_error} />
+                                </td>
+                                <td class="details">
+                                    {this.props.error_message} <br />
+                                    Réessayez dans quelques minutes et si besoin, contactez l'administration. <br />
+                                </td>				
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="content choose">
+                        <a href="https://embed.mylines.fr/">
+                            <div class="button content auto">Retour à l'index</div>
+                        </a>
+                    </div>
                 </div>
             </div>
         );

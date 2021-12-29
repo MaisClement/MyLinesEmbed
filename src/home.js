@@ -1,7 +1,7 @@
 import React from 'react';
 
-import './main.css';
-import logo from './image/Logo.png';
+import './assets/css/main.css';
+import logo from './assets/img/Logo.png';
 
 import Gui from './gui';
 
@@ -13,6 +13,7 @@ class Home extends React.Component  {
                     style = {'SNCF'}
                     type = {'departure'}
                     display = {true}
+                    opt = {'SNCF/departure'}
                 />
                 <div class="column">
                     <img src={logo} className="logo" alt="Logo MyLines Embed" />

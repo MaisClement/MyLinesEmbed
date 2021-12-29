@@ -6,10 +6,10 @@ import { useParams } from 'react-router-dom';
 import Error from './error';
 import Gui from './gui';
 
-import whiteLogo from './SNCF_white.png';
-import './SNCF.css';
+import whiteLogo from './assets/img/SNCF_white.png';
+import './assets/css/SNCF.css';
 
-class SNCFArrival extends React.Component {
+class SNCFTrains extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -48,12 +48,11 @@ class SNCFArrival extends React.Component {
 	
 	getTrain() {
         let stop = this.props.stop;
-        const url = 'https://api.mylines.fr/sncf/arrivals?stop=' + stop;
-        //https://api.sncf.com/v1/coverage/sncf/vehicle_journeys/vehicle_journey:SNCF:2021-12-17:859550:1187:Tramway
+        const url = 'https://api.mylines.fr/sncf/' + this.props.type + '?stop=' + stop;
         
 		fetch(url, {
             method: 'get'
-            })
+        })
         .then(res => res.json())
         .then(data => {
             if (data.error && data.error == '200') {
@@ -68,7 +67,7 @@ class SNCFArrival extends React.Component {
                 }); 
             }
             this.setState({
-                trains: data.arrivals,
+                trains: data.trains,
                 uic_code: stop
             });
         })
@@ -92,48 +91,76 @@ class SNCFArrival extends React.Component {
             );
         } else {
             return (
-                <>
-                    <div className='to'>
+                <> 
+                    <div className={this.props.type}>
                         <table>
-                        <tbody>
-                        {this.state.trains.slice(0, 7).map((train, i) => (
-                            <SNCFArrivalTrain 
-                                key={i} 
-                                train = {train}
-                                number={i}
-                                showInfo = {this.state.showInfo}
-                            />
-                        ))}
-                        </tbody>
+                            <tbody>
+                            {this.state.trains.slice(0, 7).map((train, i) => (
+                                <SNCFTrain 
+                                    key = {i} 
+                                    train = {train}
+                                    number = {i}
+                                    showInfo = {this.state.showInfo}
+                                    type = {this.props.type}
+                                />
+                            ))}
+                            </tbody>
                         </table>
-                        
-                        <Clock />
-                        <Back />
-                    </div>
-                    <Gui 
-                        style = {'SNCF'}
-                        type = {'arrival'}
-                    />
-                </>  
+                    <Clock />
+                    <Back arr={this.props.arr} />
+                </div>
+                <Gui opt = {this.props.opt} />
+                </>      
             );
         }
 	}
 }
-
-class SNCFArrivalTrain extends React.Component {
+class SNCFTrain extends React.Component {
 	render(){
+        if (typeof this.props.train === 'undefined') {
+            return (
+                <>
+                </>
+            );
+        }
 
         let display = ['départ1 max','départ2 max','départ1 min','départ2 min','départ1 min','départ2 min','départ1 min','départ2 min'];
+        let head;
 
-        let direction = this.props.train.informations.origin.name;
+        if (this.props.type == 'departure')
+            head = this.props.train.informations.direction.name;
+        else
+            head = this.props.train.informations.origin.name;
 
         let network = this.props.train.informations.network;
         let name = this.props.train.informations.trip_name;
-        let arrival = createDate(this.props.train.stop_date_time.base_arrival_date_time);
 
-        let base_time = this.props.train.stop_date_time.base_arrival_date_time;
-        let real_time = this.props.train.stop_date_time.arrival_date_time;
-        let status = this.props.train.stop_date_time.status;
+        let real_time;
+        let base_time;
+        let created_base_time;
+        
+        if (this.props.type == 'departure'){
+            if (typeof this.props.train.stop_date_time.base_departure_date_time !== 'undefined') {
+                created_base_time = createDate(this.props.train.stop_date_time.base_departure_date_time);
+                base_time = this.props.train.stop_date_time.base_departure_date_time;
+            } else {
+                created_base_time = createDate(this.props.train.stop_date_time.departure_date_time);
+                base_time = this.props.train.stop_date_time.departure_date_time;
+            }
+            real_time = this.props.train.stop_date_time.departure_date_time;
+        } else {
+            if (typeof this.props.train.stop_date_time.base_arrival_date_time !== 'undefined') {
+                created_base_time = createDate(this.props.train.stop_date_time.base_arrival_date_time);
+                base_time = this.props.train.stop_date_time.base_arrival_date_time;
+            } else {
+                created_base_time = createDate(this.props.train.stop_date_time.arrival_date_time);
+                base_time = this.props.train.stop_date_time.arrival_date_time;
+            }
+            real_time = this.props.train.stop_date_time.arrival_date_time;
+        }
+
+        let status = this.props.train.informations.status;
+        let message = this.props.train.informations.message;
 
         let number = this.props.number;
         let showInfo = this.props.showInfo;
@@ -143,19 +170,19 @@ class SNCFArrivalTrain extends React.Component {
                 <tr className={display[this.props.number]}>
                     <td className="img"><img src={'https://mylines.fr/embed/image.php?serv=' + network} alt="Logo service"/></td>
                     <td className="trafic">
-                        {showInfo ? <Info real_time={real_time} base_time={base_time} status={status}/> : <span className="Id">{network}<br/><b>{name}</b> </span>}
+                        {showInfo ? <Info real_time={real_time} base_time={base_time} status={status} message={message}/> : <span className="Id">{network}<br/><b>{name}</b> </span>}
                     </td>
-                    <td className="time">{(arrival.getHours() < 10) ? '0' + arrival.getHours() : arrival.getHours()}h{(arrival.getMinutes() < 10) ? '0' + arrival.getMinutes() : arrival.getMinutes()}</td>
-                    <td className="dest">{direction}</td>
+                    <td className="time">{(created_base_time.getHours() < 10) ? '0' + created_base_time.getHours() : created_base_time.getHours()}h{(created_base_time.getMinutes() < 10) ? '0' + created_base_time.getMinutes() : created_base_time.getMinutes()}</td>
+                    <td className="dest">{head}</td>
                     <td className="track"></td>
                 </tr>
-                {number < 2 ? <SNCFArrivalMarquee number={number} key={number} train={this.props.train} stop={this.props.train.stops}/> : <></>}
+                {number < 2 ? <SNCFMarquee number={number} key={number} train={this.props.train} stop={this.props.train.stops}/> : <></>}
             </>
         );
 	}
 }
 
-class SNCFArrivalMarquee extends React.Component {
+class SNCFMarquee extends React.Component {
     constructor(props) {
 		super(props);
 		this.state = {
@@ -293,26 +320,26 @@ class Clock extends React.Component {
 		);
 	}
 }
-
 class Info extends React.Component {
 	render(){
 
         let real_time = this.props.real_time;
         let base_time = this.props.base_time;
         let status = this.props.status;
+        let message = this.props.message;
 
         if (status == 'deleted')
             return ( <span className="deleted"> supprimé </span> );
 
-        if (real_time == base_time)
-            return ( <span className="info"> à l'heure </span> );
+        if (status == 'late')
+            return ( <span className="deleted"> retardé </span> );
 
         real_time = createDate(real_time);
         base_time = createDate(base_time);
         
-
+        
         if (real_time < base_time) {
-            real_time.setDate(real_time.getDate() + 1);
+            real_time.setDate(real_time.getDate());
         }
         
         var diff = real_time - base_time;
@@ -322,33 +349,62 @@ class Info extends React.Component {
         var mm = Math.floor(msec / 1000 / 60);
         msec -= mm * 1000 * 60;
 
-        console.log(diff);
-
-        if (hh == 0)
-            return (
-                <span className="retard"> retard <br/> {mm} min. </span>
-            )
-        else 
-        return (
-            <span className="retard"> retard <br/> {hh}h{mm} </span>
-        )
-	}
+        if (mm > 0){
+            if (message == 'idf_realtime'){
+                if (hh == 0)
+                    return ( <span className="retard"> <b> + {mm}'</b> </span> );
+                else 
+                    return ( <span className="retard"> <b> + {hh}h{mm + hh*60}'</b> </span> );
+            } else {
+                if (hh == 0)
+                    return ( <span className="retard"> retard <br/> {mm} min. </span> );
+                else 
+                    return ( <span className="retard"> retard <br/> {hh}h{mm} </span> );
+            }
+        } else
+            return ( <span className="info"> à l'heure </span>);
+	}   
 }
-
-function Back() {
-	return (
-		<span className="arr">arrivées</span>
-	);
+class Back extends React.Component {
+    render(){
+        return (
+            <span className="arr">{this.props.arr}</span>
+        );
+    }
 }
 
 function createDate(date){
-    let el = new Date(date.substring(0, 4), date.substring(4, 6), date.substring(6, 8), date.substring(9, 11), date.substring(11, 13), date.substring(13, 15), 0); 
+    let el = new Date(date.substring(0, 4), date.substring(4, 6), date.substring(6, 8), date.substring(9, 11), date.substring(11, 13), 0, 0); 
     return el;
 }
 
+function SNCFd() {
+    let params = useParams();
+    return (
+        <SNCFTrains 
+            stop = {params.stop} 
+            arr = {'départs'} 
+            type = {'departure'}
+            opt = {'SNCF/departure'}
+        />
+    );
+} 
 function SNCFa() {
     let params = useParams();
-    return <SNCFArrival stop = {params.stop} />;
+    return (
+        <SNCFTrains
+            stop = {params.stop} 
+            arr = {'arrivées'} 
+            type = {'arrival'}
+            opt = {'SNCF/arrival'}
+        />
+    );
 } 
 
-export default SNCFa;
+export default SNCFd;
+export {
+    SNCFa,
+    Clock,
+    Info,
+    SNCFMarquee
+  }

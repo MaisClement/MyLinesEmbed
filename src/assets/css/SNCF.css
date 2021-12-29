@@ -7,17 +7,17 @@ body {
 }
 @font-face {
   font-family: 'Achemine';
-  src: url('achemine-webfont.ttf')  format('truetype'); /* Legacy iOS */
+  src: url('../fonts/achemine-webfont.ttf')  format('truetype'); /* Legacy iOS */
 }
-.from, .to{
+.departure, .arrival{
   font-family: "Achemine",Arial,sans-serif;
   width: 100vw;
   height: 100vh;
 }
-.from{
+.departure{
   background-color: #003a79;
 }
-.to{
+.arrival{
   background-color: #1f5628;
 }
 table, tr{
@@ -39,40 +39,40 @@ img{
   border-radius: 10px;
 }
 
-.from .départ1{
+.departure .départ1{
     background-color: #0064AA;
     height: 10vh;
   }
-.from .départ2{
+.departure .départ2{
     background-color: #003A79;
     height: 10vh;
   }
-.from .arr{
+.departure .arr{
     color: #4B84CA;
   }
-.from .curentTime{
+.departure .curentTime{
     background-color: #003A79;
   }
-.from .colon {
+.departure .colon {
     color: #003A79;
 }
 
 
-.to .départ1{
+.arrival .départ1{
     background-color: #187936;
     height: 10vh;
   }
-.to .départ2{
+.arrival .départ2{
     background-color: #1F5628;
     height: 10vh;
   }
-.to .arr{
+.arrival .arr{
     color: #458C4D;
   }
-.to .curentTime{
+.arrival .curentTime{
     background-color: #1F5628;
   }
-.to .colon {
+.arrival .colon {
     color: #1F5628;
 }
 
