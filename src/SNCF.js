@@ -361,7 +361,9 @@ class Info extends React.Component {
                 else 
                     return ( <span className="retard"> retard <br/> {hh}h{mm} </span> );
             }
-        } else
+        } else if (message == 'idf_realtime')
+            return ( <span className="info"> Temps réel </span>);
+        else 
             return ( <span className="info"> à l'heure </span>);
 	}   
 }
