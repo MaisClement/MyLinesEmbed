@@ -5,117 +5,63 @@ import { useParams } from 'react-router-dom';
 
 import Error from './error';
 import Gui from './gui';
+import MobileTrain, { MobileClock } from './Mobile'
 
-import whiteLogo from './assets/img/SNCF_white.png';
+import './assets/css/Mobile.css';
 import './assets/css/SNCF.css';
 
-class SNCFTrains extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-            trains: [],
-            showInfo: true,
-            uic_code: 0,
-            error: '',
-            error_message: '',
-        };
-        this.getTrain();
-	}
-	
-	componentDidMount() {
-		this.timerID = setInterval(
-			() => this.getTrain(),
-			50000
-		);
-        this.timerTick = setInterval(
-            () => this.tick(),
-            3000
-        );
-	}
-	
-	componentWillUnmount() {
-		clearInterval(this.timerID);
-        clearInterval(this.timerTick);
-	}
-
-    tick() {
-		this.setState({
-			showInfo: (!this.state.showInfo)
-		});
-        if (this.state.uic_code != this.props.stop)
-            this.getTrain();
-	}
-	
-	getTrain() {
-        let stop = this.props.stop;
-        const url = 'https://api.mylines.fr/sncf/' + this.props.type + '?stop=' + stop;
-        
-		fetch(url, {
-            method: 'get'
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (data.error && data.error == '200') {
-                this.setState({
-                    error: ':/',
-                    error_message: 'La gare indiqué ne semble pas exister. Vérifier l\'url saisie ou réessayez dans quelques minutes.'
-                }); 
-            } else if (data.error) {
-                this.setState({
-                    error: ':/',
-                    error_message: data.error_message,
-                }); 
-            }
-            this.setState({
-                trains: data.trains,
-                uic_code: stop
-            });
-        })
-        .catch(err => {
-            this.setState({
-                error: ':/',
-                error_message: 'Récupération des trains impossible.'
-            }); 
-            console.log(err);
-        });
-	}
-
-	render(){
-        if (this.state.error != 0 || this.state.error != ''){
-            return (
-                <Error
-                    type = {0}
-                    error = {this.state.error}
-                    error_message = {this.state.error_message}
-                />
-            );
-        } else {
-            return (
-                <> 
+class SNCF extends React.Component {
+    render(){
+        return(
+            <> 
+                <div className='SNCF'>
                     <div className={this.props.type}>
                         <table>
                             <tbody>
-                            {this.state.trains.slice(0, 7).map((train, i) => (
+                            {this.props.trains.slice(0, 7).map((train, i) => (
                                 <SNCFTrain 
                                     key = {i} 
                                     train = {train}
                                     number = {i}
-                                    showInfo = {this.state.showInfo}
+                                    showInfo = {this.props.showInfo}
                                     type = {this.props.type}
                                 />
                             ))}
                             </tbody>
                         </table>
-                    <Clock />
-                    <Back arr={this.props.arr} />
+                        <SNCFClock />
+                        <Back arr={this.props.arr} />
+                    </div>
                 </div>
-                <Gui opt = {this.props.opt} />
-                </>      
-            );
-        }
-	}
+                <Gui 
+                    opt = {this.props.opt}
+                    gare = {this.props.gare}
+                    mobile = {this.props.mobile}
+                />
+            </>      
+        )
+    }
 }
 class SNCFTrain extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { width: window.innerWidth };
+
+        this.handleResize = this.handleResize.bind(this);
+    }
+    
+    handleResize(e){
+        this.setState({ width: window.innerWidth });
+    };
+    
+    componentDidMount() {
+        window.addEventListener("resize", this.handleResize);
+    }
+    
+    componentWillUnmount () {
+        window.addEventListener("resize", this.handleResize);
+    } 
+
 	render(){
         if (typeof this.props.train === 'undefined') {
             return (
@@ -133,6 +79,7 @@ class SNCFTrain extends React.Component {
             head = this.props.train.informations.origin.name;
 
         let network = this.props.train.informations.network;
+        let code = this.props.train.informations.code;
         let name = this.props.train.informations.trip_name;
 
         let real_time;
@@ -167,21 +114,21 @@ class SNCFTrain extends React.Component {
 
         return (
             <>
-                <tr className={display[this.props.number]}>
+				<tr className={display[this.props.number]}>
                     <td className="img"><img src={'https://mylines.fr/embed/image.php?serv=' + network} alt="Logo service"/></td>
                     <td className="trafic">
-                        {showInfo ? <Info real_time={real_time} base_time={base_time} status={status} message={message}/> : <span className="Id">{network}<br/><b>{name}</b> </span>}
+                        {showInfo ? <SNCFInfo real_time={real_time} base_time={base_time} status={status} message={message}/> : <span className="Id">{code}<br/><b>{name}</b> </span>}
                     </td>
                     <td className="time">{(created_base_time.getHours() < 10) ? '0' + created_base_time.getHours() : created_base_time.getHours()}h{(created_base_time.getMinutes() < 10) ? '0' + created_base_time.getMinutes() : created_base_time.getMinutes()}</td>
                     <td className="dest">{head}</td>
                     <td className="track"></td>
                 </tr>
                 {number < 2 ? <SNCFMarquee number={number} key={number} train={this.props.train} stop={this.props.train.stops}/> : <></>}
-            </>
+			</>
+            
         );
 	}
 }
-
 class SNCFMarquee extends React.Component {
     constructor(props) {
 		super(props);
@@ -232,7 +179,11 @@ class SNCFMarquee extends React.Component {
         if (typeof this.props.stop != 'undefined') {
             return (
                 <tr className={display[this.props.number]}>
-                    <td className="void"></td>
+                    {this.props.width < 800 ? 
+					    <></>
+                        :
+                        <td className="void"></td>
+                    }
                     <td colspan="3">
                         <div className="stop" ref={this.stopRef}>
                             <Marquee
@@ -245,7 +196,7 @@ class SNCFMarquee extends React.Component {
                                     {this.props.stop.map((stop, i) => (
                                         <>
                                             <span>{stop.stop_point.name}</span>
-                                            {i != this.props.stop.length-1 ? <span className="space"></span> : <></>}
+                                            {i != this.props.stop.length-1 ? <span className="dot"></span> : <></>}
                                         </>
                                     ))}
                                 </div>
@@ -268,11 +219,12 @@ class SNCFMarquee extends React.Component {
         
 	}
 }
-
-class Clock extends React.Component {
+class SNCFClock extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {date: new Date()};
+		this.state = {
+            date: new Date()
+        };
 	}
 	
 	componentDidMount() {
@@ -304,23 +256,25 @@ class Clock extends React.Component {
 		});
 	}
 
-	render(){
-		let style = {};
-		if (this.state.milli > 500)
-			style = { color: "#fff0" };
+    style(){
+        if (this.state.milli > 500)
+			return { opacity: 0 };
 		else
-			style = { color: "#fff" };
+            return { opacity: 1 };
+    }
+
+	render(){
 		return (
-			<span className="curentTime">
-				<span className="hour">
-					{this.state.hour}<span style={style}>:</span>{this.state.minute}
-					<span class="minute"> {this.state.second}</span>
-				</span>
-			</span>
+            <span className="sncf-time">
+                <span className="hour">
+                    {this.state.hour}<span style={this.style()}>:</span>{this.state.minute}
+                    <span class="minute"> {this.state.second}</span>
+                </span>
+            </span>
 		);
 	}
 }
-class Info extends React.Component {
+class SNCFInfo extends React.Component {
 	render(){
 
         let real_time = this.props.real_time;
@@ -332,6 +286,9 @@ class Info extends React.Component {
             return ( <span className="deleted"> supprimé </span> );
 
         if (status == 'late')
+            return ( <span className="deleted"> retardé </span> );
+
+        if (status == 'real_time')
             return ( <span className="deleted"> retardé </span> );
 
         real_time = createDate(real_time);
@@ -352,18 +309,16 @@ class Info extends React.Component {
         if (mm > 0){
             if (message == 'idf_realtime'){
                 if (hh == 0)
-                    return ( <span className="retard"> <b> + {mm}'</b> </span> );
+                    return ( <span className="late"> <b> + {mm}'</b> </span> );
                 else 
-                    return ( <span className="retard"> <b> + {hh}h{mm + hh*60}'</b> </span> );
+                    return ( <span className="late"> <b> + {hh}h{mm + hh*60}'</b> </span> );
             } else {
                 if (hh == 0)
-                    return ( <span className="retard"> retard <br/> {mm} min. </span> );
+                    return ( <span className="late"> retard <br/> {mm} min. </span> );
                 else 
-                    return ( <span className="retard"> retard <br/> {hh}h{mm} </span> );
+                    return ( <span className="late"> retard <br/> {hh}h{mm} </span> );
             }
-        } else if (message == 'idf_realtime')
-            return ( <span className="info"> Temps réel </span>);
-        else 
+        } else
             return ( <span className="info"> à l'heure </span>);
 	}   
 }
@@ -380,33 +335,5 @@ function createDate(date){
     return el;
 }
 
-function SNCFd() {
-    let params = useParams();
-    return (
-        <SNCFTrains 
-            stop = {params.stop} 
-            arr = {'départs'} 
-            type = {'departure'}
-            opt = {'SNCF/departure'}
-        />
-    );
-} 
-function SNCFa() {
-    let params = useParams();
-    return (
-        <SNCFTrains
-            stop = {params.stop} 
-            arr = {'arrivées'} 
-            type = {'arrival'}
-            opt = {'SNCF/arrival'}
-        />
-    );
-} 
 
-export default SNCFd;
-export {
-    SNCFa,
-    Clock,
-    Info,
-    SNCFMarquee
-  }
+export default SNCF;

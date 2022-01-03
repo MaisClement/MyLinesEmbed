@@ -1,174 +1,155 @@
-body {
-  overflow-x: hidden;
-  color: #fff;
-  margin: 0;
-  overflow: hidden;
-  white-space: nowrap;
-}
 @font-face {
-  font-family: 'Achemine';
-  src: url('../fonts/achemine-webfont.ttf')  format('truetype'); /* Legacy iOS */
-}
-.departure, .arrival{
-  font-family: "Achemine",Arial,sans-serif;
-  width: 100vw;
-  height: 100vh;
-}
-.departure{
-  background-color: #003a79;
-}
-.arrival{
-  background-color: #1f5628;
-}
-table, tr{
-  border-spacing: 0;
-  width: 100vw;
-}
-img{
-  max-height: 5.5vh;
-  margin-left: 1.2vw;
-  max-width: 7vw;
-}
-.img, .void { width: 9.4vw; padding-right: 1vw; }
-.trafic { width: 12vw; }
-
-.track { width: 7.5vw; }
-
-.load{
-  background-color: #fff2;
-  border-radius: 10px;
+	font-family: 'Achemine';
+	src: url('../fonts/achemine-webfont.ttf')	format('truetype'); /* Legacy iOS */
 }
 
-.departure .départ1{
-    background-color: #0064AA;
-    height: 10vh;
-  }
-.departure .départ2{
-    background-color: #003A79;
-    height: 10vh;
-  }
-.departure .arr{
-    color: #4B84CA;
-  }
-.departure .curentTime{
-    background-color: #003A79;
-  }
-.departure .colon {
-    color: #003A79;
+.SNCF img {
+	max-height: 5.5vh;
+	margin-left: 1.2vw;
+	max-width: 7vw;
+}
+table, tr {
+	border-spacing: 0;
+	width: 100vw;
 }
 
-
-.arrival .départ1{
-    background-color: #187936;
-    height: 10vh;
-  }
-.arrival .départ2{
-    background-color: #1F5628;
-    height: 10vh;
-  }
-.arrival .arr{
-    color: #458C4D;
-  }
-.arrival .curentTime{
-    background-color: #1F5628;
-  }
-.arrival .colon {
-    color: #1F5628;
+.SNCF{
+	font-family: "Achemine",Arial,sans-serif;
+}
+.SNCF .departure{
+	background-color: #003a79;
+	width: 100vw; height: 100vh;
+}
+.SNCF .arrival{
+	background-color: #1f5628;
+	width: 100vw; height: 100vh;
 }
 
-.info, .Id{
-  display: inline-block;
+.SNCF .img {
+	width: 9.4vw;
+	padding-right: 1vw;
 }
-.retard{
-  color: #fcfd02;
-  font-weight: bold;
-}
-.deleted{
-  color: #ffa500;
-  font-weight: bold;
-}
-.space{
-  position: relative;
-  border-radius: 50%;
-  background: yellow;
-  margin: 1vh;
-  top: 1vh;
-  width: 2vh;
-  height: 2vh;
-  display: inline-block;
-}
-.trafic{    
-  font-size: 3.8vh;
-  overflow: hidden; 
-  max-width: 12vw;
-  min-width: 12vw;
-}
-.time{    
-  font-size: 6.6vh;
-  font-weight: bold;
-  color: yellow;
-  padding-right: 1vw;
-  width: 10vw;
-}
-.curentTime{
-  width: 27vh;
-  position: fixed;
-  bottom: -4px;
-  height: 8.5vh;
-  border-radius: 5px;
-  right: 15px;
-  box-shadow: rgb(255, 255, 255) 0px 1px 4px, rgb(255, 255, 255) 0px 0px 0px 3px;
-  z-index: 2;
-}
-.arr{
-  transform: rotate(270deg);
-  position: absolute;
-  color: #458C4D;
-  font-weight: bold;
-  right: -25vh;
-  font-size: 24vh;
-  top: 33vh;
-  z-index: 1;
-}
-.hour{
-  position: relative;
-  font-size: 6vh;
-  left: 1.5vw;
-  top: 0.5vh;
-  font-weight: bold;
-}
-.minute{
-  color: yellow;
-  font-size: 4vh;
-}
-.dest, .stop, .time{
-  z-index: 2;
-  position: relative;
-  max-width: 92vw;
-}
-.stop{
-  font-size: 6vh;
-  overflow: hidden;
+.SNCF .trafic {
+	width: 12vw;
 }
 
+.SNCF .départ1, .SNCF .départ2{
+	height: 10vh;
+}
+
+.SNCF .departure .départ1{
+	background-color: #0064AA;
+}
+.SNCF .departure .départ2{
+	background-color: #003A79;
+}
+.SNCF .departure .arr{
+	color: #4B84CA;
+}
+
+.SNCF .arrival .départ1{
+	background-color: #187936;
+}
+.SNCF .arrival .départ2{
+	background-color: #1F5628;
+}
+.SNCF .arrival .arr{
+	color: #458C4D;
+}
+
+/* -------------------------------------- */
+.SNCF .info, .SNCF .Id{
+	display: inline-block;
+}
+/* -------------------------------------- */
+
+.SNCF .late{
+	color: #fcfd02;
+	font-weight: bold;
+}
+.SNCF .deleted{
+	color: #ffa500;
+	font-weight: bold;
+}
+.SNCF .dot{
+	position: relative;
+	border-radius: 50%;
+	background: yellow;
+	margin: 1vh;
+	top: 0.7vh;
+	width: 2vh;
+	height: 2vh;
+	display: inline-block;
+}
+.SNCF .trafic{		
+	font-size: 3.8vh;
+	overflow: hidden; 
+	max-width: 12vw;
+	min-width: 12vw;
+}
+.SNCF .time{		
+	font-size: 6.6vh;
+	font-weight: bold;
+	color: yellow;
+	padding-right: 1vw;
+	width: 10vw;
+}
+.SNCF .arr{
+	transform: rotate(270deg);
+	position: absolute;
+	font-weight: bold;
+	right: -25vh;
+	font-size: 24vh;
+	top: 33vh;
+	z-index: 1;
+}
+
+.SNCF .dest, .SNCF .stop, .SNCF .time{
+	z-index: 2;
+	position: relative;
+	max-width: 92vw;
+}
+.SNCF .stop{
+	font-size: 6vh;
+	overflow: hidden;
+}
 .marqueeSpace{
-  width: 100vw;
+	width: 100vw;
+}
+.SNCF .max .dest{
+	font-size: 9.2vh;
+}
+.SNCF .min .dest{
+	font-size: 7.8vh;
 }
 
-/*-- Grand affichage --*/
-.max .dest{
-    font-size: 9.2vh;
-}
-/*-- Petit affichage --*/
-.min .dest{
-    font-size: 7.8vh;
-}
 
-@keyframes defilement {
-  0% {
-    transform: translate3d(0, 0, 0); /* position initiale à droite */
-  }
-  100% {
-    transform: translate3d(-100%, 0, 0); /* position finale à gauche */
-  }
+/* --- TIME --- */
+
+.sncf-time{
+	width: 27vh;
+	height: 8.5vh;
+	right: 15px;
+	bottom: -4px;
+	text-align: center;
+	position: fixed;
+	border-radius: 5px;
+	box-shadow: rgb(255, 255, 255) 0px 1px 4px, rgb(255, 255, 255) 0px 0px 0px 3px;
+	font-size: 6vh;
+	font-weight: bold;		
+	z-index: 2;
+}
+.sncf-time .hour{
+	top: 0.8vh;
+	position: relative;
+}
+.sncf-time .minute{
+	color: yellow;
+	font-size: 4vh;
+}
+.departure .sncf-time{
+	background-color: #003A79;
+}
+.arrival .sncf-time{
+	background-color: #1F5628;
 }

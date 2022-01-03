@@ -10,7 +10,7 @@ import {
 
 import './assets/css/index.css';
 
-import SNCFd, { SNCFa } from './SNCF';
+import SNCFd, { SNCFa, Mobiled, Mobilea } from './trains';
 
 import Home from './home';
 import Error from './error';
@@ -45,6 +45,12 @@ ReactDOM.render(
         <Routes>
           <Route path="/SNCF/departure/:stop" element={<SNCFd />} />
           <Route path="/SNCF/arrival/:stop" element={<SNCFa />} />
+
+          <Route path="/mobile/departure/:stop" element={<Mobiled />} />
+          <Route path="/mobile/arrival/:stop" element={<Mobilea />} />
+
+          <Route path="/mobile/arrival/:stop/detail" element={<Mobilea />} />
+
           <Route path="*" element={<Home />} />
         </Routes>
       </ErrorBoundary>
