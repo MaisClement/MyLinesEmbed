@@ -1,0 +1,83 @@
+:root{
+	--transparent: #0000;
+	--border-color: #4f474e61;
+	--secondary: rgb(134, 134, 134);
+}
+@media (prefers-color-scheme: light) {
+	:root {
+		--body:#fff;
+		--index-bck: rgba(230, 230, 230, 0.7);
+		--index-shadow: rgba(230,230,230,0.78);
+		--text:#000;
+		
+		--el-back-primary: #f5f5f5;
+		--el-back-secondary: #dbdbdb;
+		--el-back-hover: #eeeeee;
+		--img-hover: #f5f5f588;
+
+        --blue-primary: #297CD3;
+        --blue-secondary: #2674C6;
+		--blue-high: #3092f9;
+        --blue-back: #DCEDFF;
+
+		--red-primary: #D32929;
+        --red-secondary: #C62626;
+		--red-high: #f93030;
+        --red-back: #ffdcdc;
+
+		--green-primary: #29D33C;
+        --green-secondary: #1fa02d;
+		--green-high: #30f946;
+        --green-back: #dcffdc;
+
+		--orange-primary: #E29E33;
+        --orange-secondary: #af7a27;
+		--orange-high: #ffbf39;
+        --orange-back: #fff3dc;
+	}
+	.svg {
+		filter:invert(0%) sepia(8%) saturate(0%) hue-rotate(83deg) brightness(96%) contrast(106%);
+	}
+	.reverse-svg {
+		filter:invert(100%) sepia(93%) saturate(27%) hue-rotate(39deg) brightness(107%) contrast(107%);
+	}
+}
+@media (prefers-color-scheme: dark) {
+	:root {
+		--body:#202020;
+		--index-bck: rgba(30, 30, 30, 0.7);
+		--index-shadow: rgba(30,30,30,0.78);
+		--text:#d9d9d9;
+		
+		--el-back-primary: #161616;
+		--el-back-secondary: #323232;
+		--el-back-hover: #121212;
+		--img-hover: #0009;
+
+        --blue-primary: #2674C6;
+        --blue-secondary: #297CD3;
+		--blue-high: #1c5693;
+        --blue-back: #001f3a;
+
+		--red-primary: #C62626;
+        --red-secondary: #D32929;
+		--red-high: #a01f1f;
+        --red-back: #3a0000;
+
+		--green-primary: #1fa02d;
+        --green-secondary: #29D33C;
+		--green-high: #1fa02d;
+        --green-back: #002711;
+
+		--orange-primary: #af7a27;
+        --orange-secondary: #E29E33;
+		--orange-high: #af7a27;
+        --orange-back: #231600;
+	}
+	.svg {
+		filter:invert(100%) sepia(93%) saturate(27%) hue-rotate(39deg) brightness(107%) contrast(107%);
+	}
+	.reverse-svg {
+		filter:invert(0%) sepia(8%) saturate(0%) hue-rotate(83deg) brightness(96%) contrast(106%);
+	}
+}

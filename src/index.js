@@ -10,8 +10,9 @@ import {
 
 import './assets/css/index.css';
 
-import SNCFd, { SNCFa, Mobiled, Mobilea } from './trains';
-
+import SNCFd, { SNCFa, IENAa, IENAd } from './trains';
+import Doc_S from './doc_s';
+import Doc_T from './doc_t';
 import Home from './home';
 import Error from './error';
 
@@ -43,13 +44,28 @@ ReactDOM.render(
     <BrowserRouter>
       <ErrorBoundary>
         <Routes>
-          <Route path="/SNCF/departure/:stop" element={<SNCFd />} />
-          <Route path="/SNCF/arrival/:stop" element={<SNCFa />} />
+          
+          {window.location.href.indexOf('mylines.fr/embed') >= 0 ?
+            <>
+              // Infogare Train Empire
+              <Route path="/SNCF/departure/:stop/:auth" element={<SNCFd />} />
+              <Route path="/SNCF/arrival/:stop/:auth" element={<SNCFa />} />
 
-          <Route path="/mobile/departure/:stop" element={<Mobiled />} />
-          <Route path="/mobile/arrival/:stop" element={<Mobilea />} />
+              <Route path="/IENA/departure/:stop/:auth" element={<IENAd />} />
+              <Route path="/IENA/arrival/:stop/:auth" element={<IENAa />} />
+              <Route path="/doc" element={<Doc_T />} />
+            </>
+            :
+            <>
+              // Infogare SNCF
+              <Route path="/SNCF/departure/:stop" element={<SNCFd />} />
+              <Route path="/SNCF/arrival/:stop" element={<SNCFa />} />
 
-          <Route path="/mobile/arrival/:stop/detail" element={<Mobilea />} />
+              <Route path="/IENA/departure/:stop" element={<IENAd />} />
+              <Route path="/IENA/arrival/:stop" element={<IENAa />} />
+              <Route path="/doc" element={<Doc_S />} />
+            </>
+          }
 
           <Route path="*" element={<Home />} />
         </Routes>

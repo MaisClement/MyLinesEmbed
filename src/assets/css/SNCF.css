@@ -1,6 +1,6 @@
 @font-face {
 	font-family: 'Achemine';
-	src: url('../fonts/achemine-webfont.ttf')	format('truetype'); /* Legacy iOS */
+	src: url('../fonts/Achemine.ttf')	format('truetype'); /* Legacy iOS */
 }
 
 .SNCF img {
@@ -8,7 +8,7 @@
 	margin-left: 1.2vw;
 	max-width: 7vw;
 }
-table, tr {
+.SNCF table, .SNCF tr {
 	border-spacing: 0;
 	width: 100vw;
 }

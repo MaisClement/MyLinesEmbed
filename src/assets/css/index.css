@@ -9,8 +9,11 @@ code {
   	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-h3 {
+.gui-menu h3 {
 	margin: 17px;
+}
+.settings-full{
+	margin-top: 70px;
 }
 
 .mini_fluent_btn{
@@ -43,7 +46,7 @@ h3 {
 }
 
 .gui{
-	background-color: #323233;
+	background-color: #202020;
 	color: #fff;
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 	position: fixed;
@@ -60,7 +63,7 @@ h3 {
 }
 
 .gui-back{
-	background-color: #1f1f1ff0;
+	background-color: #1f1f1fe0;
 	position: fixed;
 	z-index: 9;
 	width: 100vw;
@@ -89,11 +92,11 @@ h3 {
 .SNCFa-card{
 	background-image:url("../../assets/img/SNCFa.png");
 }
-.Mobiled-card{
-	background-image:url("../../assets/img/Mobiled.png");
+.IENAd-card{
+	background-image:url("../../assets/img/IENAd.png");
 }
-.Mobilea-card{
-	background-image:url("../../assets/img/Mobilea.png");
+.IENAa-card{
+	background-image:url("../../assets/img/IENAa.png");
 }
 
 .gui-menu input:active +.selectcard-cc{
@@ -133,11 +136,11 @@ input[type=text]{
 	font-size: 20px;
 	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
-input[type=text]:hover, input:active{
+input[type=text]:hover{
 	background-color: #0000000a;
 	border: 2px solid #4f474eb7;
 }
-input:focus{
+input:focus, input:active{
 	background-color: #0000000a;
 	border: 2px solid #0064aab7;
 }
@@ -172,12 +175,21 @@ input:focus{
 	cursor: pointer;
 }
 
-.stopList{
-	overflow-x: hidden;
-	overflow-y: scroll;
-	height: calc(100vh - 310px);
+@media only screen and (min-width: 1000px) {
+	.stopList{
+		overflow-x: hidden;
+		overflow-y: scroll;
+		height: calc(100vh - 310px);
+	}
 }
-.about{
+@media only screen and (max-width: 999px) {
+	.stopList{
+		overflow-x: hidden;
+		overflow-y: scroll;
+		height: calc(100vh - 444px);
+	}
+}
+.gui .about{
 	bottom: 0px;
 	position: fixed;
 }
@@ -220,7 +232,7 @@ input:focus{
 	}
 }
 /* --- Mobile --- */
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 999px) {
 	.gui-menu{
 		bottom: 0;
 		left: 0;
@@ -254,11 +266,12 @@ input:focus{
 	z-index: 5;
 }
 .gui-show span{
-	position: absolute;
+	position: fixed;
 	text-shadow: 3px 2px 4px #0b0b0b;
-	transform: rotate(270deg);
-	top: 45vh;
-	left: -13vw;
+	writing-mode: sideways-lr;
+	text-orientation: mixed;
+	top: calc(( 100vh - 500px ) / 2 );
+	left: 30px;
 	font-size: 3vh;
 	animation: gui-span 5s linear;
 	opacity: 0;
@@ -317,15 +330,15 @@ input:focus{
 }
 @keyframes gui-show {
 	0% {
-		background: linear-gradient(to right, #ffffff70, #0000);
+		background: linear-gradient(to right, #ffffff99, #0000);
 		opacity: 1;
 	}
 	80% {
-		background: linear-gradient(to right, #ffffff70, #0000);
+		background: linear-gradient(to right, #ffffff99, #0000);
 		opacity: 1;
 	}
 	100% {
-		background: linear-gradient(to right, #ffffff70, #0000);
+		background: linear-gradient(to right, #ffffff99, #0000);
 		opacity: 0;
 	}
 }
@@ -373,6 +386,6 @@ input:focus{
 		background-color: #1f1f1f00;
 	}
 	100% {
-		background-color: #1f1f1ff0;
+		background-color: #1f1f1fe0;
 	}
 }

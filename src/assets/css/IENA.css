@@ -1,4 +1,4 @@
-body {
+.IENA {
 	width: 100vw;
 	height: 100vh;
 	overflow-x: hidden;
@@ -13,26 +13,26 @@ body {
 
 @font-face {
 	font-family: 'Achemine';
-	src: url('achemine-webfont.ttf')format('truetype'); /* Legacy iOS */
+	src: url('../fonts/Achemine.ttf') format('truetype');
 }
 @font-face {
 	font-family: 'Transilien';
-	src: url('TransilienSmall.ttf')format('truetype'); /* Legacy iOS */
+	src: url('../fonts/TransilienSmall.ttf') format('truetype');
 }
 
-table{
+.IENA table{
 	width: 91.5vw;
 }
-table, tr{
+.IENA table, tr{
 	border-spacing: 0;
 }
 
-.head{
+.IENA .head{
 	background-color: #fff;
 	height: 9vh;
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
-.title{
+.IENA .head-title{
 	color: #667C8A;
 	left: 20.5vw;
 	position: fixed;
@@ -41,7 +41,7 @@ table, tr{
 	font-size: 6.1vh;
 	top: 1vh;
 }
-.voie{
+.IENA .voie{
 	background-color: #181B3E;
 	position: fixed;
 	right: 1vw;
@@ -53,7 +53,7 @@ table, tr{
 	font-size: 2.5vh;
 	font-weight: bold;
 }
-.départmax{
+.IENA .départmax{
 	margin: 0.8vw 7.2vw 0vw 1.1vw;
 	background-color: #181B3E;
 	border-radius: 2vh;
@@ -62,10 +62,10 @@ table, tr{
 	position: relative;
 	z-index: 3;
 }
-.départmax .img{
+.IENA .départmax .img{
 	height: 14vhvh;
 }
-.départmin{
+.IENA .départmin{
 	margin: 1vw 7.2vw 0vw 1.1vw;
 	background-color: #181B3E;
 	border-radius: 2vh;
@@ -74,54 +74,54 @@ table, tr{
 	position: relative;
 	z-index: 3;
 }
-.départmin .img{
+.IENA départmin .img{
 	height: 9vh;
 }
-img{
+.IENA img{
 	max-height: 5.5vh;
 	margin-left: 1.2vw;
 	max-width: 6vw;
 }
-.miss{
+.IENA .miss{
 	font-family: "Transilien",Arial,sans-serif;
 	padding-left: 1.2vw;
 	font-size: 7vh;
 	
 	width: 10vw;
 }
-.dest{
+.IENA .dest{
 	font-size: 6vh;
 	padding-left: 1.9vh;
 	font-weight: bold;
 	overflow: hidden;
-max-width: 60vw;
+	max-width: 10vw;
 }
 
-.img, .void {
+.IENA .img, .void {
 	width: 7.4vw;
 }
-.trafic { width: 12vw; }
-.time { width: 13.8vw; }
-.track { width: 7.5vw; }
+.IENA .trafic { width: 12vw; }
+.IENA .time { width: 13.8vw; }
+.IENA .track { width: 7.5vw; }
 
-.trafic{	
+.IENA .trafic{	
 	font-size: 4vh;
 	padding-right: 2vw;
 }
-.time{	
+.IENA .time{	
 	font-size: 4.6vh;
-width: 8vw;
-text-align: right;
-padding-right: 1vw;
+	width: 8vw;
+	text-align: right;
+	padding-right: 1vw;
 }
-.direct{
+.IENA .direct{
 	font-style: italic;
 	font-size: 4.5vh;
 	font-weight: lighter;
 	font-family: Corbel;
 	color: #ffffffd1;
 }
-.tracki{
+.IENA .tracki{
 	box-shadow: #181B3E 0px 0px 2.2vh, #181B3E 0px 0px 0px 1.1vh;
 	height: 11vh;
 	background-color: #fff;
@@ -130,7 +130,13 @@ padding-right: 1vw;
 	right: 2vw;
 	width: 8vw;
 }
-.trackc{
+.IENA .tracki0{
+	margin-top: 10px;
+}
+.IENA .tracki1{
+	margin-top: 18px;
+}
+.IENA .trackc{
 	box-shadow: #181B3E 0px 0px 2.2vh, #181B3E 0px 0px 0px 1.1vh;
 	height: 7.8vh;
 	background-color: #fff;
@@ -139,15 +145,22 @@ padding-right: 1vw;
 	right: 2vw;
 	width: 8vw;
 }
-.num{
+.IENA .trackc:nth-child(1){
+	margin-top: 10px;
+}
+.IENA .trackc:nth-child(2){
+	margin-top: 18px;
+}
+.IENA .num{
 	margin-left: 1.5vw;
 	text-align: center;
 	color: #181b3e;
 	font-size: 6vh;
 	font-weight: bold;
+	margin-top: 3px;
 }
 
-.stop{
+.IENA .stop{
 	margin-left: 0.8vw;
 	font-size: 4.5vh;
 	overflow: hidden;
@@ -157,32 +170,19 @@ padding-right: 1vw;
 	background-color: #131637;
 	margin-bottom: 1.5vh;
 }
-.marquee{
-	display: inline-block;
-	white-space: nowrap;
-	animation: defilement infinite linear;
-	animation-duration: 0s;
-}
-@keyframes defilement {
-	0% {
-	transform: translate3d(0, 0, 0); /* position initiale à droite */
-	}
-	100% {
-	transform: translate3d(-100%, 0, 0); /* position finale à gauche */
-	}
-}
+
 	
 	/*-- Grand affichage --*/
-	.max .dest{
+	.IENA .max .dest{
 		font-size: 9.2vh;
 	}
 
 	/*-- Petit affichage --*/
-	.min .dest{
+	.IENA .min .dest{
 		font-size: 7.8vh;
 	}
 
-.curentTime{
+	.IENA .iena-time{
 	background-color: #667C8A;
 	width: 16vh;
 	position: fixed;
@@ -196,9 +196,9 @@ padding-right: 1vw;
 }
 
 
-.hour{
+.IENA .hour{
 	position: relative;
-	font-size: 4vh;
 	top: 0.4vh;
+	font-size: 4vh;
 	font-weight: bold;
 }

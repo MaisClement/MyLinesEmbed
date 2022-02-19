@@ -2,12 +2,8 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 
 import Error from './error';
-import Gui from './gui';
-import Mobile from './Mobile'
 import SNCF from './SNCF'
-
-import './assets/css/Mobile.css';
-import './assets/css/SNCF.css';
+import IENA from './IENA'
 
 class Trains extends React.Component {
 	constructor(props) {
@@ -15,7 +11,6 @@ class Trains extends React.Component {
 		this.state = {
             width: window.innerWidth,
 			height: window.innerHeight,
-			mobile: window.innerWidth < window.innerHeight ? true : false,
 
             showInfo: true,
             uic_code: 0,
@@ -34,7 +29,6 @@ class Trains extends React.Component {
 		this.setState({
 			width: window.innerWidth,
 			height: window.innerHeight,
-			mobile: window.innerWidth < window.innerHeight ? true : false,
 		});
 	};
 
@@ -69,9 +63,11 @@ class Trains extends React.Component {
 	getTrain() {
         let stop = this.props.stop;
         let count = 7;
-        if (this.state.mobile == true || this.props.opt.indexOf('mobile') >= 0)
-            count = 10;
-        const url = 'https://api.mylines.fr/sncf/' + this.props.type + '?stop=' + stop + '&count=' + count;
+        let url = '';
+        if (this.props.auth)
+            url = 'https://api.mylines.fr/te/' + this.props.type + '.php?stop=' + stop + '&auth=' + this.props.auth + '&count=' + count;
+        else
+            url = 'https://api.mylines.fr/sncf/' + this.props.type + '.php?stop=' + stop + '&count=' + count;
         
 		fetch(url, {
             method: 'get'
@@ -116,20 +112,7 @@ class Trains extends React.Component {
                     error_message = {this.state.error_message}
                 />
             );
-        } else if (this.state.mobile == true || this.props.opt.indexOf('mobile') >= 0){
-            
-            return (
-                <Mobile
-                    trains = {this.state.trains}
-                    type = {this.props.type}
-                    arr={this.props.arr} 
-                    opt = {this.props.opt}
-                    gare = {gare}
-                    mobile = {this.state.mobile}
-                    showInfo = {this.state.showInfo}
-                /> 
-            );
-        } else {
+        } else if (this.props.opt.indexOf ('SNCF') >= 0){
             return (
                 <SNCF
                     trains = {this.state.trains}
@@ -137,7 +120,17 @@ class Trains extends React.Component {
                     arr={this.props.arr} 
                     opt = {this.props.opt}
                     gare = {gare}
-                    mobile = {this.state.mobile}
+                    showInfo = {this.state.showInfo}
+                />
+            );
+        } else {
+            return (
+                <IENA
+                    trains = {this.state.trains}
+                    type = {this.props.type}
+                    arr={this.props.arr} 
+                    opt = {this.props.opt}
+                    gare = {gare}
                     showInfo = {this.state.showInfo}
                 />
             );
@@ -150,6 +143,7 @@ function SNCFd() {
     return (
         <Trains 
             stop = {params.stop} 
+            auth = {params.auth}
             arr = {'départs'} 
             type = {'departure'}
             opt = {'SNCF/departure'}
@@ -161,6 +155,7 @@ function SNCFa() {
     return (
         <Trains
             stop = {params.stop} 
+            auth = {params.auth}
             arr = {'arrivées'} 
             type = {'arrival'}
             opt = {'SNCF/arrival'}
@@ -168,27 +163,30 @@ function SNCFa() {
     );
 } 
 
-function Mobiled() {
+function IENAd() {
     let params = useParams();
     return (
         <Trains 
             stop = {params.stop} 
+            auth = {params.auth}
             arr = {'départs'} 
             type = {'departure'}
-            opt = {'mobile/departure'}
+            opt = {'IENA/departure'}
         />
     );
 } 
-function Mobilea() {
+function IENAa() {
     let params = useParams();
     return (
         <Trains
             stop = {params.stop} 
+            auth = {params.auth}
             arr = {'arrivées'} 
             type = {'arrival'}
-            opt = {'mobile/arrival'}
+            opt = {'IENA/arrival'}
         />
     );
 } 
+
 export default SNCFd;
-export { SNCFa, Mobiled, Mobilea }
+export { SNCFa, IENAa, IENAd }

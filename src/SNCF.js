@@ -5,9 +5,7 @@ import { useParams } from 'react-router-dom';
 
 import Error from './error';
 import Gui from './gui';
-import MobileTrain, { MobileClock } from './Mobile'
 
-import './assets/css/Mobile.css';
 import './assets/css/SNCF.css';
 
 class SNCF extends React.Component {
@@ -33,11 +31,14 @@ class SNCF extends React.Component {
                         <Back arr={this.props.arr} />
                     </div>
                 </div>
-                <Gui 
-                    opt = {this.props.opt}
-                    gare = {this.props.gare}
-                    mobile = {this.props.mobile}
-                />
+                { window.location.href.indexOf('gui') != -1 ?
+                    <Gui 
+                        opt = {this.props.opt}
+                        gare = {this.props.gare}
+                    />
+                    :
+                    <></>
+                }
             </>      
         )
     }
@@ -184,7 +185,7 @@ class SNCFMarquee extends React.Component {
                         :
                         <td className="void"></td>
                     }
-                    <td colspan="3">
+                    <td colSpan="3">
                         <div className="stop" ref={this.stopRef}>
                             <Marquee
                                 key = {this.props.number}
@@ -211,7 +212,7 @@ class SNCFMarquee extends React.Component {
             return(
                 <tr className={display[this.props.number]}>
                     <td className="void"></td>
-                    <td colspan="3"></td>
+                    <td colSpan="3"></td>
                     <td className="track"></td>
                 </tr>
             );
@@ -268,7 +269,7 @@ class SNCFClock extends React.Component {
             <span className="sncf-time">
                 <span className="hour">
                     {this.state.hour}<span style={this.style()}>:</span>{this.state.minute}
-                    <span class="minute"> {this.state.second}</span>
+                    <span className="minute"> {this.state.second}</span>
                 </span>
             </span>
 		);

@@ -1,18 +1,10 @@
 import React from 'react';
-import Marquee from 'react-fast-marquee';
-import update from 'react-addons-update';
 import { useParams, Link, Router, BrowserRouter } from "react-router-dom";
 
-import Error from './error';
-
-import whiteLogo from './assets/img/SNCF_white.png';
-import SNCFd from './assets/img/SNCFd.png';
-import SNCFa from './assets/img/SNCFa.png';
 import logo from './assets/img/Logo.png';
 import github from './assets/img/github.svg';
 import discord from './assets/img/discord.svg';
 import mail from './assets/img/mail.svg';
-import menu from './assets/img/menu.svg';
 
 import './assets/css/SNCF.css';
 
@@ -64,7 +56,7 @@ class GuiSearch extends React.Component {
 		
 		} else if (event.keyCode == 13){
 			
-			let url = '/' + this.state.opt + '/' + this.state.stops[this.state.curent].stop_point.uic_code;
+			let url = '/' + this.state.opt + '/' + this.state.stops[this.state.curent].stop_point.uic_code + '?gui';
 			window.location = url;
 			event.preventDefault();
 		}
@@ -79,8 +71,11 @@ class GuiSearch extends React.Component {
 	getStops(query) {
 		this.setState({ load: true });
 
-		const url = 'https://api.mylines.fr/sncf/search?q=' + query;
-		//https://api.sncf.com/v1/coverage/sncf/vehicle_journeys/vehicle_journey:SNCF:2021-12-17:859550:1187:Tramway
+		let url;
+		if (window.location.href.indexOf('mylines.fr/embed') >= 0)
+			url = 'https://api.mylines.fr/te/search?q=' + query;
+		else 
+			url = 'https://api.mylines.fr/sncf/search?q=' + query;
 		
 		fetch(url, {
 			method: 'get'
@@ -112,7 +107,7 @@ class GuiSearch extends React.Component {
 					{this.props.displayForce == false ? <div onClick={this.props.show} className="close">Fermer</div> : <></>}					
 						<br/>
 					<input type="text" placeholder="Rechercher une autre gare" ref={inputEl => (this.searchInput = inputEl)} onChange={this.handleChange} onKeyDown={this.handleKey} autocomplete="off" /> 
-					{this.state.load ? <div> <div class="progress-bck"></div> <div class="progress indeterminate"></div></div> : <></>}
+					{this.state.load ? <div> <div className="progress-bck"></div> <div className="progress indeterminate"></div></div> : <></>}
 						<br />
 					<div className="stopList"> 
 				   
@@ -135,7 +130,7 @@ class GuiSearch extends React.Component {
 							<img src={logo} className="logo" alt="Logo MyLines Embed" />
 								<br/>
 							<span>
-								MyLines 2020 - {new Date().getFullYear()} • Version 1.2.1 <br/>
+								MyLines 2021 - {new Date().getFullYear()} • Version 1.3.0 <br/>
 								Made with 💖
 							</span>
 								<br/>	
@@ -150,16 +145,16 @@ class GuiSearch extends React.Component {
 					<div className="hr"></div>
 					<h3>Style d'affichage</h3>
 
-					<div class="cc-selector">
+					<div className="cc-selector">
 						<input type="radio" defaultChecked={this.opt(opt, 'SNCF/departure')}   id="SNCFd" name="select"	value="SNCF/departure" onClick={this.handleOpt}/>
 						<label className="selectcard-cc SNCFd-card"	   for="SNCFd"></label>
 						<input type="radio" defaultChecked={this.opt(opt, 'SNCF/arrival')}   id="SNCFa"   name="select"	value="SNCF/arrival" onClick={this.handleOpt}/>
 						<label className="selectcard-cc SNCFa-card"		 for="SNCFa"></label>
 							<br /><br />
-						<input type="radio" defaultChecked={this.opt(opt, 'mobile/departure')}   id="Mobiled" name="select"	value="mobile/departure" onClick={this.handleOpt}/>
-						<label className="selectcard-cc Mobiled-card"	   for="Mobiled"></label>
-						<input type="radio" defaultChecked={this.opt(opt, 'mobile/arrival')}   id="Mobilea"   name="select"	value="mobile/arrival" onClick={this.handleOpt}/>
-						<label className="selectcard-cc Mobilea-card"		 for="Mobilea"></label>
+						<input type="radio" defaultChecked={this.opt(opt, 'IENA/departure')}   id="IENAd" name="select"	value="IENA/departure" onClick={this.handleOpt}/>
+						<label className="selectcard-cc IENAd-card"	   for="IENAd"></label>
+						<input type="radio" defaultChecked={this.opt(opt, 'IENA/arrival')}   id="IENAa"   name="select"	value="IENA/arrival" onClick={this.handleOpt}/>
+						<label className="selectcard-cc IENAa-card"		 for="IENAa"></label>
 					</div>
 
 				</div>
@@ -184,7 +179,7 @@ class GuiStop extends React.Component {
 		let url = '/' + this.props.opt + '/'
 
 		return (
-			<Link to={url + id} className={onover == true ? 'overmouse2' : 'overmouse'} onClick={this.props.show}>
+			<Link to={url + id + '?gui'} className={onover == true ? 'overmouse2' : 'overmouse'} onClick={this.props.show}>
 				<div>
 				{name}
 				</div>
@@ -197,16 +192,9 @@ class GuiShow extends React.Component {
 	render(){
 		return (
 			<>
-				{this.props.mobile == true || this.props.opt.indexOf('mobile') >= 0 ? 
-					<div className="gui-mobile">
-						<img src={menu} alt="retour"  onClick={this.props.show}/>
-						<span> {this.props.gare} </span>
-					</div>
-				:
-					<div className="gui-show" onClick={this.props.show}>
-						<span className="bigger"> Options disponible en appuyant sur la gauche </span>
-					</div>
-				}
+				<div className="gui-show" onClick={this.props.show}>
+					<span className="bigger"> Options disponible en appuyant sur la gauche </span>
+				</div>
 			</>
 		);
 	}
@@ -241,7 +229,7 @@ class Gui extends React.Component {
 	render(){
 		return (
 			<>
-				{this.state.displayForce == false ? <GuiShow show={this.show} opt={this.props.opt} gare={this.props.gare} mobile={this.props.mobile} /> : <></>}
+				{this.state.displayForce == false ? <GuiShow show={this.show} opt={this.props.opt} gare={this.props.gare}/> : <></>}
 				{this.state.show == true ? <GuiSearch show={this.show} opt={this.props.opt} displayForce={this.state.displayForce} version={this.props.version} /> : <></>}
 			</>
 		);

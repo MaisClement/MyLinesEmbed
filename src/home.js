@@ -15,7 +15,7 @@ class Home extends React.Component  {
                     display = {true}
                     opt = {'SNCF/departure'}
                 />
-                <div class="column">
+                <div className="home">
                     <img src={logo} className="logo" alt="Logo MyLines Embed" />
                 </div>
             </div>

@@ -1,0 +1,371 @@
+.doc {
+	background-color:var(--body);
+	color:var(--text);
+	font-family:MyLinesFont,"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;
+	margin:0;
+	overflow-x:hidden;
+}
+a {
+	color:inherit;
+	text-decoration:none;
+}
+.doc .link{
+	border-bottom:0px solid #0000;
+	transition:all .2s;
+}
+.doc .link:hover{
+	border-bottom:2px solid var(--blue-primary);
+	transition:all .2s;
+}
+pre {
+	display:inline-block;
+	font-family:MyLinesFont,"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;
+	margin:0;
+}
+h1,h2,h3,h4 {
+	margin-bottom:10px;
+	margin-top:10px;
+}
+
+/* --- SVG color --- */
+
+.doc .white-svg {
+	filter:invert(100%) sepia(93%) saturate(27%) hue-rotate(39deg) brightness(107%) contrast(107%);
+}
+.doc .dark-svg {
+	filter:invert(0%) sepia(8%) saturate(0%) hue-rotate(83deg) brightness(96%) contrast(106%);
+}
+
+/* --- Color --- */
+
+
+/* --- Navigation --- */
+
+
+.doc .navc {
+	left:0;
+	right:0;
+	top:0;
+	width:100%;
+}
+header {
+	align-items:center;
+	background-color:#4f474e;
+	box-shadow:0 0 20px 0 rgba(0,0,0,0.2),0 5px 5px 0 rgba(0,0,0,0.24);
+	color:#fff;
+	display:flex;
+	font-size:20px;
+	font-weight:300;
+	gap:15px;
+	height:62px;
+	justify-content:space-between;
+	position:fixed;
+	text-align:right;
+	z-index:10;
+}
+.doc .nav-head {
+	align-items:center;
+	display:flex;
+	gap:15px;
+}
+
+
+.doc .icone {
+	float:right;
+	height:46px;
+	max-width:225px;
+	padding:8px;
+	position:relative;
+	z-index:11;
+}
+
+
+/* --- Footer --- */
+
+.doc footer {
+	bottom:0;
+	box-shadow:0 0 20px 0 rgba(0,0,0,0.67),0 5px 5px 0 rgba(0,0,0,0.24);
+	color: #fff;
+	height:40px;
+	left:0;
+	position:fixed;
+	width:100%;
+	z-index:8;
+}
+.doc .footer {
+	padding:50px;
+}
+.doc .footer span {
+	color:var(--secondary);
+}
+.doc .footer .logo {
+	height:50px;
+}
+.doc .footer a {
+	margin-bottom:5px;
+}
+
+
+/* --- settings --- */
+.doc .settings-head {
+	background-color:var(--el-back-primary);
+	background-position:center center;
+	background-size:cover;
+	border:2px solid var(--blue-primary);
+	border-radius:10px;
+	color:var(--blue-primary);
+	margin:10px;
+}
+.doc .settings-head div {
+	background-color:var(--img-hover);
+	border-radius:10px;
+	padding:10px;
+}
+.doc .settings-account,.doc .about, .doc .warning,.doc .valid,.doc .index {
+	border-radius:10px;
+	margin:10px;
+	padding:10px;
+}
+.doc .settings-account img {
+	position:relative;
+	top:5px;
+}
+.doc .about b,.doc .warning b,.doc .valid b,.doc .index b {
+	margin-left:15px;
+}
+.doc .warning {
+	background-color:var(--orange-back);
+	border:2px solid var(--orange-primary);
+	color:var(--orange-primary);
+}
+.doc .about:not(.gui .about) {
+	background-color:var(--blue-back);
+	border:2px solid var(--blue-primary);
+	color:var(--blue-primary);
+}
+.doc .valid {
+	background-color:var(--green-back);
+	border:2px solid var(--green-primary);
+	border-radius:10px;
+	color:var(--green-primary);
+	margin:10px;
+	padding:10px;
+}
+
+
+
+.doc .settings-options {
+	overflow-x:hidden;
+	overflow-y:scroll;
+	padding-left:10px;
+	position:fixed;
+}
+.doc .options{
+	animation: 0.8s ease 0s 1 normal none running SettingsOptions;
+}
+.doc .settings-full {
+	margin:0 4%;
+}
+.doc .settings-options h2,.doc .settings-options h3,.doc .settings-full h2,.doc .settings-full h3 {
+	display:inline-block;
+}
+.doc .footer h3{
+	display: block;
+}
+.doc .settings-options .himg,.doc .settings-full .himg {
+	width: 35px;
+	position: relative;
+	top: 8px;
+}
+
+.doc .settings-top {
+	top: 70px;
+	width: 100%;
+	position: fixed;
+}
+.doc .settings-scroll {
+	animation:SettingsOptions .8s ease;
+	bottom:60px;
+	left:0;
+	padding-left:10px;
+	position:fixed;
+}
+.doc .settings-scroll h2 {
+	margin:10px;
+}
+.doc .settings-scroll .small_fluent_btn span {
+	opacity:1;
+}
+
+.doc .settings-scroll .scroll {
+	border-right:2px solid var(--secondary);
+	height:100%;
+	overflow-x:hidden;
+	overflow-y:scroll;
+}
+@media only screen and (min-width: 900px) {
+	.settings-scroll
+	{
+		top:70px;
+		width:250px;
+	}
+	.settings-options
+	{
+		left:260px;
+		width:calc(100vw - 280px);
+	}}
+@media only screen and (max-width: 900px) {
+	.settings-scroll
+	{
+		top:70px;
+		width:60px;
+	}
+	.settings-scroll .small_fluent_btn2 span
+	{
+		display:none;
+	}
+	.settings-options
+	{
+		left:70px;
+		width:calc(100vw - 90px);
+	}
+}
+
+@media only screen and (min-width: 700px) {
+	.settings-scroll .scroll
+	{
+		height:calc(100vh - 125px);
+	}
+	.settings-options
+	{
+		height:calc(100vh - 113px);
+		top:110px;
+	}}
+@media only screen and (max-width: 700px) {
+	.settings-scroll .scroll
+	{
+		height:calc(100vh - 125px);
+	}
+	.settings-options
+	{
+		height:calc(100vh - 113px);
+		top:110px;
+	}
+}
+
+
+#edit_info .add-cat,#edit_hide .add-cat,#edit_page .add-cat,.small_fluent_btn,.small_fluent_btn2,.mini_fluent_btn {
+	border:2px solid var(--transparent);
+	border-radius:10px;
+	cursor:pointer;
+}
+#edit_info .add-cat:active,#edit_hide .add-cat:active,#edit_page .add-cat:active,.small_fluent_btn:active,.small_fluent_btn2:active,.mini_fluent_btn:active {
+	margin-top:1px;
+}
+#edit_info .add-cat span,#edit_hide .add-cat span,#edit_page .add-cat span,.small_fluent_btn span {
+	margin-left:10px;
+	position:relative;
+	top:-10px;
+}
+#edit_info .add-cat:hover span,#edit_hide .add-cat:hover span,#edit_page .add-cat:hover span,.small_fluent_btn:hover span,.small_fluent_btn2:hover span {
+	opacity:1;
+	transition:opacity 500ms;
+}
+#edit_info .add-cat img,#edit_info #search .overmouse img,#edit_hide .add-cat img,#edit_hide #search .overmouse img,#edit_page .add-cat img,.small_fluent_btn img,.small_fluent_btn2 img,.mini_fluent_btn img {
+	margin-left:5px;
+	margin-top:5px;
+	max-width:30px;
+}
+#edit_info .add-cat:hover,#edit_info .add-cat:active,#edit_info .add-cat:focus,#edit_hide .add-cat:hover,#edit_hide .add-cat:active,#edit_hide .add-cat:focus,#edit_page .add-cat:hover,#edit_page .add-cat:active,#edit_page .add-cat:focus,.small_fluent_btn:hover,.small_fluent_btn:active,.small_fluent_btn:focus,.small_fluent_btn2:hover,.small_fluent_btn2:active,.small_fluent_btn2:focus,.mini_fluent_btn:hover,.mini_fluent_btn:active,.mini_fluent_btn:focus {
+	background-color:var(--el-back-hover);
+	border:2px solid var(--border-color);
+}
+.doc .small_fluent_btn2 span:not(.toper, .selected) {
+	color:var(--secondary);
+	margin-left:10px;
+	position:relative;
+	top:-10px;
+}
+.doc .toper{
+	color:var(--secondary);
+	margin-left:10px;
+	position:relative;
+	top: 7px;
+}
+.doc .small_fluent_btn2:hover span, .doc .toper:hover {
+	color:inherit;
+	transition:all 500ms;
+}
+.doc .small_fluent_btn span {
+	font-size:16px;
+}
+
+.doc .progress-bck {
+	background-color:var(--el-back-primary);
+	border-radius:10px;
+	float:left;
+	height:1vmin;
+	position:relative;
+	width:100%;
+}
+.doc .progress {
+	background-color:var(--blue-primary);
+	border-radius:10px;
+	float:left;
+	height:1vmin;
+	position:relative;
+	top:-1vmin;
+	transition:all .5s;
+	width:0;
+}
+.doc .indeterminate {
+	animation:indeterminate 1.3s ease infinite;
+}
+
+.doc .linkblue{
+	color : var(--blue-primary);
+	border-bottom:0px solid #0000;
+	transition:all .2s;
+}
+.doc .linkblue:hover{
+	border-bottom:2px solid var(--blue-primary);
+	transition:all .2s;
+}
+
+footer {
+	background-color: #4f474e;
+}
+
+.doc .checkmark {
+	background-color:var(--el-back-primary);
+}
+.doc .checkbok-container:hover input ~ .checkmark {
+	background-color:var(--el-back-hover);
+}
+.doc .checkbok-container input:checked ~ .checkmark {
+	background-color:var(--blue-high);
+}
+
+.doc .fluent_textarea {
+	background:#121212;
+	color:var(--text);
+}
+
+
+
+.doc .selected {
+	background-color:var(--blue-back);
+	border:2px solid var(--blue-primary);
+}
+.doc .selected span {
+	color:var(--blue-primary);
+	font-weight:700;
+}
+.doc .small_fluent_btn2 .selected span:hover {
+	color:var(--blue-primary);
+	font-weight:700;
+}
+.doc .fluent_form input[type="text"],.doc .fluent_form input[type="password"] {
+	background:var(--el-back-primary);
+	color:var(--text);
+}
