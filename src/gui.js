@@ -56,7 +56,12 @@ class GuiSearch extends React.Component {
 		
 		} else if (event.keyCode == 13){
 			
-			let url = '/' + this.state.opt + '/' + this.state.stops[this.state.curent].stop_point.uic_code + '?gui';
+			let url;
+			if (window.location.href.indexOf('mylines.fr/embed') >= 0)
+				url = '/embed/' + this.state.opt + '/' + this.state.stops[this.state.curent].stop_point.uic_code + '/' + this.props.auth + '?gui';
+			else	
+				url = '/' + this.state.opt + '/' + this.state.stops[this.state.curent].stop_point.uic_code + '?gui';
+				
 			window.location = url;
 			event.preventDefault();
 		}
@@ -73,7 +78,7 @@ class GuiSearch extends React.Component {
 
 		let url;
 		if (window.location.href.indexOf('mylines.fr/embed') >= 0)
-			url = 'https://api.mylines.fr/te/search?q=' + query;
+			url = 'https://api.mylines.fr/te/search?auth=' + this.props.auth + '&q=' + query;
 		else 
 			url = 'https://api.mylines.fr/sncf/search?q=' + query;
 		
@@ -116,7 +121,7 @@ class GuiSearch extends React.Component {
 								key = {i}
 								stop = {stop}
 								onover = {i == this.state.curent ? true : false}
-								
+								auth = {this.props.auth}
 								opt = {this.state.opt}
 								show = {this.props.show}
 							/>
@@ -130,7 +135,8 @@ class GuiSearch extends React.Component {
 							<img src={logo} className="logo" alt="Logo MyLines Embed" />
 								<br/>
 							<span>
-								MyLines 2021 - {new Date().getFullYear()} • Version 1.3.0 <br/>
+								MyLines 2021 - {new Date().getFullYear()} • Version 1.3.1 • {window.location.href.indexOf('mylines.fr/embed') >= 0 ? <> Train-Empire</> : <> SNCF</>}
+								<br/>
 								Made with 💖
 							</span>
 								<br/>	
@@ -166,17 +172,17 @@ class GuiSearch extends React.Component {
 }
 
 class GuiStop extends React.Component {
-	constructor(props) {
-		super(props);
-	}
-
 	render(){		
 		let stop = this.props.stop;
 		let name = stop.stop_point.name;
 		let id = stop.stop_point.uic_code;
 		let onover = this.props.onover;
 
-		let url = '/' + this.props.opt + '/'
+		let url;
+		if (window.location.href.indexOf('mylines.fr/embed') >= 0)
+            url = '/embed/' + this.props.opt + '/' + this.props.auth + '/'
+		else	
+			url = '/' + this.props.opt + '/'
 
 		return (
 			<Link to={url + id + '?gui'} className={onover == true ? 'overmouse2' : 'overmouse'} onClick={this.props.show}>
@@ -230,7 +236,7 @@ class Gui extends React.Component {
 		return (
 			<>
 				{this.state.displayForce == false ? <GuiShow show={this.show} opt={this.props.opt} gare={this.props.gare}/> : <></>}
-				{this.state.show == true ? <GuiSearch show={this.show} opt={this.props.opt} displayForce={this.state.displayForce} version={this.props.version} /> : <></>}
+				{this.state.show == true ? <GuiSearch show={this.show} opt={this.props.opt} displayForce={this.state.displayForce} auth = {this.props.auth} /> : <></>}
 			</>
 		);
 	}

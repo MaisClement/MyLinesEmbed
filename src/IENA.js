@@ -35,6 +35,7 @@ class IENA extends React.Component {
                                     key = {i} 
                                     train = {train}
                                     number = {i}
+                                    auth = {this.props.auth}
                                     showInfo = {this.props.showInfo}
                                     type = {this.props.type}
                                 />
@@ -45,6 +46,7 @@ class IENA extends React.Component {
                 </div>
                 { window.location.href.indexOf('gui') != -1 ?
                     <Gui 
+                        auth = {this.props.auth}
                         opt = {this.props.opt}
                         gare = {this.props.gare}
                     />
@@ -132,7 +134,7 @@ class IENATrain extends React.Component {
                         className={this.props.number < 2 ? 'départ départmax' : 'départ départmin'}>
                     <tbody>
                         <tr>
-                            <td className="img" rowSpan="2"><img src={'https://mylines.fr/embed/image.php?serv=' + network} alt="Logo service"/></td>
+                            <td className="img" rowSpan="2"><img src={'https://mylines.fr/embed.php?serv=' + network + '&auth=' + this.props.auth} alt="Logo service"/></td>
                             <td className="miss">{code.substring(0, 4)}</td>
                             <td className="dest"><div>{head}</div></td>
                             <td className="time"><IENATime created_hour = {real_time.getHours()} created_min = {real_time.getMinutes()}/></td>
@@ -194,11 +196,10 @@ class IENATime extends React.Component {
                 {this.state.timer < 60 && this.state.timer > 0 ?
                     <>{this.state.timer} mn</>
                     :
-                        this.state.timer <= 0 && this.state.timer >= -5 ?
+                        this.state.timer <= 0 && this.state.timer >= -1 ?
                             <><b>à quai</b></>
                             :
-                            <>{this.props.created_hour}:{this.props.created_min}</>
-
+                            <>{(this.props.created_hour < 10) ? '0' + this.props.created_hour : this.props.created_hour}:{(this.props.created_min < 10) ? '0' + this.props.created_min : this.props.created_min}</>
                 }
             </>
 		);
@@ -208,7 +209,7 @@ class IENAMarquee extends React.Component {
     constructor(props) {
 		super(props);
 		this.state = {
-            play: true,
+            play: false,
             widthMarquee: 0,
             widthStop: 0
         };

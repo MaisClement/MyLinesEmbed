@@ -33,10 +33,21 @@ class Trains extends React.Component {
 	};
 
 	componentDidMount() {
-		this.timerID = setInterval(
-			() => this.getTrain(),
-			55000
-		);
+        var update;
+        if (typeof getUrlVars()["update"] !== 'undefined') {
+            update = getUrlVars()["update"];
+        } else {
+            update = 50;
+        }
+
+        if (update < 10)
+            update = 50;
+
+        if (update != 0){
+            this.timerID = setInterval(
+                () => this.getTrain(), update * 1000
+            );
+        }
         this.timerTick = setInterval(
             () => this.tick(),
             3000
@@ -95,7 +106,6 @@ class Trains extends React.Component {
                 error: ':/',
                 error_message: 'Récupération des trains impossible.'
             }); 
-            console.log(err);
         });
 	}
 
@@ -119,6 +129,7 @@ class Trains extends React.Component {
                     type = {this.props.type}
                     arr={this.props.arr} 
                     opt = {this.props.opt}
+                    auth = {this.props.auth}
                     gare = {gare}
                     showInfo = {this.state.showInfo}
                 />
@@ -130,6 +141,7 @@ class Trains extends React.Component {
                     type = {this.props.type}
                     arr={this.props.arr} 
                     opt = {this.props.opt}
+                    auth = {this.props.auth}
                     gare = {gare}
                     showInfo = {this.state.showInfo}
                 />
@@ -187,6 +199,14 @@ function IENAa() {
         />
     );
 } 
+
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
+}
 
 export default SNCFd;
 export { SNCFa, IENAa, IENAd }

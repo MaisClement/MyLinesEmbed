@@ -9,6 +9,7 @@ class Home extends React.Component  {
     render(){
         return (
             <div className="error">
+                
                 <Gui 
                     style = {'SNCF'}
                     type = {'departure'}
@@ -23,4 +24,17 @@ class Home extends React.Component  {
     }
 }
 
+class Home_T extends React.Component  {
+    render(){
+        return (
+            <div className="error">
+                <div className="home">
+                    <img src={logo} className="logo" alt="Logo MyLines Embed" />
+                </div>
+            </div>
+        );
+    }
+}
+
 export default Home;
+export { Home_T }

@@ -127,7 +127,7 @@ class CATI extends React.Component {
                 <div>
                     <b>→ https://mylines.fr/embed/&lt;style&gt;/&lt;type&gt;/&lt;code_gare&gt;/&lt;auth&gt;</b>
                         <br/><br/>
-                    <iframe src="../SNCF/departure/87481002" width="640" height="360"></iframe> <iframe src="../IENA/arrival/87481002" width="640" height="360"></iframe>
+                    <iframe src="https://mylines.fr/embed/SNCF/departure/29/WhyLines" width="640" height="360"></iframe> <iframe src="https://mylines.fr/embed/IENA/arrival/40/WhyLines" width="640" height="360"></iframe>
                         <br/><br/>
                 </div>
                 <div>
@@ -187,9 +187,9 @@ class CATI extends React.Component {
                                     <td> <i>code_gare</i> </td>
                                     <td> Oui</td>
                                     <td className="detail"> 
-                                        Identifiant UIC de la gare (SNCF)
+                                        Code Gare
                                             <br/>
-                                        Liste des gares disponible <a href="https://data.sncf.com/explore/dataset/referentiel-gares-voyageurs"><u>ici</u></a>.
+                                        Liste des gares disponible <a href="https://train-empire.com/api/doc/stationsCodes.php"><u>ici</u></a>.
                                     </td>
                                 </tr>
                                 <tr>
@@ -199,14 +199,14 @@ class CATI extends React.Component {
                                         Clé Api de Train Empire ou nom d'une compagnie MyLines
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr className="table2">
                                     <td> <i>gui</i> </td>
                                     <td> Non</td>
                                     <td className="detail"> 
                                         Si présent, affiche l'interface utilsateur
                                     </td>
                                 </tr>
-                                <tr className="table2">
+                                <tr>
                                     <td> <i>update</i> </td>
                                     <td> Non </td>
                                     <td className="detail"> 

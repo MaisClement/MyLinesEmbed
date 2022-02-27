@@ -13,7 +13,7 @@ import './assets/css/index.css';
 import SNCFd, { SNCFa, IENAa, IENAd } from './trains';
 import Doc_S from './doc_s';
 import Doc_T from './doc_t';
-import Home from './home';
+import Home, { Home_T } from './home';
 import Error from './error';
 
 class ErrorBoundary extends React.Component {
@@ -48,12 +48,14 @@ ReactDOM.render(
           {window.location.href.indexOf('mylines.fr/embed') >= 0 ?
             <>
               // Infogare Train Empire
-              <Route path="/SNCF/departure/:stop/:auth" element={<SNCFd />} />
-              <Route path="/SNCF/arrival/:stop/:auth" element={<SNCFa />} />
+              <Route path="/embed/SNCF/departure/:stop/:auth" element={<SNCFd />} />
+              <Route path="/embed/SNCF/arrival/:stop/:auth" element={<SNCFa />} />
 
-              <Route path="/IENA/departure/:stop/:auth" element={<IENAd />} />
-              <Route path="/IENA/arrival/:stop/:auth" element={<IENAa />} />
-              <Route path="/doc" element={<Doc_T />} />
+              <Route path="/embed/IENA/departure/:stop/:auth" element={<IENAd />} />
+              <Route path="/embed/IENA/arrival/:stop/:auth" element={<IENAa />} />
+              <Route path="/embed/doc" element={<Doc_T />} />
+
+              <Route path="*" element={<Home_T />} />
             </>
             :
             <>
@@ -64,10 +66,10 @@ ReactDOM.render(
               <Route path="/IENA/departure/:stop" element={<IENAd />} />
               <Route path="/IENA/arrival/:stop" element={<IENAa />} />
               <Route path="/doc" element={<Doc_S />} />
+
+              <Route path="*" element={<Home />} />
             </>
           }
-
-          <Route path="*" element={<Home />} />
         </Routes>
       </ErrorBoundary>
     </BrowserRouter>
