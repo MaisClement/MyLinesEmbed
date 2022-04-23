@@ -113,7 +113,7 @@ class GuiSearch extends React.Component {
 						<br/>
 					<input type="text" placeholder="Rechercher une autre gare" ref={inputEl => (this.searchInput = inputEl)} onChange={this.handleChange} onKeyDown={this.handleKey} autocomplete="off" /> 
 					{this.state.load ? <div> <div className="progress-bck"></div> <div className="progress indeterminate"></div></div> : <></>}
-						<br />
+						<br/>
 					<div className="stopList"> 
 				   
 						{this.state.stops.map((stop, i) => (
@@ -135,7 +135,7 @@ class GuiSearch extends React.Component {
 							<img src={logo} className="logo" alt="Logo MyLines Embed" />
 								<br/>
 							<span>
-								MyLines 2021 - {new Date().getFullYear()} • Version 1.3.1 • {window.location.href.indexOf('mylines.fr/embed') >= 0 ? <> Train-Empire</> : <> SNCF</>}
+								MyLines 2021 - {new Date().getFullYear()} • Version 1.4.0 • {window.location.href.indexOf('mylines.fr/embed') >= 0 ? <> Train-Empire</> : <> SNCF</>}
 								<br/>
 								Made with 💖
 							</span>
@@ -156,11 +156,16 @@ class GuiSearch extends React.Component {
 						<label className="selectcard-cc SNCFd-card"	   for="SNCFd"></label>
 						<input type="radio" defaultChecked={this.opt(opt, 'SNCF/arrival')}   id="SNCFa"   name="select"	value="SNCF/arrival" onClick={this.handleOpt}/>
 						<label className="selectcard-cc SNCFa-card"		 for="SNCFa"></label>
-							<br /><br />
+							<br/><br/>
 						<input type="radio" defaultChecked={this.opt(opt, 'IENA/departure')}   id="IENAd" name="select"	value="IENA/departure" onClick={this.handleOpt}/>
 						<label className="selectcard-cc IENAd-card"	   for="IENAd"></label>
 						<input type="radio" defaultChecked={this.opt(opt, 'IENA/arrival')}   id="IENAa"   name="select"	value="IENA/arrival" onClick={this.handleOpt}/>
 						<label className="selectcard-cc IENAa-card"		 for="IENAa"></label>
+							<br/><br/>
+						<input type="radio" defaultChecked={this.opt(opt, 'RENFE/departure')}   id="RENFEd" name="select"	value="RENFE/departure" onClick={this.handleOpt}/>
+						<label className="selectcard-cc RENFEd-card"	   for="RENFEd"></label>
+						<input type="radio" defaultChecked={this.opt(opt, 'RENFE/arrival')}   id="RENFEa"   name="select"	value="RENFE/arrival" onClick={this.handleOpt}/>
+						<label className="selectcard-cc RENFEa-card"		 for="RENFEa"></label>
 					</div>
 
 				</div>

@@ -10,6 +10,7 @@
 
 # production
 /build
+/embed
 
 # misc
 .DS_Store

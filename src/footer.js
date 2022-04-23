@@ -31,8 +31,8 @@ class Footer extends React.Component  {
                         <h3 >Besoin d'aide ?</h3>
                         
                         <a href="https://mylines.betteruptime.com/" className="linkblue"> Status </a> <br/>
-                        <a href="http://mylines.fr/help" className="linkblue"> Question fréquentes </a> <br/>
-                        <a href="http://discord.mylines.fr" className="linkblue"> Demandez à la communauté </a> <br/>
+                        <a href="http://mylines.fr/help" className="linkblue"> Questions fréquentes </a> <br/>
+                        <a href="http://discord.mylines.fr" className="linkblue"> Demander à la communauté </a> <br/>
                         <a href="http://mylines.fr/embed/doc" className="linkblue"> Documentation MyLines Embed </a> <br/>
                     </div>
 

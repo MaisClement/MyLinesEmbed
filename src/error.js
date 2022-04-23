@@ -24,8 +24,8 @@ class Error extends React.Component  {
                                     <img src={win_error} />
                                 </td>
                                 <td className="details">
-                                    {this.props.error_message} <br />
-                                    Réessayez dans quelques minutes et si besoin, contactez l'administration. <br />
+                                    {this.props.error_message} <br/>
+                                    Réessayez dans quelques minutes et si besoin, contactez l'administration. <br/>
                                 </td>				
                             </tr>
                         </tbody>

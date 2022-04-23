@@ -1,6 +1,6 @@
 {
   "name": "embed",
-  "version": "0.1.0",
+  "version": "1.4.0",
   "private": true,
   "homepage": "https://mylines.fr/embed",
   "dependencies": {
@@ -14,11 +14,14 @@
     "react-fast-marquee": "^1.2.1",
     "react-router-dom": "^6.2.1",
     "react-scripts": "^5.0.0",
+    "react-split-flap-display": "^0.4.1",
+    "react-split-flap-effect": "^1.0.0",
     "web-vitals": "^2.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && move build embed",
+    "build": "react-scripts build",
+    "build_embed": "react-scripts build && move build embed",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

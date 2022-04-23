@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom';
 import Error from './error';
 import SNCF from './SNCF'
 import IENA from './IENA'
+import RENFE from './RENFE'
+import FLAPS from './FLAPS'
 
 class Trains extends React.Component {
 	constructor(props) {
@@ -13,9 +15,12 @@ class Trains extends React.Component {
 			height: window.innerHeight,
 
             showInfo: true,
-            uic_code: 0,
 
+            uic_code: 0,
             trains: [],
+
+            temp_trains: [],
+            temp_uic_code: 0,
             
             error: '',
             error_message: '',
@@ -67,7 +72,7 @@ class Trains extends React.Component {
 		this.setState({
 			showInfo: (!this.state.showInfo)
 		});
-        if (this.state.uic_code != this.props.stop)
+        if (this.state.uic_code != this.props.stop && this.state.temp_uic_code != this.props.stop)
             this.getTrain();
 	}
 	
@@ -96,10 +101,25 @@ class Trains extends React.Component {
                     error_message: data.error_message,
                 }); 
             } 
-            this.setState({
-                trains: data.trains,
-                uic_code: stop
-            });
+
+            if (this.props.opt.indexOf('RENFE') >= 0 || this.props.opt.indexOf('FLAPS') >= 0){
+                this.setState({
+                    trains: data.trains,
+                    uic_code: stop,
+                });
+            } else {
+                this.setState({
+                    temp_trains: data.trains,
+                    temp_uic_code: stop,
+                    trains: [],
+                    uic_code: 0
+                });
+                setTimeout(
+                    () => this.doTemp(),
+                    50
+                );
+            }
+            
         })
         .catch(err => {
             this.setState({
@@ -108,6 +128,13 @@ class Trains extends React.Component {
             }); 
         });
 	}
+
+    doTemp(){
+        this.setState({
+            trains: this.state.temp_trains,
+            uic_code: this.state.temp_uic_code,
+        });
+    }
 
 	render(){
         let gare = '';
@@ -134,9 +161,33 @@ class Trains extends React.Component {
                     showInfo = {this.state.showInfo}
                 />
             );
-        } else {
+        } else if (this.props.opt.indexOf ('IENA') >= 0){
             return (
                 <IENA
+                    trains = {this.state.trains}
+                    type = {this.props.type}
+                    arr={this.props.arr} 
+                    opt = {this.props.opt}
+                    auth = {this.props.auth}
+                    gare = {gare}
+                    showInfo = {this.state.showInfo}
+                />
+            );
+        } else if (this.props.opt.indexOf ('RENFE') >= 0){
+            return (
+                <RENFE
+                    trains = {this.state.trains}
+                    type = {this.props.type}
+                    arr={this.props.arr} 
+                    opt = {this.props.opt}
+                    auth = {this.props.auth}
+                    gare = {gare}
+                    showInfo = {this.state.showInfo}
+                />
+            );
+        } else {
+            return (
+                <FLAPS
                     trains = {this.state.trains}
                     type = {this.props.type}
                     arr={this.props.arr} 
@@ -200,6 +251,56 @@ function IENAa() {
     );
 } 
 
+function RENFEd() {
+    let params = useParams();
+    return (
+        <Trains 
+            stop = {params.stop} 
+            auth = {params.auth}
+            arr = {'départs'} 
+            type = {'departure'}
+            opt = {'RENFE/departure'}
+        />
+    );
+} 
+function RENFEa() {
+    let params = useParams();
+    return (
+        <Trains
+            stop = {params.stop} 
+            auth = {params.auth}
+            arr = {'arrivées'} 
+            type = {'arrival'}
+            opt = {'RENFE/arrival'}
+        />
+    );
+} 
+
+function FLAPSd() {
+    let params = useParams();
+    return (
+        <Trains 
+            stop = {params.stop} 
+            auth = {params.auth}
+            arr = {'départs'} 
+            type = {'departure'}
+            opt = {'FLAPS/departure'}
+        />
+    );
+} 
+function FLAPSa() {
+    let params = useParams();
+    return (
+        <Trains
+            stop = {params.stop} 
+            auth = {params.auth}
+            arr = {'arrivées'} 
+            type = {'arrival'}
+            opt = {'FLAPS/arrival'}
+        />
+    );
+} 
+
 function getUrlVars() {
     var vars = {};
     var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
@@ -209,4 +310,4 @@ function getUrlVars() {
 }
 
 export default SNCFd;
-export { SNCFa, IENAa, IENAd }
+export { SNCFa, IENAa, IENAd, RENFEa, RENFEd, FLAPSa, FLAPSd }

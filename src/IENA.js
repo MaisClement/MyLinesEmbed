@@ -44,6 +44,8 @@ class IENA extends React.Component {
 
                     </div>
                 </div>
+                <div className='hover'>
+                </div>
                 { window.location.href.indexOf('gui') != -1 ?
                     <Gui 
                         auth = {this.props.auth}
@@ -58,7 +60,6 @@ class IENA extends React.Component {
     }
 }
 class IENATrain extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -101,10 +102,9 @@ class IENATrain extends React.Component {
         let status = this.props.train.informations.status;
         let message = this.props.train.informations.message;
 
-        let number = this.props.number;
-        let showInfo = this.props.showInfo;
+        const number = this.props.number;
+        
         let track;
-
         let hsah = md5(head + code);
         if (!isNaN(hsah.substring(0, 1))){
             track = hsah.substring(0, 1);
@@ -134,7 +134,7 @@ class IENATrain extends React.Component {
                         className={this.props.number < 2 ? 'départ départmax' : 'départ départmin'}>
                     <tbody>
                         <tr>
-                            <td className="img" rowSpan="2"><img src={'https://mylines.fr/embed.php?serv=' + network + '&auth=' + this.props.auth} alt="Logo service"/></td>
+                            <td className="img" rowSpan="2"><img src={'https://mylines.fr/embed.php?serv=' + network.trim() + '&auth=' + this.props.auth} alt="Logo service"/></td>
                             <td className="miss">{code.substring(0, 4)}</td>
                             <td className="dest"><div>{head}</div></td>
                             <td className="time"><IENATime created_hour = {real_time.getHours()} created_min = {real_time.getMinutes()}/></td>

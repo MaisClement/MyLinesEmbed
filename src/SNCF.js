@@ -32,6 +32,8 @@ class SNCF extends React.Component {
                         <Back arr={this.props.arr} />
                     </div>
                 </div>
+                <div className='hover'>
+                </div>
                 { window.location.href.indexOf('gui') != -1 ?
                     <Gui 
                         auth = {this.props.auth}
@@ -118,7 +120,7 @@ class SNCFTrain extends React.Component {
         return (
             <>
 				<tr className={display[this.props.number]}>
-                    <td className="img"><img src={'https://mylines.fr/embed.php?serv=' + network + '&auth=' + this.props.auth} alt="Logo service"/></td>
+                    <td className="img"><img src={'https://mylines.fr/embed.php?serv=' + network.trim() + '&auth=' + this.props.auth} alt="Logo service"/></td>
                     <td className="trafic">
                         {showInfo ? <SNCFInfo real_time={real_time} base_time={base_time} status={status} message={message}/> : <span className="Id">{code}<br/><b>{name}</b> </span>}
                     </td>

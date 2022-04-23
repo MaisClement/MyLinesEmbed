@@ -23,7 +23,7 @@
 .IENA table{
 	width: 91.5vw;
 }
-.IENA table, tr{
+.IENA table, .IENA tr{
 	border-spacing: 0;
 }
 
@@ -97,7 +97,7 @@
 	max-width: 10vw;
 }
 
-.IENA .img, .void {
+.IENA .img, .IENA .void {
 	width: 7.4vw;
 }
 .IENA .trafic { width: 12vw; }
