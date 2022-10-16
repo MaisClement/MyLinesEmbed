@@ -56,8 +56,8 @@ class TALOS extends React.Component {
                             <div className="no-train">
                                 <h1>C'est drôlement calme...</h1>
                                 <p>
-                                    Il n'y a aucun train à afficher. Cela peut être tout à fait normal ou bien résulter d’un problème du serveur. <br/>
-                                    Si vous pensez qu’il s’agit de la seconde option, n’hésitez pas à remonter le problème sur le serveur discord. 
+                                    Il n'y a aucun train à afficher. <br/>
+                                    Si vous pensez qu’il s’agit d'un problème des infogare, n’hésitez pas à remonter le problème sur le serveur discord. 
                                 </p>
                             </div>
                         }

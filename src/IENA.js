@@ -7,6 +7,8 @@ import { useParams } from 'react-router-dom';
 import Error from './error';
 import Gui from './gui';
 
+import info from './assets/img/info.png';
+
 import './assets/css/IENA.css';
 
 class IENA extends React.Component {
@@ -44,7 +46,24 @@ class IENA extends React.Component {
                                 ))}
                             </div>
                         :
-                            <></>
+                            <div className='no-train'>
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <img src={info} />
+                                            </td>
+                                            <td>
+                                            <h1>C'est drôlement calme...</h1>
+                                                <p>
+                                                    Il n'y a aucun train à afficher. <br/>
+                                                    Si vous pensez qu’il s’agit d'un problème des infogare, n’hésitez pas à remonter le problème sur le serveur discord. 
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         }
 
                     </div>

@@ -202,3 +202,14 @@
 	font-size: 4vh;
 	font-weight: bold;
 }
+
+.IENA .no-train{
+	position: fixed;
+	bottom: 0;
+	width: 100vw;
+	background-color: #f68f53;
+}
+.IENA .no-train img{
+	min-width: 10vw;
+	min-height: 10vw;
+}

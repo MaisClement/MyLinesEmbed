@@ -40,6 +40,19 @@ class RENFE extends React.Component {
                         </tbody>
                     </table>
                 </div>
+                {this.props.trains ?
+                    <></>
+                :
+                    <div className='RENFE'>
+                        <div className="no-train">
+                            <h1>C'est drôlement calme...</h1>
+                            <p>
+                                Il n'y a aucun train à afficher. <br/>
+                                Si vous pensez qu’il s’agit d'un problème des infogare, n’hésitez pas à remonter le problème sur le serveur discord. 
+                            </p>
+                        </div>
+                    </div>
+                }
                 <div className='hover'>
                 </div>
                 { window.location.href.indexOf('gui') != -1 ?
