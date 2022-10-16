@@ -5,7 +5,7 @@ import Error from './error';
 import SNCF from './SNCF'
 import IENA from './IENA'
 import RENFE from './RENFE'
-import FLAPS from './FLAPS'
+import TALOS from './TALOS'
 
 class Trains extends React.Component {
 	constructor(props) {
@@ -15,8 +15,10 @@ class Trains extends React.Component {
 			height: window.innerHeight,
 
             showInfo: true,
+            marquee: true,
 
             uic_code: 0,
+            gare: '',
             trains: [],
 
             temp_trains: [],
@@ -47,6 +49,9 @@ class Trains extends React.Component {
 
         if (update < 10)
             update = 50;
+
+        if (this.props.opt.indexOf ('details') >= 0)
+            update = 0
 
         if (update != 0){
             this.timerID = setInterval(
@@ -92,7 +97,7 @@ class Trains extends React.Component {
         .then(data => {
             if (data.error && data.error == '200') {
                 this.setState({
-                    error: ':/',
+                    error: '200',
                     error_message: 'La gare indiqué ne semble pas exister. Vérifier l\'url saisie ou réessayez dans quelques minutes.'
                 }); 
             } else if (data.error) {
@@ -100,39 +105,40 @@ class Trains extends React.Component {
                     error: data.error,
                     error_message: data.error_message,
                 }); 
-            } 
-
-            if (this.props.opt.indexOf('RENFE') >= 0 || this.props.opt.indexOf('FLAPS') >= 0){
+            } else {
                 this.setState({
                     trains: data.trains,
                     uic_code: stop,
+                    marquee: false,
                 });
-            } else {
-                this.setState({
-                    temp_trains: data.trains,
-                    temp_uic_code: stop,
-                    trains: [],
-                    uic_code: 0
-                });
-                setTimeout(
+    
+                this.marqueeTimeout = setTimeout(
                     () => this.doTemp(),
                     50
                 );
+
+                if (data.trains){
+                    this.setState({
+                        gare: data.trains[0].informations.stop_point
+                    });
+        
+                    let gare = data.trains[0].informations.stop_point;
+                    let lib_type = this.props.type == 'departure' ? 'Départs' : 'Arrivées'
+                    document.title = gare + " - " + lib_type + " • MyLines Embed";
+                }                
             }
-            
         })
         .catch(err => {
             this.setState({
-                error: ':/',
+                error: '429',
                 error_message: 'Récupération des trains impossible.'
             }); 
-        });
+        });            
 	}
 
     doTemp(){
         this.setState({
-            trains: this.state.temp_trains,
-            uic_code: this.state.temp_uic_code,
+            marquee: true,
         });
     }
 
@@ -149,19 +155,7 @@ class Trains extends React.Component {
                     error_message = {this.state.error_message}
                 />
             );
-        } else if (this.props.opt.indexOf ('SNCF') >= 0){
-            return (
-                <SNCF
-                    trains = {this.state.trains}
-                    type = {this.props.type}
-                    arr={this.props.arr} 
-                    opt = {this.props.opt}
-                    auth = {this.props.auth}
-                    gare = {gare}
-                    showInfo = {this.state.showInfo}
-                />
-            );
-        } else if (this.props.opt.indexOf ('IENA') >= 0){
+        } if (this.props.opt.indexOf ('IENA') >= 0){
             return (
                 <IENA
                     trains = {this.state.trains}
@@ -169,8 +163,9 @@ class Trains extends React.Component {
                     arr={this.props.arr} 
                     opt = {this.props.opt}
                     auth = {this.props.auth}
-                    gare = {gare}
+                    gare = {this.state.gare}
                     showInfo = {this.state.showInfo}
+                    marquee = {this.state.marquee}
                 />
             );
         } else if (this.props.opt.indexOf ('RENFE') >= 0){
@@ -183,18 +178,33 @@ class Trains extends React.Component {
                     auth = {this.props.auth}
                     gare = {gare}
                     showInfo = {this.state.showInfo}
+                    marquee = {this.state.marquee}
                 />
             );
-        } else {
+        } else if (this.props.opt.indexOf ('SNCF') >= 0){
+                return (
+                    <SNCF
+                        trains = {this.state.trains}
+                        type = {this.props.type}
+                        arr={this.props.arr} 
+                        opt = {this.props.opt}
+                        auth = {this.props.auth}
+                        gare = {this.state.gare}
+                        showInfo = {this.state.showInfo}
+                        marquee = {this.state.marquee}
+                    />
+                );
+        } else if (this.props.opt.indexOf ('TALOS') >= 0){
             return (
-                <FLAPS
+                <TALOS
                     trains = {this.state.trains}
                     type = {this.props.type}
                     arr={this.props.arr} 
                     opt = {this.props.opt}
                     auth = {this.props.auth}
-                    gare = {gare}
+                    gare = {this.state.gare}
                     showInfo = {this.state.showInfo}
+                    marquee = {this.state.marquee}
                 />
             );
         }
@@ -250,7 +260,6 @@ function IENAa() {
         />
     );
 } 
-
 function RENFEd() {
     let params = useParams();
     return (
@@ -275,8 +284,7 @@ function RENFEa() {
         />
     );
 } 
-
-function FLAPSd() {
+function TALOSd() {
     let params = useParams();
     return (
         <Trains 
@@ -284,11 +292,11 @@ function FLAPSd() {
             auth = {params.auth}
             arr = {'départs'} 
             type = {'departure'}
-            opt = {'FLAPS/departure'}
+            opt = {'TALOS/departure'}
         />
     );
 } 
-function FLAPSa() {
+function TALOSa() {
     let params = useParams();
     return (
         <Trains
@@ -296,7 +304,7 @@ function FLAPSa() {
             auth = {params.auth}
             arr = {'arrivées'} 
             type = {'arrival'}
-            opt = {'FLAPS/arrival'}
+            opt = {'TALOS/arrival'}
         />
     );
 } 
@@ -310,4 +318,4 @@ function getUrlVars() {
 }
 
 export default SNCFd;
-export { SNCFa, IENAa, IENAd, RENFEa, RENFEd, FLAPSa, FLAPSd }
+export { SNCFa, IENAa, IENAd, RENFEa, RENFEd, TALOSa, TALOSd }

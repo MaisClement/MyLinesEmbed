@@ -18,19 +18,25 @@ class RENFE extends React.Component {
                 <div className='RENFE'>
                     <table className="timetable">
                         <tbody>
-                        <RENFEHead 
-                            type = {this.props.type}
-                        />
-                        {this.props.trains.slice(0, 7).map((train, i) => (
-                            <RENFETrain 
-                                key = {i} 
-                                train = {train}
-                                number = {i}
-                                auth = {this.props.auth}
-                                showInfo = {this.props.showInfo}
+                            <RENFEHead 
                                 type = {this.props.type}
                             />
-                        ))}
+                            {this.props.trains ?
+                                <>
+                                    {this.props.trains.slice(0, 6).map((train, i) => (
+                                        <RENFETrain 
+                                            key = {i} 
+                                            train = {train}
+                                            number = {i}
+                                            auth = {this.props.auth}
+                                            showInfo = {this.props.showInfo}
+                                            type = {this.props.type}
+                                        />
+                                    ))}
+                                </>
+                            :
+                                <></>
+                            }
                         </tbody>
                     </table>
                 </div>
@@ -104,12 +110,14 @@ class RENFETrain extends React.Component {
             track = 2
         }
 
+        track = '-'
+
         return (
             <>
                 <tr>
                     <td>{(created_base_time.getHours() < 10) ? '0' + created_base_time.getHours() : created_base_time.getHours()}:{(created_base_time.getMinutes() < 10) ? '0' + created_base_time.getMinutes() : created_base_time.getMinutes()}</td>
                     <td>{head}</td>
-                    <td><img src={'https://mylines.fr/image.php?serv=' + network.trim() + '&auth=' + this.props.auth} alt="Logo service"/></td>
+                    <td><img src={'https://mylines.fr/image?serv=' + network.trim() + '&auth=' + this.props.auth} alt="Logo service"/></td>
                     <td>{name}</td>
                     <td>{track}</td>
                     <td>

@@ -122,42 +122,17 @@ class CATI extends React.Component {
         return(
             <div className="options">
                 <h2>Infogare</h2>
-                    <br/><br/>
+                    <br/>
 
                 <div>
-                    <b>→ https://mylines.fr/embed/&lt;style&gt;/&lt;type&gt;/&lt;code_gare&gt;/&lt;auth&gt;</b>
-                        <br/><br/>
+                    <h3 className="url">→ https://mylines.fr/embed/&lt;style&gt;/&lt;type&gt;/&lt;code_gare&gt;/&lt;auth&gt;</h3>
+                       <br/><br/>
                     <iframe src="https://mylines.fr/embed/SNCF/departure/29/WhyLines" width="640" height="360"></iframe> <iframe src="https://mylines.fr/embed/IENA/arrival/40/WhyLines" width="640" height="360"></iframe>
-                        <br/><br/>
+                    <br/><br/>
                 </div>
                 <div>
-                    <h2>Exemples</h2>
-                        <br/>
-                        Tableau SNCF au départ de Nantes.
-                        <br/>
-                        → <b className="linkblue">https://mylines.fr/embed/SNCF/departure/65/WhyLines</b>
-
-                        <br/><br/>
-                        Intégration du tableau SNCF des arrivées à Briançon
-                        <br/>
-                        → <b className="linkblue"><span>&lt;</span><span>iframe</span> <span>src=</span><span>"https://mylines.fr/embed/SNCF/arrival/549/WhyLines"</span> <span>width="1200"</span> <span>height="675"</span><span>&gt;&lt;</span><span>/iframe&gt;</span></b>
-
-                        <br/><br/>
-                        Tableau SNCF des départs de Granville. L'interface utilisateur est affiché et la mise à jour désactivé.
-                        <br/>
-                        → <b className="linkblue">https://mylines.fr/embed/SNCF/departure/388/RFEO?gui&amp;update=0</b>
-
-                        <br/><br/>
-                        Intégration du tableau IENA des arrivées à Versailles Chantiers
-                        <br/>
-                        → <b className="linkblue"><span>&lt;</span><span>iframe</span> <span>src=</span><span>"https://mylines.fr/embed/IENA/arrival/29/&lt;clé_api&gt;"</span> <span>width="1200"</span> <span>height="675"</span><span>&gt;&lt;</span><span>/iframe&gt;</span></b>
-
-                        <br/><br/>
-                        Tableau des départs de Champs de Mars Tour Eiffel. L'interface utilisateur est masqué et la mise à jour automatique porté a 2min.
-                        <br/>
-                        → <b className="linkblue">https://mylines.fr/embed/IENA/departure/301/&lt;clé_api&gt;?update=120</b>
-                    <br/>
-                    <h2>Paramètres</h2>
+                <br/>
+                <h2>Paramètres</h2>
                     <div className="about">
                         
                         <table>
@@ -171,8 +146,12 @@ class CATI extends React.Component {
                                     <td> <i>style</i> </td>
                                     <td> Oui</td>
                                     <td className="detail">
-                                        Style de l'Infogare <br/>  
-                                        <strong>SNCF</strong> ou <strong>IENA</strong> 
+                                        Style de l'Infogare <br/>
+                                        <i>Parmis les choix possible :</i>
+                                            <br/>
+                                        <b>- SNCF</b> <br/>
+                                        <b>- IENA</b> <br/>
+                                        <b>- RENFE</b> <br/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -180,16 +159,19 @@ class CATI extends React.Component {
                                     <td> Oui</td>
                                     <td className="detail"> 
                                         Type d'affichage <br/> 
-                                        <strong>departure</strong> ou <strong>arrival</strong> 
+                                        <i>Parmis les choix possible :</i>
+                                            <br/>
+                                        <b>- departure</b> <br/>
+                                        <b>- arrival</b> <br/>
                                     </td>
                                 </tr>
                                 <tr className="table2">
                                     <td> <i>code_gare</i> </td>
                                     <td> Oui</td>
                                     <td className="detail"> 
-                                        Code Gare
+                                        Identifiant du point d'arrêt.
                                             <br/>
-                                        Liste des gares disponible <a href="https://train-empire.com/api/doc/stationsCodes.php"><u>ici</u></a>.
+                                            Liste des gares disponible <a href="https://train-empire.com/api/doc/stationsCodes.php"><u>ici</u></a>.
                                     </td>
                                 </tr>
                                 <tr>
@@ -220,6 +202,36 @@ class CATI extends React.Component {
                             </tbody>
                         </table>
                     </div>
+                    <br/>
+                    <h2>Exemples</h2>
+                        <br/>
+                    Tableau SNCF au départ de Nantes.
+                        <br/>
+                    → <b className="linkblue">https://mylines.fr/embed/SNCF/departure/65/WhyLines</b>
+
+                        <br/><br/>
+                    Tableau SNCF des arrivées à Briançon.
+                        <br/>
+                    → <b className="linkblue">https://mylines.fr/embed/SNCF/arrival/549/WhyLines</b>
+
+                        <br/><br/>
+                    Tableau SNCF des départs de Granville. <br/>
+                    <i>L'interface utilisateur est affiché et la mise à jour désactivé.</i>
+                        <br/>
+                    → <b className="linkblue">https://mylines.fr/embed/SNCF/departure/388/RFEO?gui&amp;update=0</b>
+
+                        <br/><br/>
+                    Tableau IENA des arrivées à Versailles Chantiers.
+                        <br/>
+                    → <b className="linkblue">https://mylines.fr/embed/IENA/arrival/29/&lt;clé_api&gt;"</b>
+
+                        <br/><br/>
+                    Tableau des départs de Champs de Mars Tour Eiffel. <br/>
+                    <i>La Mise à jour automatique est défini a 2min (120 secondes).</i>
+                        <br/>
+                    → <b className="linkblue">https://mylines.fr/embed/IENA/departure/301/&lt;clé_api&gt;?update=120</b>
+                        <br/>
+                    
                 </div>
                 <br/><br/>
                 <span className="space"></span>

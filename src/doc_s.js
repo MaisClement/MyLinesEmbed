@@ -125,42 +125,17 @@ class CATI extends React.Component {
         return(
             <div className="options">
                 <h2>Infogare</h2>
-                    <br/><br/>
+                    <br/>
 
                 <div>
-                    <b>→ https://embed.mylines.fr/&lt;style&gt;/&lt;type&gt;/&lt;code_gare&gt;</b>
+                    <h3 className="url">→ https://embed.mylines.fr/&lt;style&gt;/&lt;type&gt;/&lt;code_gare&gt;</h3>
                         <br/><br/>
-                    <iframe src="../SNCF/departure/87481002" width="640" height="360"></iframe> <iframe src="../IENA/arrival/87481002" width="640" height="360"></iframe>
+                    <iframe src="../SNCF/departure/87481002" width="640" height="360"></iframe> <iframe src="../RENFE/arrival/87481002" width="640" height="360"></iframe>
                         <br/><br/>
                 </div>
                 <div>
-                    <h2>Exemples</h2>
-                        <br/>
-                        Tableau SNCF au départ de Nantes.
-                        <br/>
-                        → <b className="linkblue">https://embed.mylines.fr/SNCF/departure/87481002</b>
-
-                        <br/><br/>
-                        Intégration du tableau SNCF des arrivées à Briançon
-                        <br/>
-                        → <b className="linkblue"><span>&lt;</span><span>iframe</span> <span>src=</span><span>"https://embed.mylines.fr/SNCF/arrival/87763607"</span> <span>width="1200"</span> <span>height="675"</span><span>&gt;&lt;</span><span>/iframe&gt;</span></b>
-
-                        <br/><br/>
-                        Tableau SNCF des départs de Granville. L'interface utilisateur est affiché et la mise à jour désactivé.
-                        <br/>
-                        → <b className="linkblue">https://embed.mylines.fr/SNCF/departure/87447680?gui&amp;update=0</b>
-
-                        <br/><br/>
-                        Intégration du tableau IENA des arrivées à Versailles Chantiers
-                        <br/>
-                        → <b className="linkblue"><span>&lt;</span><span>iframe</span> <span>src=</span><span>"https://embed.mylines.fr/IENA/arrival/87393009"</span> <span>width="1200"</span> <span>height="675"</span><span>&gt;&lt;</span><span>/iframe&gt;</span></b>
-
-                        <br/><br/>
-                        Tableau des départs de Champs de Mars Tour Eiffel. L'interface utilisateur est masqué et la mise à jour automatique porté a 2min.
-                        <br/>
-                        → <b className="linkblue">https://embed.mylines.fr/IENA/departure/87393058?update=120</b>
-                    <br/>
-                    <h2>Paramètres</h2>
+                <br/>
+                <h2>Paramètres</h2>
                     <div className="about">
                         
                         <table>
@@ -174,8 +149,12 @@ class CATI extends React.Component {
                                     <td> <i>style</i> </td>
                                     <td> Oui</td>
                                     <td className="detail">
-                                        Style de l'Infogare <br/>  
-                                        <strong>SNCF</strong> ou <strong>IENA</strong> 
+                                        Style de l'Infogare <br/>
+                                        <i>Parmis les choix possible :</i>
+                                            <br/>
+                                        <b>- SNCF</b> <br/>
+                                        <b>- IENA</b> <br/>
+                                        <b>- RENFE</b> <br/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -183,14 +162,17 @@ class CATI extends React.Component {
                                     <td> Oui</td>
                                     <td className="detail"> 
                                         Type d'affichage <br/> 
-                                        <strong>departure</strong> ou <strong>arrival</strong> 
+                                        <i>Parmis les choix possible :</i>
+                                            <br/>
+                                        <b>- departure</b> <br/>
+                                        <b>- arrival</b> <br/>
                                     </td>
                                 </tr>
                                 <tr className="table2">
                                     <td> <i>code_gare</i> </td>
                                     <td> Oui</td>
                                     <td className="detail"> 
-                                        Identifiant UIC de la gare (SNCF)
+                                        Identifiant du point d'arrêt.
                                             <br/>
                                         Liste des gares disponible <a href="https://data.sncf.com/explore/dataset/referentiel-gares-voyageurs"><u>ici</u></a>.
                                     </td>
@@ -216,6 +198,36 @@ class CATI extends React.Component {
                             </tbody>
                         </table>
                     </div>
+                    <br/>
+                    <h2>Exemples</h2>
+                        <br/>
+                        Tableau SNCF au départ de Nantes.
+                        <br/>
+                        → <b className="linkblue">https://embed.mylines.fr/SNCF/departure/87481002</b>
+
+                        <br/><br/>
+                        Tableau SNCF des arrivées à Briançon.
+                        <br/>
+                        → <b className="linkblue">https://embed.mylines.fr/SNCF/departure/87763607</b>
+
+                        <br/><br/>
+                        Tableau SNCF des départs de Granville. <br/>
+                        <i>L'interface utilisateur est affiché et la mise à jour désactivé.</i>
+                        <br/>
+                        → <b className="linkblue">https://embed.mylines.fr/SNCF/departure/87447680?gui&amp;update=0</b>
+
+                        <br/><br/>
+                        Tableau IENA des arrivées à Versailles Chantiers.
+                        <br/>
+                        → <b className="linkblue">https://embed.mylines.fr/IENA/arrival/87393009</b>
+
+                        <br/><br/>
+                        Tableau des départs de Champs de Mars Tour Eiffel. <br/>
+                        <i>La Mise à jour automatique est défini a 2min (120 secondes).</i>
+                        <br/>
+                        → <b className="linkblue">https://embed.mylines.fr/IENA/departure/87393058?update=120</b>
+                    <br/>
+                    
                 </div>
                 <br/><br/>
                 <span className="space"></span>
@@ -225,6 +237,46 @@ class CATI extends React.Component {
 }
 
 // ------------------------------------
+
+class Create extends React.Component {
+    render(){
+        return(
+            
+            <div className="options">
+                <img src={home} className="himg svg"></img> <h2>Introduction</h2>
+                    <br/>
+
+                    <div className="warning">
+                        <img src={about} className="himg svg"></img> Vous êtes sur la version basé sur les données de la <strong>SNCF</strong>. 
+                            <br/><br/>
+                        Pour les Infogare utilisant les données de Train Empire et de votre compagnie MyLines, rendez-vous <a href="https://mylines.fr/embed/doc">ici</a> :
+                            <br/>
+                        → <a href="https://mylines.fr/embed/doc">https://mylines.fr/embed/doc</a>
+                    </div>
+                    <p>
+                        MyLines Embed propose des Infogare basé sur les données SNCF, en temps réel et implémentable sur n'importe quel site web.
+                    </p>
+                
+                    <br/>
+                <h2>Licence</h2>
+                    <br/>
+
+                <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"> 
+                    <img alt="Licence Creative Commons" src="https://i.creativecommons.org/l/by/4.0/88x31.png" ></img>
+                </a>
+                    <br/>
+                Cette œuvre est mise à disposition selon les termes de la 
+                <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+                    Licence Creative Commons Attribution 4.0 International
+                </a>.
+        
+                <br/><br/><br/>
+                <span className="space"></span>
+                <br/>
+            </div>
+        )
+    }
+}
 
 class Scroll_btn extends React.Component {
     render(){

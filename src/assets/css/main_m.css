@@ -22,9 +22,13 @@ pre {
 	font-family:MyLinesFont,"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;
 	margin:0;
 }
-h1,h2,h3,h4 {
+h1,h2 {
 	margin-bottom:10px;
 	margin-top:10px;
+}
+.url{
+	color: #407e33;
+	margin: 0;
 }
 
 /* --- SVG color --- */
@@ -274,7 +278,7 @@ header {
 #edit_info .add-cat img,#edit_info #search .overmouse img,#edit_hide .add-cat img,#edit_hide #search .overmouse img,#edit_page .add-cat img,.small_fluent_btn img,.small_fluent_btn2 img,.mini_fluent_btn img {
 	margin-left:5px;
 	margin-top:5px;
-	max-width:30px;
+	max-width:25px;
 }
 #edit_info .add-cat:hover,#edit_info .add-cat:active,#edit_info .add-cat:focus,#edit_hide .add-cat:hover,#edit_hide .add-cat:active,#edit_hide .add-cat:focus,#edit_page .add-cat:hover,#edit_page .add-cat:active,#edit_page .add-cat:focus,.small_fluent_btn:hover,.small_fluent_btn:active,.small_fluent_btn:focus,.small_fluent_btn2:hover,.small_fluent_btn2:active,.small_fluent_btn2:focus,.mini_fluent_btn:hover,.mini_fluent_btn:active,.mini_fluent_btn:focus {
 	background-color:var(--el-back-hover);

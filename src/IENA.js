@@ -18,7 +18,7 @@ class IENA extends React.Component {
                         <div className="head">
                             <span className="head-title">
                                 {this.props.type == "departure" ?
-                                    <>Prochains départs</>
+                                    <>Prochains Trains</>
                                     :
                                     <>Prochaines Arrivées</>
                                 }
@@ -29,18 +29,23 @@ class IENA extends React.Component {
 
                         <IENAClock />
 
-                        <div>
-                            {this.props.trains.slice(0, 6).map((train, i) => (
-                                <IENATrain 
+                        {this.props.trains ?
+                            <div>
+                                {this.props.trains.slice(0, 6).map((train, i) => (
+                                    <IENATrain 
                                     key = {i} 
                                     train = {train}
                                     number = {i}
                                     auth = {this.props.auth}
                                     showInfo = {this.props.showInfo}
                                     type = {this.props.type}
+                                    marquee = {this.props.marquee}
                                 />
-                            ))}
-                        </div>
+                                ))}
+                            </div>
+                        :
+                            <></>
+                        }
 
                     </div>
                 </div>
@@ -103,14 +108,24 @@ class IENATrain extends React.Component {
         let message = this.props.train.informations.message;
 
         const number = this.props.number;
-        
+
         let track;
+
+        if (window.location.href.indexOf('mylines.fr/embed') >= 0){
+
+        } else {
+            track = '-';
+        }
+        
+        
         let hsah = md5(head + code);
         if (!isNaN(hsah.substring(0, 1))){
-            track = hsah.substring(0, 1);
+            track = '-'
         } else {
             track = 2
         }
+
+        track = '-';
         
         return (
             <>  
@@ -134,14 +149,20 @@ class IENATrain extends React.Component {
                         className={this.props.number < 2 ? 'départ départmax' : 'départ départmin'}>
                     <tbody>
                         <tr>
-                            <td className="img" rowSpan="2"><img src={'https://mylines.fr/embed.php?serv=' + network.trim() + '&auth=' + this.props.auth} alt="Logo service"/></td>
+                            <td className="img" rowSpan="2"><img src={'https://mylines.fr/embed?serv=' + network.trim() + '&auth=' + this.props.auth} alt="Logo service"/></td>
                             <td className="miss">{code.substring(0, 4)}</td>
                             <td className="dest"><div>{head}</div></td>
                             <td className="time"><IENATime created_hour = {real_time.getHours()} created_min = {real_time.getMinutes()}/></td>
                         </tr>
                         {number < 2 ?
                             <tr>
-                                <td colSpan="3">  <IENAMarquee number={number} key={number} train={this.props.train} stop={this.props.train.stops}/> </td>
+                                <td colSpan="3">
+                                    {this.props.marquee == true ?
+                                        <IENAMarquee number={number} key={number} train={this.props.train} stop={this.props.train.stops}/>
+                                    :
+                                        <div className="stop"></div>
+                                    }
+                                </td>
                             </tr>
                             :
                             <></>
@@ -345,6 +366,51 @@ class IENAClock extends React.Component {
             </span>
 		);
 	}
+}
+
+class TALOSInfo extends React.Component {
+	render(){
+
+        let real_time = this.props.real_time;
+        let base_time = this.props.base_time;
+        let status = this.props.status;
+        let message = this.props.message;
+
+        if (status == 'deleted')
+            return ( <span className="trafic_delete"><b> Supprimé </b></span> );
+
+        if (status == 'late')
+            return ( <span className="trafic"><b> Retardé </b></span> );
+
+        if (status == 'real_time')
+            return ( <span className="trafic"><b> Retardé </b></span> );
+
+        real_time = createDate(real_time);
+        base_time = createDate(base_time);
+        
+        
+        if (real_time < base_time) {
+            real_time.setDate(real_time.getDate());
+        }
+        
+        var diff = real_time - base_time;
+        var msec = diff;
+        var hh = Math.floor(msec / 1000 / 60 / 60);
+        msec -= hh * 1000 * 60 * 60;
+        var mm = Math.floor(msec / 1000 / 60);
+        msec -= mm * 1000 * 60;
+
+        if (mm > 0 && hh >= 0){
+            if (hh == 0)
+                    return ( <span className="trafic"><b> +{mm}’</b> </span> );
+                else 
+                    return ( <span className="trafic"><b> +{hh}h{mm + hh*60}’</b> </span> );
+        } else if (message == 'idf')
+            return ( <span className="trafic_info"><b> Théorique </b></span> );
+        else
+            return ( <></> );
+        
+	}   
 }
 
 

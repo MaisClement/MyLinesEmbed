@@ -57,7 +57,7 @@
 .XL [data-kind="digit"] {
   font-size: 78px;
   line-height: 82px;
-}
+}g
 
 .light [data-kind="digit"],
 .lightBordered [data-kind="digit"] {

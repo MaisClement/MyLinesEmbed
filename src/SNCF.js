@@ -16,16 +16,36 @@ class SNCF extends React.Component {
                     <div className={this.props.type}>
                         <table>
                             <tbody>
-                            {this.props.trains.slice(0, 7).map((train, i) => (
-                                <SNCFTrain 
-                                    key = {i} 
-                                    train = {train}
-                                    number = {i}
-                                    auth = {this.props.auth}
-                                    showInfo = {this.props.showInfo}
-                                    type = {this.props.type}
-                                />
-                            ))}
+
+                                {this.props.trains ?
+                                    <>
+                                        {this.props.trains.slice(0, 6).map((train, i) => (
+                                            <SNCFTrain 
+                                            key = {i} 
+                                            train = {train}
+                                            number = {i}
+                                            auth = {this.props.auth}
+                                            showInfo = {this.props.showInfo}
+                                            type = {this.props.type}
+                                            marquee = {this.props.marquee}
+                                        />
+                                        ))}
+                                    </>
+                                :
+                                <div className="alert">
+                                    <Marquee
+                                        gradient = {false}
+                                        speed = {90}
+                                        play = {true}
+                                    >
+                                        <div>
+                                            Il n'y a aucun train à afficher. Si vous pensez qu’il s’agit d'un problème des infogare, n’hésitez pas à remonter le problème sur le serveur discord.
+                                        </div>
+                                        <div className="marqueeSpace"></div>
+                                    </Marquee>
+                                </div>
+                                }
+                            
                             </tbody>
                         </table>
                         <SNCFClock />
@@ -120,7 +140,7 @@ class SNCFTrain extends React.Component {
         return (
             <>
 				<tr className={display[this.props.number]}>
-                    <td className="img"><img src={'https://mylines.fr/embed.php?serv=' + network.trim() + '&auth=' + this.props.auth} alt="Logo service"/></td>
+                    <td className="img"><img src={'https://mylines.fr/embed?serv=' + network.trim() + '&auth=' + this.props.auth} alt="Logo service"/></td>
                     <td className="trafic">
                         {showInfo ? <SNCFInfo real_time={real_time} base_time={base_time} status={status} message={message}/> : <span className="Id">{code}<br/><b>{name}</b> </span>}
                     </td>
@@ -128,8 +148,23 @@ class SNCFTrain extends React.Component {
                     <td className="dest">{head}</td>
                     <td className="track"></td>
                 </tr>
-                {number < 2 ? <SNCFMarquee number={number} key={number} train={this.props.train} stop={this.props.train.stops}/> : <></>}
+                {number < 2 ? 
+                    <>{this.props.marquee == true ?
+                        <SNCFMarquee number={number} key={number} train={this.props.train} stop={this.props.train.stops}/>
+                    :
+                        <tr className={display[this.props.number]}>
+                            <td colSpan="3">
+                                <div className="stop"></div>
+                            </td>
+                        </tr>
+                    }
+                    </>
+                :
+                   <></> 
+                }
 			</>
+
+            
             
         );
 	}

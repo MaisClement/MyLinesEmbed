@@ -123,6 +123,15 @@
 	font-size: 7.8vh;
 }
 
+.SNCF .alert{
+	position: fixed;
+	width: calc(100vw - 30px);
+	bottom: 0;
+	margin: 2vh 15px;
+	font-size: 4vh;
+	font-style: italic;
+}
+
 
 /* --- TIME --- */
 

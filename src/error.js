@@ -12,24 +12,51 @@ class Error extends React.Component  {
         return (
             <div className="desktop">
                 <div className="windows">
-                    <div className="title">
-                        <span>{this.props.error}</span>
-                        <div className="close"><div className="button">×</div></div>
-                    </div>
+                    
 
-                    <table className="content">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <img src={win_error} />
-                                </td>
-                                <td className="details">
-                                    {this.props.error_message} <br/>
-                                    Réessayez dans quelques minutes et si besoin, contactez l'administration. <br/>
-                                </td>				
-                            </tr>
-                        </tbody>
-                    </table>
+                    {this.props.error == 'Récupération des trains impossible.' ? 
+                        <>
+                            <div className="title">
+                                <span>Quota atteint</span>
+                                <div className="close"><div className="button">×</div></div>
+                            </div>
+                            <table className="content">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <img src={win_error} />
+                                        </td>
+                                        <td className="details">
+                                            Toutes les bonnes choses ont une fin. <br/>
+                                            La limite de requêtes auprès du serveur de la SNCF à été atteinte. <br/>
+                                            Malheureusement, il n’y a pas grand-chose à faire... Si ce n’est attendre quelques temps. <br/>
+                                        </td>				
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </>
+                        :
+                        <>
+                            <div className="title">
+                                <span>{this.props.error}</span>
+                                <div className="close"><div className="button">×</div></div>
+                            </div>
+                            <table className="content">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <img src={win_error} />
+                                        </td>
+                                        <td className="details">
+                                            {this.props.error_message} <br/>
+                                            Réessayez dans quelques minutes et si besoin, contactez l'administration. <br/>
+                                        </td>				
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </>
+                    }
+
                     <div className="content choose">
                         <Link to={'/'}>
                             <div className="button content auto">Retour à l'index</div>

@@ -104,6 +104,13 @@ code {
 .RENFEa-card{
 	background-image:url("../../assets/img/RENFEa.png");
 }
+.TALOSd-card{
+	background-image:url("../../assets/img/TALOSd.png");
+}
+.TALOSa-card{
+	background-image:url("../../assets/img/TALOSa.png");
+}
+
 
 .gui-menu input:active +.selectcard-cc{
 	opacity: 0.9;
@@ -116,8 +123,8 @@ code {
     background-size: contain;
     background-repeat: no-repeat;
     display: inline-block;
-    width: 20vw;
-	height: 11.2vw;
+    width: 18vw;
+	height: 10.2vw;
 	margin-left: 20px;
 	border-radius: 10px;
 	transition: all 250ms ease;
@@ -254,7 +261,10 @@ input:focus, input:active{
 		bottom: 0;
 		left: 0;
 		z-index: 11;
-		max-width: 400px;
+		max-width: 380px;
+		max-height: 315px;
+		overflow-y: scroll;
+		overflow-x: hidden;
 		animation: gui-menu2 1s ease;
 	}
 	.gui-menu .selectcard-cc{
@@ -410,8 +420,8 @@ input:focus, input:active{
 
 body{
 	background-color: var(--body);
-  }
-  .error{
+}
+.error{
 	width: 100vw;
 	height: 100vh;
 	background: black;
@@ -419,91 +429,100 @@ body{
 	top: 0;
 	left: 0;
 	position: absolute;
-  }
-  .error2{
+}
+.error2{
 	left: 8%;
 	top: 120px;
 	position: relative;
 	font-size: 22px;
 	width: calc(100vw - 16%);
-  }
-  .settings-scroll, .settings-options{
+}
+.settings-scroll, .settings-options{
 	white-space: normal;
-  }
-  .home{
+}
+.home{
 	position: fixed;
 	bottom: 10px;
-	  padding: 50px 50px 0 50px;
+	padding: 50px 50px 0 50px;
 	right: 0;
-  }
-  .home span{
-	  color: #868686;
-  }
-  .home .logo{
-	  height: 50px;
-  }
-  .home a{
-	  color: #297CD3;
-	  margin-bottom: 5px;
-  }
-  
-  .options{
-	  animation: 0.8s ease 0s 1 normal none running SettingsOptions;
-  }
-  
-  .small_fluent_btn2{
+}
+.home span{
+	color: #868686;
+}
+.home .logo{
+	height: 50px;
+}
+.home a{
+	color: #297CD3;
+	margin-bottom: 5px;
+}
+
+.options{
+	animation: 0.8s ease 0s 1 normal none running SettingsOptions;
+}
+
+.small_fluent_btn2{
 	height: 39px;
-  }
-  
-  iframe{
+}
+
+iframe{
 	border: 0;
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 	width: 35vw;
 	height: 19.6vw;
 	border-radius: 10px;
-  }
-  .about table{
-	  border-radius: 5px;
-	  background-color: #003360;
-	  color: #fff;
-  }
-  .about th{
-	min-width: 130px;
-  }
-  .about tr{
-	text-align: center;
-  }
-  .about td, .about th{
-	padding: 10px;
-  }
-  .detail{
-	text-align: left;
-  }
-  .about tbody{
+}
+.about table{
+	border-radius: 5px;
 	background-color: #003360;
-  }
-  .about .table2{
+	color: #fff;
+}
+.about th{
+	min-width: 130px;
+}
+.about tr{
+	text-align: center;
+}
+.about td, .about th{
+	padding: 10px;
+}
+.detail{
+	text-align: left;
+}
+.about tbody{
+	background-color: #003360;
+}
+.about .table2{
 	background-color: #004786;
-  }
-  
-  .column {
-	  display:inline-block;
-	  width:300px;
-  }
-  
-  .space {
+}
+
+.column {
+	display:inline-block;
+	width:300px;
+}
+
+.space {
 	display: block;
 	margin: 0;
 	border-bottom: 2px solid #868686;
-  }
+}
   
-  @keyframes SettingsOptions {
-	  0% {
-		  margin-left:50px;
-		  margin-right:-50px;
-		  opacity:0;
-	  }
-	  100% {
-		  margin-left:0;
-		  opacity:1;
-	  }}
+@keyframes SettingsOptions {
+	0% {
+		margin-left:50px;
+		margin-right:-50px;
+		opacity:0;
+	}
+	100% {
+		margin-left:0;
+		opacity:1;
+	}
+}
+@keyframes Opacity {
+	0% {
+		opacity:0;
+	}
+	100% {
+		opacity:1;
+	}
+}

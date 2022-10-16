@@ -135,14 +135,14 @@ class GuiSearch extends React.Component {
 							<img src={logo} className="logo" alt="Logo MyLines Embed" />
 								<br/>
 							<span>
-								MyLines 2021 - {new Date().getFullYear()} • Version 1.4.0 • {window.location.href.indexOf('mylines.fr/embed') >= 0 ? <> Train-Empire</> : <> SNCF</>}
+								MyLines 2021 - {new Date().getFullYear()} • Version 1.5.0 • {window.location.href.indexOf('mylines.fr/embed') >= 0 ? <> Train-Empire</> : <> SNCF</>}
 								<br/>
 								Made with 💖
 							</span>
 								<br/>	
 							<a href="https://github.com/MaisClement/MyLinesEmbed" className="mini_fluent_btn"> <img src={github} alt="github" /> </a>
 							<a href="http://discord.mylines.fr" className="mini_fluent_btn"> <img src={discord} alt="discord" /> </a>
-							<a href="mailto:admin@mylines.fr" className="mini_fluent_btn"> <img src={mail} alt="mail"/> </a>
+							<a href="mailto:clementf78@gmail.com" className="mini_fluent_btn"> <img src={mail} alt="mail"/> </a>
 						</div>
 					</div>
 				</div>
@@ -166,6 +166,11 @@ class GuiSearch extends React.Component {
 						<label className="selectcard-cc RENFEd-card"	   for="RENFEd"></label>
 						<input type="radio" defaultChecked={this.opt(opt, 'RENFE/arrival')}   id="RENFEa"   name="select"	value="RENFE/arrival" onClick={this.handleOpt}/>
 						<label className="selectcard-cc RENFEa-card"		 for="RENFEa"></label>
+							<br/><br/>
+						<input type="radio" defaultChecked={this.opt(opt, 'TALOS/departure')}   id="TALOSd" name="select"	value="TALOS/departure" onClick={this.handleOpt}/>
+						<label className="selectcard-cc TALOSd-card"	   for="TALOSd"></label>
+						<input type="radio" defaultChecked={this.opt(opt, 'TALOS/arrival')}   id="TALOSa"   name="select"	value="TALOS/arrival" onClick={this.handleOpt}/>
+						<label className="selectcard-cc TALOSa-card"		 for="TALOSa"></label>
 					</div>
 
 				</div>
@@ -185,12 +190,12 @@ class GuiStop extends React.Component {
 
 		let url;
 		if (window.location.href.indexOf('mylines.fr/embed') >= 0)
-            url = '/embed/' + this.props.opt + '/' + this.props.auth + '/'
+            url = '/embed/' + this.props.opt + '/' + id + '/' + this.props.auth + '?gui'
 		else	
-			url = '/' + this.props.opt + '/'
+			url = '/' + this.props.opt + '/' + id + '?gui'
 
 		return (
-			<Link to={url + id + '?gui'} className={onover == true ? 'overmouse2' : 'overmouse'} onClick={this.props.show}>
+			<Link to={url} className={onover == true ? 'overmouse2' : 'overmouse'} onClick={this.props.show}>
 				<div>
 				{name}
 				</div>

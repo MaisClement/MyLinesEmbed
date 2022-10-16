@@ -1,81 +1,125 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/icon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="MyLines Embed"
-    />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+<head>
+  <title>MyLines Embed</title>
 
-    <title>MyLines Embed</title>
-  </head>
-  <body>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <noscript>MyLines ne fonctionne pas sans JavaScript</noscript>
-    
-    <div id="root">
-      <div class="start" id="start">
-        <style>
-          body{
-            background-color: #000;
-            margin: 0;
+  <meta name="theme-color" content="#4f474e">
+  <meta name="color-scheme" content="dark light">
+
+  <meta name="description" content="MyLines Embed | Afficher les prochains départs ou arrivées de vos trains.">
+  <meta name="keywords" content="MyLines Embed, Prochains départs, Infogare, Infogare SNCF, Infogare IENA">
+  <!-- <meta name="robots" content="noindex, nofollow"> -->
+
+  <meta name="author" content="Lowa">
+  <!-- Discord: @Lowa#9479 -->
+  <!-- GitHub: MaisClement -->
+
+  <link rel="icon" href="%PUBLIC_URL%/icon.ico">
+
+  <meta property="og:url" content="%PUBLIC_URL%">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="MyLines Embed">
+  <meta property="og:title" content="MyLines Embed">
+  <meta property="og:description" content="MyLines Embed | Afficher les prochains départs ou arrivées de vos trains.">
+  <meta property="og:image" content="%PUBLIC_URL%/logo512.png">
+  <meta property="og:image:alt" content="MyLines">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MyLines Embed">
+  <meta name="twitter:description" content="MyLines Embed | Afficher les prochains départs ou arrivées de vos trains.">
+  <meta name="twitter:image" content="%PUBLIC_URL%/logo512.png">
+
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+</head>
+<body>
+
+  <noscript>MyLines ne fonctionne pas sans JavaScript</noscript>
+  
+  <div id="root">
+    <div class="start" id="start">
+      <style>
+        body{
+          background-color: #202020;
+          margin: 0;
+        }
+        .loader {
+          --color: #217431;
+          --size-mid: 6vmin;
+          --size-dot: 1.5vmin;
+          --size-bar: 0.4vmin;
+          --size-square: 3vmin;
+          position: absolute;
+          margin-left: -3vmin;
+        }
+        .loader::before,
+        .loader::after {
+          content: '';
+          box-sizing: border-box;
+          position: absolute;
+        }
+        .loader.--4::before {
+          height: var(--size-bar);
+          width: 6vmin;
+          background-color: var(--color);
+          animation: loader-4 0.8s cubic-bezier(0, 0, 0.03, 0.9) infinite;
+        }
+        @keyframes loader-4 {
+          0%, 44%, 88.1%, 100% {
+            transform-origin: left;
+          }	
+          0%, 100%, 88% {
+            transform: scaleX(0);
+          }	
+          44.1%, 88% {
+            transform-origin: right;
           }
-          .loader {
-            --color: #1F5EA0;
-            --size-mid: 6vmin;
-            --size-dot: 1.5vmin;
-            --size-bar: 0.4vmin;
-            --size-square: 3vmin;
-            position: absolute;
-            margin-left: -3vmin;
+          33%, 44% {
+            transform: scaleX(1);
           }
-          .loader::before,
-          .loader::after {
-            content: '';
-            box-sizing: border-box;
-            position: absolute;
-          }
-          .loader.--4::before {
-            height: var(--size-bar);
-            width: 6vmin;
-            background-color: var(--color);
-            animation: loader-4 0.8s cubic-bezier(0, 0, 0.03, 0.9) infinite;
-          }
-          @keyframes loader-4 {
-            0%, 44%, 88.1%, 100% {
-              transform-origin: left;
-            }	
-            0%, 100%, 88% {
-              transform: scaleX(0);
-            }	
-            44.1%, 88% {
-              transform-origin: right;
-            }
-            33%, 44% {
-              transform: scaleX(1);
-            }
-          }
-          .start {
-            width: 100vw;
-            height: 60vh;
-            padding-top: 40vh;     
-            background-size: cover;
-            background-position: center center;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #297CD3;
-            text-align: center;
-            letter-spacing: 0.3px;
-          }
-          </style> 
-        <h1> MyLines </h1>
-        <div class="container">
-          <i class="loader --4"></i>
-        </div>
+        }
+        .start {
+          width: 100vw;
+          height: 60vh;
+          padding-top: 40vh;     
+          background-size: cover;
+          background-position: center center;
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          color: #309944;
+          text-align: center;
+          letter-spacing: 0.3px;
+        }
+        .home{
+          position: fixed;
+          bottom: 10px;
+          padding: 50px 50px 0 50px;
+          right: 0;
+        }
+        .home .logo {
+          height: 50px;
+        }
+        .logo {
+          max-width: 100px;
+        }
+        </style> 
+        <h1>MyLines</h1>
+      <div class="container">
+        <i class="loader --4"></i>
       </div>
+
+      <div class="home">
+        <img 
+          src="data:image/png;base64,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"
+          class="logo"
+          alt="Logo MyLines Embed"
+        />
+      </div>
+
     </div>
-  </body>
+  </div>
+</body>
 </html>
