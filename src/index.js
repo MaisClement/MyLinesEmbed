@@ -60,6 +60,7 @@ ReactDOM.render(
 
               <Route path="/embed/doc" element={<Doc_T />} />
 
+              <Route path="/embed/:auth" element={<Home />} />
               <Route path="*" element={<Home_T />} />
             </>
             :
