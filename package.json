@@ -20,6 +20,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "build_embed": "react-scripts build && move build embed",
+    "build_ig": "react-scripts build && move build ig",
+    "build_all": "react-scripts build && move build embed && react-scripts build && move build ig && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
