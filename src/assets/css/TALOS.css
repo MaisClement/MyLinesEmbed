@@ -102,6 +102,9 @@
 .TALOS .class{
 	height: 100%;
 	margin-left: 1.2vw;
+	display: inline-block;
+	width: 10vw;
+	max-width: 400px;
 }
 .TALOS .class_img{
 	top: 5%;
