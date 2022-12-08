@@ -89,7 +89,7 @@
 	margin: 1vw 4vw 0vw 1.1vw;
 	background-color: #00000014;
 	border-radius: 2vh;
-	height: 11vh;
+	height: 10vh;
 	position: relative;
 	z-index: 3;
 	overflow: hidden;
@@ -103,7 +103,7 @@
 	height: 100%;
 	margin-left: 1.2vw;
 	display: inline-block;
-	width: 10vw;
+	width: 7vw;
 	max-width: 400px;
 
 }
@@ -114,7 +114,7 @@
 }
 
 .TALOS .miss{
-	font-size: 5vh;
+	font-size: 4vh;
 	font-weight: 700;
 
 	position: relative;
@@ -129,7 +129,7 @@
 .TALOS .time {
 	font-family: 'Transilien';
 
-	font-size: 8vh;
+	font-size: 7vh;
 	color: #f6cd2f;
 	
 	background-color: #141414;
@@ -138,7 +138,7 @@
 	border-radius: 10px;
 	position: relative;
 
-	height: calc(100% - 10px);
+	height: calc(100% - 13px);
 	width: 10vw;
 
 	display: inline-block;
@@ -147,7 +147,7 @@
 
 .TALOS .hour {
 	font-family: 'Transilien';
-	font-size: 8vh;
+	font-size: 7vh;
 	color: #f6cd2f;
 	background-color: #141414;
 	padding: 5px 5px 5px 20px;

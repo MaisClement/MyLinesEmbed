@@ -40,7 +40,7 @@ class TALOS extends React.Component {
 
                         {this.props.trains ?
                             <div>
-                                {this.props.trains.slice(0, 6).map((train, i) => (
+                                {this.props.trains.slice(0, 7).map((train, i) => (
                                     <TALOSTrain 
                                         key = {i} 
                                         train = {train}

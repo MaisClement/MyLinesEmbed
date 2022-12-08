@@ -135,7 +135,7 @@ class GuiSearch extends React.Component {
 							<img src={logo} className="logo" alt="Logo MyLines Embed" />
 								<br/>
 							<span>
-								MyLines 2021 - {new Date().getFullYear()} • Version 1.5.0 • {window.location.href.indexOf('mylines.fr/embed') >= 0 ? <> Train-Empire</> : <> SNCF</>}
+								MyLines 2021 - {new Date().getFullYear()} • Version 1.5.1 • {window.location.href.indexOf('mylines.fr/embed') >= 0 ? <> Train-Empire</> : <> SNCF</>}
 								<br/>
 								Made with 💖
 							</span>
