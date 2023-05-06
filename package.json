@@ -1,6 +1,6 @@
 {
   "name": "embed",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "private": true,
   "homepage": "https://mylines.fr/embed",
   "dependencies": {
@@ -23,7 +23,9 @@
     "build_ig": "react-scripts build && move build ig",
     "build_all": "react-scripts build && move build embed && react-scripts build && move build ig && react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix --ext .js,.jsx ."
   },
   "eslintConfig": {
     "extends": [
