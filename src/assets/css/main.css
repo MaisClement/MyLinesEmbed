@@ -16,28 +16,6 @@ code {
 	margin-top: 70px;
 }
 
-.mini_fluent_btn{
-	border: 2px solid #4f474e00;
-	width: 35px;
-	height: 35px;
-	display: inline-block;
-	position: relative;
-	top: 2px;
-	border-radius: 5px;
-	cursor: pointer;
-}
-.mini_fluent_btn:active{
-	margin-top: 1px;
-}
-.mini_fluent_btn img {
-	max-width: 25px; margin-top: 5px; margin-left: 5px;
-	filter: invert(100%) sepia(93%) saturate(27%) hue-rotate(39deg) brightness(107%) contrast(107%);
-}
-.mini_fluent_btn:hover, .mini_fluent_btn:active, .mini_fluent_btn:focus{
-	background-color: #0000000a;
-	border: 2px solid #4f474e61;
-}
-
 .hr{
 	background-color: #868686;
 	border-radius: 2px;
@@ -133,32 +111,7 @@ code {
 .selectcard-cc:hover{
     filter: brightness(1.2) grayscale(.5) opacity(1);
 }
-
-input[type=text]{
-	background-color: #00000000;
-	border: 2px solid #4f474e61;
-	color: #fff;
-	padding: 5px;
-    border-radius: 5px;
-	outline: 0;
-	height: 32px;
-	display: block;
-	width: calc(100% - 13px);
-	background-color: inherit;
-	font-weight: bold;
-	font-size: 20px;
-	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-input[type=text]:hover{
-	background-color: #0000000a;
-	border: 2px solid #4f474eb7;
-}
-input:focus, input:active{
-	background-color: #0000000a;
-	border: 2px solid #0064aab7;
-}
 .center{
-	text-align: center;
 	color: #7c7c7c;
 }
 .overmouse, .overmouse2{
@@ -209,23 +162,24 @@ input:focus, input:active{
 .logo{
 	max-width: 100px;
 }
-.progress-bck{
-	position: relative;
-	height: 1vmin;
-	width: 100%;
+.progress-bck {
+	background-color: var(--acrylic-light);
 	border-radius: 5px;
 	float: left;
-	background-color: #4f474e61;	
+	height: 1vmin;
+	position: relative;
+	width: 100%
 }
-.progress{
-	position: relative;
-	height: 1vmin;
-	top: -1vmin;
-	width: 0;
+
+.progress {
+	background-color: var(--blue-primary);
 	border-radius: 5px;
 	float: left;
-	background-color: #0064aab7;	
-	transition: all 0.5s;
+	height: 1vmin;
+	position: relative;
+	top: -1vmin;
+	transition: all .5s;
+	width: 0
 }
 .indeterminate{
 	animation: indeterminate 1.3s ease infinite;

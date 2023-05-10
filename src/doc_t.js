@@ -1,9 +1,6 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 import React from 'react';
 
-import './assets/css/main.css';
-import './assets/css/color.css';
-import './assets/css/main_m.css';
 import logo_lite from './assets/img/Logo_lite.png';
 
 import home from './assets/img/home.svg';

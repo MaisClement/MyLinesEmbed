@@ -16,14 +16,20 @@ class Footer extends React.Component {
 					<img src={logo} className='logo'></img>
 					<br />
 					<span>
-                        MyLines 2021 - {new Date().getFullYear()}
+						MyLines 2021 - {new Date().getFullYear()}
 						<br />
-                        Made with 💖
+						Made with 💖
 					</span>
 					<br />
-					<a href='https://github.com/MaisClement/MyLinesEmbed' className='mini_fluent_btn'> <img src={github} alt='github' /> </a>
-					<a href='http://discord.mylines.fr' className='mini_fluent_btn'> <img src={discord} alt='discord' /> </a>
-					<a href='mailto:admin@mylines.fr' className='mini_fluent_btn'> <img src={mail} alt='mail' /> </a>
+					<a className='mini_btn' href='https://github.com/MaisClement/MyLinesEmbed'>
+						<img className='svg_white' src={github} alt='github' />
+					</a>
+					<a className='mini_btn' href='http://discord.mylines.fr'>
+						<img className='svg_white' src={discord} alt='discord' />
+					</a>
+					<a className='mini_btn' href='mailto:clementf78@gmail.com'>
+						<img className='svg_white' src={mail} alt='mail' />
+					</a>
 				</div>
 
 				<div className='column'>
@@ -38,9 +44,9 @@ class Footer extends React.Component {
 				<div className='column'>
 					<h3 >Remerciements</h3>
 
-                    thithis#1523    <br />
-                    Tibo#4872       <br />
-                    Auguste#1143
+					thithis#1523    <br />
+					Tibo#4872       <br />
+					Auguste#1143
 				</div>
 
 				<div className='column'>

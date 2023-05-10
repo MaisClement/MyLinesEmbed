@@ -1,83 +1,122 @@
-:root{
-	--transparent: #0000;
-	--border-color: #4f474e61;
-	--secondary: rgb(134, 134, 134);
+:root {
+    --theme: var(--blue-primary);
+    --transparent: #0000;
+    --border-color: #4f474e60;
+    --secondary: rgb(134, 134, 134);
+
+    --toastify-color-light: var(--body) !important;
+    --toastify-color-dark: var(--body) !important;
+    --toastify-color-info: var(--blue-primary) !important;
+    --toastify-color-success: var(--green-primary) !important;
+    --toastify-color-warning: var(--orange-primary) !important;
+    --toastify-color-error: var(--red-primary) !important;
+    --toastify-color-transparent: rgba(255, 255, 255, 0.7) !important;
 }
+
 @media (prefers-color-scheme: light) {
-	:root {
-		--body:#fff;
-		--index-bck: rgba(230, 230, 230, 0.7);
-		--index-shadow: rgba(230,230,230,0.78);
-		--text:#000;
-		
-		--el-back-primary: #f5f5f5;
-		--el-back-secondary: #dbdbdb;
-		--el-back-hover: #eeeeee;
-		--img-hover: #f5f5f588;
+    :root {
+        --body: #fff;
+        --index-bck: rgba(230, 230, 230, 0.7);
+        --index-shadow: rgba(230, 230, 230, 0.78);
+        --text: #000;
+
+        --el-back-primary: #f5f5f5;
+        --el-back-secondary: #dbdbdb;
+        --el-back-hover: #eeeeee;
+        --img-hover: #f5f5f588;
 
         --blue-primary: #297CD3;
         --blue-secondary: #2674C6;
-		--blue-high: #3092f9;
-        --blue-back: #DCEDFF;
+        --blue-high: #3092f9;
+        --blue-light: #92CEF0;
+        --blue-back: #f5f5f5;
 
-		--red-primary: #D32929;
+        --red-primary: #D32929;
         --red-secondary: #C62626;
-		--red-high: #f93030;
-        --red-back: #ffdcdc;
+        --red-high: #f93030;
+        --red-light: #f49696;
+        --red-back: #f5f5f5;
 
-		--green-primary: #29D33C;
+        --green-primary: #29D33C;
         --green-secondary: #1fa02d;
-		--green-high: #30f946;
-        --green-back: #dcffdc;
+        --green-high: #30f946;
+        --green-light: #a3f5ad;
+        --green-back: #f5f5f5;
 
-		--orange-primary: #E29E33;
+        --orange-primary: #E29E33;
         --orange-secondary: #af7a27;
-		--orange-high: #ffbf39;
-        --orange-back: #fff3dc;
-	}
-	.svg {
-		filter:invert(0%) sepia(8%) saturate(0%) hue-rotate(83deg) brightness(96%) contrast(106%);
-	}
-	.reverse-svg {
-		filter:invert(100%) sepia(93%) saturate(27%) hue-rotate(39deg) brightness(107%) contrast(107%);
-	}
+        --orange-high: #ffbf39;
+        --orange-light: #f9d995;
+        --orange-back: #f5f5f5;
+
+        --acrylic-text: #000000;
+        --acrylic-primary: #ffffff80;
+        --acrylic-secondary: #ffffff50;
+        --acrylic-high: #4f474e50;
+        --acrylic-light: #4f474e25;
+        --acrylic-back: #ffffff70;
+
+        --select: #0063aa40;
+        --select-hover: #0063aa80;
+
+        --button-back-primary: #0000000a;
+        --button-back-secondary: #0001;
+
+        --svg-filter: invert(0%) sepia(8%) saturate(0%) hue-rotate(83deg) brightness(96%) contrast(106%);
+        --svg-filter-invert: invert(100%) sepia(93%) saturate(27%) hue-rotate(39deg) brightness(107%) contrast(107%);
+    }
 }
+
 @media (prefers-color-scheme: dark) {
-	:root {
-		--body:#202020;
-		--index-bck: rgba(30, 30, 30, 0.7);
-		--index-shadow: rgba(30,30,30,0.78);
-		--text:#d9d9d9;
-		
-		--el-back-primary: #161616;
-		--el-back-secondary: #323232;
-		--el-back-hover: #121212;
-		--img-hover: #0009;
+    :root {
+        --body: #202020;
+        --index-bck: rgba(30, 30, 30, 0.7);
+        --index-shadow: rgba(30, 30, 30, 0.78);
+        --text: #d9d9d9;
+
+        --el-back-primary: #161616;
+        --el-back-secondary: #323232;
+        --el-back-hover: #121212;
+        --img-hover: #0009;
 
         --blue-primary: #2674C6;
         --blue-secondary: #297CD3;
-		--blue-high: #1c5693;
-        --blue-back: #001f3a;
+        --blue-high: #1c5693;
+        --blue-light: #92CEF0;
+        --blue-back: #2d2d2d;
 
-		--red-primary: #C62626;
+        --red-primary: #C62626;
         --red-secondary: #D32929;
-		--red-high: #a01f1f;
-        --red-back: #3a0000;
+        --red-high: #a01f1f;
+        --red-light: #f49696;
+        --red-back: #2d2d2d;
 
-		--green-primary: #1fa02d;
+        --green-primary: #1fa02d;
         --green-secondary: #29D33C;
-		--green-high: #1fa02d;
-        --green-back: #002711;
+        --green-high: #1fa02d;
+        --green-light: #a3f5ad;
+        --green-back: #2d2d2d;
 
-		--orange-primary: #af7a27;
+        --orange-primary: #af7a27;
         --orange-secondary: #E29E33;
-		--orange-high: #af7a27;
-        --orange-back: #231600;
-	}
-	.svg {
-		filter:invert(100%) sepia(93%) saturate(27%) hue-rotate(39deg) brightness(107%) contrast(107%);
-	}
-	.reverse-svg {
-		filter:invert(0%) sepia(8%) saturate(0%) hue-rotate(83deg) brightness(96%) contrast(106%);
-	}
+        --orange-high: #af7a27;
+        --orange-light: #f9d995;
+        --orange-back: #2d2d2d;
+
+        --acrylic-text: #ffffff;
+        --acrylic-primary: #00000080;
+        --acrylic-back: #00000070;
+        --acrylic-secondary: #00000050;
+        --acrylic-high: #4f474e50;
+        --acrylic-light: #4f474e25;
+
+        --select: #0063aa40;
+        --select-hover: #0063aa80;
+
+        --button-back-primary: #0000003d;
+        --button-back-secondary: #00000071;
+
+        --svg-filter: invert(100%) sepia(93%) saturate(27%) hue-rotate(39deg) brightness(107%) contrast(107%);
+        --svg-filter-invert: invert(0%) sepia(8%) saturate(0%) hue-rotate(83deg) brightness(96%) contrast(106%);
+    }
 }

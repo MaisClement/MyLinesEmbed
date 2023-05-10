@@ -117,6 +117,8 @@ class GuiSearch extends React.Component {
 					</div>}
 				<br />
 				<input
+					className='blue'
+					style={{color: '#d9d9d9'}}
 					type='text'
 					placeholder='Rechercher une autre gare'
 					ref={inputEl => (this.searchInput = inputEl)}
@@ -157,9 +159,17 @@ class GuiSearch extends React.Component {
 							Made with 💖
 						</span>
 						<br />
-						<a href='https://github.com/MaisClement/MyLinesEmbed' className='mini_fluent_btn'> <img src={github} alt='github' /> </a>
-						<a href='http://discord.mylines.fr' className='mini_fluent_btn'> <img src={discord} alt='discord' /> </a>
-						<a href='mailto:clementf78@gmail.com' className='mini_fluent_btn'> <img src={mail} alt='mail' /> </a>
+						
+						<a className='mini_btn' href='https://github.com/MaisClement/MyLinesEmbed'>
+							<img className='svg_white' src={github} alt='github' />
+						</a>
+						<a className='mini_btn' href='http://discord.mylines.fr'>
+							<img className='svg_white' src={discord} alt='discord' />
+						</a>
+						<a className='mini_btn' href='mailto:clementf78@gmail.com'>
+							<img className='svg_white' src={mail} alt='mail' />
+						</a>
+
 					</div>
 				</div>
 			</div>

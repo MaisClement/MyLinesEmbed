@@ -13,6 +13,13 @@ import Doc_T from './doc_t';
 import Home, { Home_T } from './home';
 import Error from './error';
 
+
+import './assets/css/form.css';
+import './assets/css/index.css';
+import './assets/css/main.css';
+import './assets/css/color.css';
+import './assets/css/main_m.css';
+
 class ErrorBoundary extends React.Component {
 	constructor(props) {
 		super(props);

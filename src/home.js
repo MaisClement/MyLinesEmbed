@@ -1,7 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
-import './assets/css/main.css';
 import logo from './assets/img/Logo.png';
 
 import Gui from './gui';

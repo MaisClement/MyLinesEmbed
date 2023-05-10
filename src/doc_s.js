@@ -1,9 +1,5 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 import React from 'react';
-
-import './assets/css/main.css';
-import './assets/css/color.css';
-import './assets/css/main_m.css';
 import logo_lite from './assets/img/Logo_lite.png';
 
 import home from './assets/img/home.svg';
@@ -225,43 +221,6 @@ class CATI extends React.Component {
 }
 
 // ------------------------------------
-
-class Create extends React.Component {
-	render() {
-		return <div className='options'>
-			<img src={home} className='himg svg'></img> <h2>Introduction</h2>
-			<br />
-
-			<div className='warning'>
-				<img src={about} className='himg svg'></img> Vous êtes sur la version basé sur les données de la <strong>SNCF</strong>.
-				<br /><br />
-                Pour les Infogare utilisant les données de Train Empire et de votre compagnie MyLines, rendez-vous <a href='https://mylines.fr/embed/doc'>ici</a> :
-				<br />
-                → <a href='https://mylines.fr/embed/doc'>https://mylines.fr/embed/doc</a>
-			</div>
-			<p>
-                MyLines Embed propose des Infogare basé sur les données SNCF, en temps réel et implémentable sur n’importe quel site web.
-			</p>
-
-			<br />
-			<h2>Licence</h2>
-			<br />
-
-			<a rel='license' href='http://creativecommons.org/licenses/by/4.0/'>
-				<img alt='Licence Creative Commons' src='https://i.creativecommons.org/l/by/4.0/88x31.png' ></img>
-			</a>
-			<br />
-            Cette œuvre est mise à disposition selon les termes de la
-			<a rel='license' href='http://creativecommons.org/licenses/by/4.0/'>
-                Licence Creative Commons Attribution 4.0 International
-			</a>.
-
-			<br /><br /><br />
-			<span className='space'></span>
-			<br />
-		</div>;
-	}
-}
 
 class Scroll_btn extends React.Component {
 	render() {

@@ -304,24 +304,6 @@ header {
 	font-size:16px;
 }
 
-.doc .progress-bck {
-	background-color:var(--el-back-primary);
-	border-radius:10px;
-	float:left;
-	height:1vmin;
-	position:relative;
-	width:100%;
-}
-.doc .progress {
-	background-color:var(--blue-primary);
-	border-radius:10px;
-	float:left;
-	height:1vmin;
-	position:relative;
-	top:-1vmin;
-	transition:all .5s;
-	width:0;
-}
 .doc .indeterminate {
 	animation:indeterminate 1.3s ease infinite;
 }

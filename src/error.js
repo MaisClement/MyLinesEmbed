@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import './assets/error/win.css';
 import win_error from './assets/error/win_error.png';
 
-import './assets/css/main.css';
 import logo from './assets/img/Logo.png';
 
 class Error extends React.Component {
