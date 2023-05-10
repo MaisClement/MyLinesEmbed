@@ -218,7 +218,7 @@ class IENATime extends React.Component {
 			return <b>à quai</b>;
 		}
 		else {
-			<>{(this.props.created_hour < 10) ? '0' + this.props.created_hour : this.props.created_hour}:{(this.props.created_min < 10) ? '0' + this.props.created_min : this.props.created_min}</>;
+			return <>{(this.props.created_hour < 10) ? '0' + this.props.created_hour : this.props.created_hour}:{(this.props.created_min < 10) ? '0' + this.props.created_min : this.props.created_min}</>;
 		}
 	}
 }
