@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import packageJson from '../package.json';
+
 import logo from './assets/img/Logo.png';
 import github from './assets/img/github.svg';
 import discord from './assets/img/discord.svg';
@@ -154,7 +156,7 @@ class GuiSearch extends React.Component {
 						<img src={logo} className='logo' alt='Logo MyLines Embed' />
 						<br />
 						<span>
-							MyLines 2021 - {new Date().getFullYear()} • Version 1.5.1 • {window.location.href.indexOf('mylines.fr/embed') >= 0 ? <> Train-Empire</> : <> SNCF</>}
+							MyLines 2021 - {new Date().getFullYear()} • Version {packageJson.version} • {window.location.href.indexOf('mylines.fr/embed') >= 0 ? <> Train-Empire</> : <> SNCF</>}
 							<br />
 							Made with 💖
 						</span>
