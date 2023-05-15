@@ -9,6 +9,16 @@ code {
   	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.example {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	z-index: 10;
+	opacity: 0.5;
+}
+
 .gui-menu h3 {
 	margin: 17px;
 }

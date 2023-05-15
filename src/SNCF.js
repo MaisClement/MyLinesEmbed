@@ -5,6 +5,7 @@ import Marquee from 'react-fast-marquee';
 import Gui from './gui';
 
 import './assets/css/SNCF.css';
+// import example from './assets/img/or.png';
 
 class SNCF extends React.Component {
 	render() {
@@ -35,7 +36,7 @@ class SNCF extends React.Component {
 										play={true}
 									>
 										<div>
-                                            Il n’y a aucun train à afficher. Si vous pensez qu’il s’agit d’un problème des infogare, n’hésitez pas à remonter le problème sur le serveur discord.
+											Il n’y a aucun train à afficher. Si vous pensez qu’il s’agit d’un problème des infogare, n’hésitez pas à remonter le problème sur le serveur discord.
 										</div>
 										<div className='marqueeSpace'></div>
 									</Marquee>
@@ -48,15 +49,14 @@ class SNCF extends React.Component {
 					<Back arr={this.props.arr} />
 				</div>
 			</div>
-			<div className='hover'>
-			</div>
+			<div className='hover' />
 			{
 				window.location.href.indexOf('gui') !== -1
-                && <Gui
-                	auth={this.props.auth}
-                	opt={this.props.opt}
-                	gare={this.props.gare}
-                />
+				&& <Gui
+					auth={this.props.auth}
+					opt={this.props.opt}
+					gare={this.props.gare}
+				/>
 			}
 		</>;
 	}
@@ -141,7 +141,7 @@ class SNCFTrain extends React.Component {
 				</tr>
 				{
 					number < 2 &&
-                    <SNCFMarquee number={number} train={this.props.train} stop={this.props.train.stops} />
+					<SNCFMarquee number={number} train={this.props.train} stop={this.props.train.stops} />
 				}
 			</>
 		);
@@ -211,7 +211,7 @@ class SNCFMarquee extends React.Component {
 										<span>{stop.stop_point.name}</span>
 										{
 											i != this.props.stop.length - 1 &&
-                                            <span className='dot'></span>
+											<span className='dot'></span>
 										}
 									</>
 								))}
@@ -318,7 +318,7 @@ class SNCFInfo extends React.Component {
 			if (message == 'idf_realtime') {
 				if (hh == 0)
 					return <span className='late'>
-						<b> + {mm}’</b> 
+						<b> + {mm}’</b>
 					</span>;
 				else
 					return <span className='late'>
