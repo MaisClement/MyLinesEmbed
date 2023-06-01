@@ -1,8 +1,8 @@
 {
   "name": "embed",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "private": true,
-  "homepage": "https://mylines.fr/",
+  "homepage": "https://mylines.fr/embed",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
