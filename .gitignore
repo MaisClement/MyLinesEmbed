@@ -10,8 +10,6 @@
 
 # production
 /build
-/embed
-/ig
 
 # misc
 .DS_Store

@@ -1,98 +1,54 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
-import {
-	BrowserRouter,
-	Routes,
-	Route
-} from 'react-router-dom';
+import App from './App';
 
-import SNCFd, { SNCFa, IENAa, IENAd, RENFEa, RENFEd, TALOSa, TALOSd } from './trains';
-import Doc_S from './doc_s';
-import Doc_T from './doc_t';
-import Home, { Home_T } from './home';
-import Error from './error';
-
-
-import './assets/css/form.css';
-import './assets/css/index.css';
 import './assets/css/main.css';
 import './assets/css/color.css';
-import './assets/css/main_m.css';
+import './assets/css/form.css';
+import './assets/css/index.css';
 
+// https://codepen.io/gaearon/pen/wqvxGa?editors=0010
 class ErrorBoundary extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			hasError: false
-		};
+		this.state = { error: null, errorInfo: null };
 	}
 
-	componentDidCatch() {
+	componentDidCatch(error, errorInfo) {
 		this.setState({
-			hasError: true
+			error: error,
+			errorInfo: errorInfo
 		});
 	}
 
 	render() {
-		if (this.state.hasError == true) {
-			return <Error error={'Erreur fatale'} error_message={'Quelque chose s\'est mal passé.'} />;
-		} else {
-			return this.props.children;
+		if (this.state.errorInfo) {
+			return <div>
+				<h2>Something went wrong.</h2>
+				<details style={{ whiteSpace: 'pre-wrap' }}>
+					{this.state.error && this.state.error.toString()}
+					<br />
+					{this.state.errorInfo.componentStack}
+				</details>
+			</div>;
 		}
+		return this.props.children;
 	}
 }
 
-ReactDOM.render(
+console.log('%cSTOP!', 'color:#f00;font-size:xxx-large');
+console.log('%cNe saisissez ou ne copiez en AUCUN CAS du code que vous ne comprenez pas.', 'color:#f00;font-size:large');
+console.log('%cCopier quelque chose ici peut permettre à un pirate de voler vos données voir, prendre contrôle de votre ordinateur à distance.', 'font-size:normal');
+console.log('%cPour en savoir plus : https://en.wikipedia.org/wiki/Self-XSS', 'font-size:normal');
+
+// After
+const container = document.getElementById('root');
+const root = createRoot(container); // createRoot(container!) if you use TypeScript
+root.render(
 	<React.StrictMode>
-		<BrowserRouter>
-			<ErrorBoundary>
-				<Routes>
-
-					{window.location.href.indexOf('mylines.fr/embed') >= 0 ?
-						<>
-							<Route path='/embed/SNCF/departure/:stop/:auth' element={<SNCFd />} />
-							<Route path='/embed/SNCF/arrival/:stop/:auth' element={<SNCFa />} />
-
-							<Route path='/embed/IENA/departure/:stop/:auth' element={<IENAd />} />
-							<Route path='/embed/IENA/arrival/:stop/:auth' element={<IENAa />} />
-
-							<Route path='/embed/RENFE/departure/:stop/:auth' element={<RENFEd />} />
-							<Route path='/embed/RENFE/arrival/:stop/:auth' element={<RENFEa />} />
-
-							<Route path='/embed/TALOS/departure/:stop/:auth' element={<TALOSd />} />
-							<Route path='/embed/TALOS/arrival/:stop/:auth' element={<TALOSa />} />
-
-							<Route path='/embed/doc' element={<Doc_T />} />
-
-							<Route path='/embed/:auth' element={<Home />} />
-							<Route path='*' element={<Home_T />} />
-						</>
-						:
-						<>
-							<Route path='/SNCF/departure/:stop' element={<SNCFd />} />
-							<Route path='/SNCF/arrival/:stop' element={<SNCFa />} />
-
-							<Route path='/IENA/departure/:stop' element={<IENAd />} />
-							<Route path='/IENA/arrival/:stop' element={<IENAa />} />
-
-							<Route path='/RENFE/departure/:stop' element={<RENFEd />} />
-							<Route path='/RENFE/arrival/:stop' element={<RENFEa />} />
-
-							<Route path='/TALOS/departure/:stop' element={<TALOSd />} />
-							<Route path='/TALOS/arrival/:stop' element={<TALOSa />} />
-
-							<Route path='/doc' element={<Doc_S />} />
-
-							<Route path='*' element={<Home />} />
-						</>
-					}
-				</Routes>
-			</ErrorBoundary>
-		</BrowserRouter>
-	</React.StrictMode>,
-	document.getElementById('root')
+		<ErrorBoundary>
+			<App />
+		</ErrorBoundary>
+	</React.StrictMode>
 );
-
-// https://jsfiddle.net/La8wQ/313/
-// Animation par animista

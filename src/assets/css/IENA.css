@@ -2,7 +2,7 @@
 	width: 100vw;
 	height: 100vh;
 	overflow-x: hidden;
-	font-family: "Achemine",Arial,sans-serif;
+	font-family: "Achemine", Arial, sans-serif;
 	color: #fff;
 	margin: 0;
 	overflow: hidden;
@@ -15,81 +15,102 @@
 	font-family: 'Achemine';
 	src: url('../fonts/Achemine.ttf') format('truetype');
 }
+
 @font-face {
 	font-family: 'Transilien';
 	src: url('../fonts/TransilienSmall.ttf') format('truetype');
 }
 
-.IENA table{
-	width: 91.5vw;
-}
-.IENA table, .IENA tr{
-	border-spacing: 0;
-}
-
-.IENA .head{
+.IENA .head {
 	background-color: #fff;
 	height: 9vh;
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	display: flex;
+	align-items: center;
 }
-.IENA .head-title{
+
+.IENA .head .title {
 	color: #667C8A;
-	left: 20.5vw;
-	position: fixed;
+	left: 11.5vw;
+	position: relative;
 	font-weight: bold;
-	vertical-align: middle;
 	font-size: 6.1vh;
-	top: 1vh;
 }
-.IENA .voie{
+
+.IENA .head .track {
 	background-color: #181B3E;
 	position: fixed;
-	right: 1vw;
+	right: 1.3vw;
 	top: 3.2vh;
-	width: 6vw;
+	width: 5.5vw;
 	border-radius: 9px;
 	text-align: center;
 	padding: 0.2vw;
 	font-size: 2.5vh;
 	font-weight: bold;
 }
-.IENA .départmax{
-	margin: 0.8vw 7.2vw 0vw 1.1vw;
+
+.IENA .IENA-time {
+	background-color: #667C8A;
+	width: 17vh;
+	position: relative;
+	height: 5.5vh;
+	border-radius: 5px;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	z-index: 2;
+	text-align: center;
+	left: 2.5vw;
+}
+
+.IENA .hour {
+	position: relative;
+	top: 0.4vh;
+	font-size: 4vh;
+	font-weight: bold;
+}
+
+/* --- */
+
+.IENA .départ {
+	display: flex;
+	margin: 0.7vw 1.1vw 0 1.1vw;
+
+}
+
+.IENA .départmax {
 	background-color: #181B3E;
-	border-radius: 2vh;
+	border-radius: 2vh 0 2vh 2vh;
 	height: 10.5vh;
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 	position: relative;
 	z-index: 3;
+	width: 100vw;
 }
-.IENA .départmax .img{
-	height: 14vhvh;
-}
-.IENA .départmin{
-	margin: 1vw 7.2vw 0vw 1.1vw;
+
+.IENA .départmin {
 	background-color: #181B3E;
-	border-radius: 2vh;
+	border-radius: 2vh 0 0 2vh;
 	height: 10vh;
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 	position: relative;
 	z-index: 3;
+	width: 100vw;
 }
-.IENA départmin .img{
-	height: 9vh;
-}
-.IENA img{
+
+.IENA img {
 	max-height: 5.5vh;
 	margin-left: 1.2vw;
 	max-width: 6vw;
 }
-.IENA .miss{
-	font-family: "Transilien",Arial,sans-serif;
+
+.IENA .miss {
+	font-family: "Transilien", Arial, sans-serif;
 	padding-left: 1.2vw;
 	font-size: 7vh;
-	
 	width: 10vw;
 }
-.IENA .dest{
+
+.IENA .dest {
 	font-size: 6vh;
 	padding-left: 1.9vh;
 	font-weight: bold;
@@ -97,70 +118,72 @@
 	max-width: 10vw;
 }
 
-.IENA .img, .IENA .void {
+
+
+.IENA .img,
+.IENA .void {
 	width: 7.4vw;
 }
-.IENA .trafic { width: 12vw; }
-.IENA .time { width: 13.8vw; }
-.IENA .track { width: 7.5vw; }
 
-.IENA .trafic{	
-	font-size: 4vh;
-	padding-right: 2vw;
+.IENA .trafic {
+	width: 12vw;
 }
-.IENA .time{	
+
+.IENA .time {
+	width: 13.8vw;
+}
+
+.IENA .track {
+	width: 7.5vw;
+}
+
+.IENA .time {
 	font-size: 4.6vh;
 	width: 8vw;
 	text-align: right;
 	padding-right: 1vw;
 }
-.IENA .direct{
+
+.IENA .direct {
 	font-style: italic;
 	font-size: 4.5vh;
 	font-weight: lighter;
 	font-family: Corbel;
 	color: #ffffffd1;
 }
-.IENA .tracki{
-	box-shadow: #181B3E 0px 0px 2.2vh, #181B3E 0px 0px 0px 1.1vh;
-	height: 11vh;
-	background-color: #fff;
-	border-radius: 1vh;
-	position: absolute;
-	right: 2vw;
-	width: 8vw;
-}
-.IENA .tracki0{
-	margin-top: 10px;
-}
-.IENA .tracki1{
-	margin-top: 18px;
-}
-.IENA .trackc{
-	box-shadow: #181B3E 0px 0px 2.2vh, #181B3E 0px 0px 0px 1.1vh;
-	height: 7.8vh;
-	background-color: #fff;
-	border-radius: 1vh;
-	position: absolute;
-	right: 2vw;
-	width: 8vw;
-}
-.IENA .trackc:nth-child(1){
-	margin-top: 10px;
-}
-.IENA .trackc:nth-child(2){
-	margin-top: 18px;
-}
-.IENA .num{
-	margin-left: 1.5vw;
-	text-align: center;
-	color: #181b3e;
-	font-size: 6vh;
-	font-weight: bold;
-	margin-top: 3px;
+
+/* --- */
+.IENA .départ .track {
+	background-color: #181b3e;
+	border-radius: 0 2vh 2vh 0;
+
+	box-sizing: border-box;
+	max-height: 10vh;
 }
 
-.IENA .stop{
+.tracki {
+	max-height: 13vh !important;
+}
+
+
+.IENA .num {
+	background-color: #fff;
+	border-radius: 0 1vh 1vh 0;
+	margin: 1.1vh 1.1vh 1.1vh 0;
+	height: calc(100% - 2.2vh);
+	color: #181b3e;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 6vh;
+	font-weight: bold;
+}
+
+/* --- */
+
+
+
+.IENA .stops-container {
 	margin-left: 0.8vw;
 	font-size: 4.5vh;
 	overflow: hidden;
@@ -171,45 +194,40 @@
 	margin-bottom: 1.5vh;
 }
 
-	
-	/*-- Grand affichage --*/
-	.IENA .max .dest{
-		font-size: 9.2vh;
-	}
-
-	/*-- Petit affichage --*/
-	.IENA .min .dest{
-		font-size: 7.8vh;
-	}
-
-	.IENA .iena-time{
-	background-color: #667C8A;
-	width: 16vh;
-	position: fixed;
-	top: 2vh;
-	height: 5vh;
-	border-radius: 5px;
-	left: 3vw;
-	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-	z-index: 2;
-	text-align: center;
-}
-
-
-.IENA .hour{
+.IENA .stops {
 	position: relative;
-	top: 0.4vh;
-	font-size: 4vh;
-	font-weight: bold;
+	white-space: normal;
 }
 
-.IENA .no-train{
-	position: fixed;
-	bottom: 0;
-	width: 100vw;
-	background-color: #f68f53;
+.IENA .stop {
+	display: inline-block;
+	white-space: nowrap;
 }
-.IENA .no-train img{
-	min-width: 10vw;
-	min-height: 10vw;
+
+.IENA .dot {
+	position: relative;
+	padding-left: 10px;
+}
+
+.dot-inner {
+	display: inline-block;
+	position: relative;
+	background-color: #fff;
+	border-radius: 5px;
+	transform: rotate(45deg);
+	width: 12px;
+	height: 3px;
+	top: -10px;
+}
+
+.dot-outer {
+	display: inline-block;
+position: relative;
+background-color: #fff;
+border-radius: 5px;
+transform: rotate(-45deg);
+width: 12px;
+height: 3px;
+top: -3px;
+left: -12px;
 }
