@@ -1,5 +1,5 @@
-/* eslint-disable no-unused-vars */
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+
+import React, { useState, useEffect, useCallback } from 'react';
 import Marquee from 'react-fast-marquee';
 import { useParams } from 'react-router-dom';
 
@@ -7,7 +7,7 @@ import {createDate, formatTime, getService} from '../utils';
 
 import '../assets/css/SNCF.css';
 
-const SNCF = ({ trains, setType, setStop, setAuth }) => {
+const SNCF = ({ trains, setType, setStop, setAuth, setStyle }) => {
 	let { type, stop, auth } = useParams();
 
 	const [showInfo, setShowInfo] = useState(true);
@@ -26,6 +26,7 @@ const SNCF = ({ trains, setType, setStop, setAuth }) => {
 		setType(type);
 		setStop(stop);
 		setAuth(auth);
+		setStyle('SNCF');
 	};
 
 	const arr = {

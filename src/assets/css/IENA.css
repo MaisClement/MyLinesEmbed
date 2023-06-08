@@ -31,7 +31,7 @@
 
 .IENA .head .title {
 	color: #667C8A;
-	left: 11.5vw;
+	left: 11.9vw;
 	position: relative;
 	font-weight: bold;
 	font-size: 6.1vh;
@@ -197,6 +197,12 @@
 .IENA .stops {
 	position: relative;
 	white-space: normal;
+	transition: 1s;
+}
+
+.IENA .stops.init {
+	transition: top 0s ease 0.5s;
+	animation: init 1s;
 }
 
 .IENA .stop {
@@ -215,19 +221,37 @@
 	background-color: #fff;
 	border-radius: 5px;
 	transform: rotate(45deg);
-	width: 12px;
-	height: 3px;
-	top: -10px;
+	width: 2vh;
+	height: 0.5vh;
+	top: -1.5vh;
 }
 
 .dot-outer {
 	display: inline-block;
-position: relative;
-background-color: #fff;
-border-radius: 5px;
-transform: rotate(-45deg);
-width: 12px;
-height: 3px;
-top: -3px;
-left: -12px;
+	position: relative;
+	background-color: #fff;
+	border-radius: 5px;
+	transform: rotate(-45deg);
+	width: 2vh;
+	height: 0.5vh;
+	left: -2vh;
+	top: -3px;
+}
+
+@keyframes init {
+	0% {
+		margin-top: 0;
+	}
+
+	50% {
+		margin-top: -34px;
+	}
+
+	51% {
+		margin-top: 34px;
+	}
+
+	100% {
+		margin-top: 0;
+	}
 }

@@ -261,7 +261,7 @@ code {
 	text-shadow: 3px 2px 4px #0b0b0b;
 	writing-mode: sideways-lr;
 	text-orientation: mixed;
-	top: calc(( 100vh - 500px ) / 2 );
+	top: calc(( 100vh - 410px ) / 2 );
 	left: 30px;
 	font-size: 3vh;
 	animation: gui-span 5s linear;

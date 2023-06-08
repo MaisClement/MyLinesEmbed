@@ -1,7 +1,7 @@
 import SNCF from './components/SNCF';
 import IENA from './components/IENA';
 import RENFE from './NotFound';
-import TALOS from './NotFound';
+import TALOS from './components/TALOS';
 
 // import SNCFa from './assets/img/SNCFa.png';
 // import SNCFd from './assets/img/SNCFd.png';

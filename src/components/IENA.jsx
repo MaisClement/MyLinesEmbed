@@ -1,16 +1,12 @@
-/* eslint-disable no-unused-vars */
-import React, { useState, useEffect, useRef, useCallback } from 'react';
-import Marquee from 'react-fast-marquee';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import md5 from 'md5';
 
 import { createDate, formatTime, getService } from '../utils';
 
-import ori from '../assets/img/ori.png';
-
 import '../assets/css/IENA.css';
 
-const IENA = ({ trains, setType, setStop, setAuth }) => {
+const IENA = ({ trains, setType, setStop, setAuth, setStyle }) => {
 	let { type, stop, auth } = useParams();
 
 	const [showInfo, setShowInfo] = useState(true);
@@ -29,67 +25,49 @@ const IENA = ({ trains, setType, setStop, setAuth }) => {
 		setType(type);
 		setStop(stop);
 		setAuth(auth);
+		setStyle('IENA');
 	};
 
-	const style = {
-		width: '100vw',
-		height: '100vh',
-		opacity: 0.4,
-		position: 'absolute',
-		left: 0,
-		right: 0,
+	const title = {
+		'departure': 'Prochains Trains',
+		'arrival': 'Prochaines Arrivées'
 	};
 
-	return <>
-		<img src={ori} alt='ori' style={style} />
-		<div className='IENA'>
-			<div className={type}>
-				<div className='head'>
-					<IENAClock />
-					<span className='title'>
-						{type == 'departure'
-							? 'Prochains Trains'
-							: 'Prochaines Arrivées'
-						}
-					</span>
-					<span className='track'>
+	return <div className='IENA'>
+		<div className={type}>
+			<div className='head'>
+				<IENAClock />
+				<span className='title'>
+					{title[type]}
+				</span>
+				<span className='track'>
 						Voie
-					</span>
-				</div>
-
-				{
-					trains && trains.slice(0, 6).map((train, index) => <Train
-						key={train.informations.trip_name}
-						index={index}
-						type={type}
-						auth={auth}
-						informations={train.informations}
-						stop_date_time={train.stop_date_time}
-						stops={train.stops}
-						showInfo={showInfo}
-					/>
-					)
-				}
+				</span>
 			</div>
+
+			{
+				trains && trains.slice(0, 6).map((train, index) => <Train
+					key={train.informations.trip_name}
+					index={index}
+					type={type}
+					auth={auth}
+					informations={train.informations}
+					stop_date_time={train.stop_date_time}
+					stops={train.stops}
+					showInfo={showInfo}
+				/>
+				)
+			}
 		</div>
-	</>;
+	</div>;
 };
 
-const Train = ({ index, type, auth, informations, stop_date_time, stops, showInfo }) => {
-	const display = ['départ1 max', 'départ2 max', 'départ1 min', 'départ2 min', 'départ1 min', 'départ2 min', 'départ1 min', 'départ2 min'];
+const Train = ({ index, type, auth, informations, stop_date_time, stops }) => {
 	const tail = {
 		'departure': 'direction',
 		'arrival': 'origin'
 	};
 
-	function getService(network, auth = null) {
-		if (auth) {
-			return `https://mylines.fr/embed?serv=${network}&auth=${auth}`;
-		}
-		return `https://mylines.fr/embed?serv=${network}`;
-	}
-
-	const base_time = createDate(stop_date_time[`base_${type}_date_time`]);
 	const time = createDate(stop_date_time[`base_${type}_date_time`]);
 	const head = informations[tail[type]].name;
 
@@ -144,7 +122,7 @@ function IENATime({ time }) {
 	const m = Math.floor(diff / 1000 / 60);
 	diff -= m * 1000 * 60;
 
-	if (m <= 1)
+	if (h == 0 && m <= 1)
 		return <b>à quai</b>;
 
 	if (h < 1)
@@ -153,58 +131,59 @@ function IENATime({ time }) {
 	return `${formatTime(time.getHours())}:${formatTime(time.getMinutes())}`;
 }
 
-const IENAMarquee = ({ index, stops }) => {
+function IENAMarquee({ stops }) {
+	const [count, setCount] = useState(null);
+	const [containerHeight, setContainerHeight] = useState(null);
+	const [lineHeight, setLineHeight] = useState(null);
+
 	useEffect(() => {
-		const interval = setInterval(scroll, 3000);
+		const interval = setInterval(() => {
+			setCount(count => count + 1);
+		}, 5000);
 
 		return () => clearInterval(interval);
 	}, []);
 
-	const [count, setCount] = useState(0);
-	const [height, setHeight] = useState(0);
-	const [containerHeight, setContainerHeight] = useState(0);
-	const [lineHeight, setLineHeight] = useState(0);
-
-	const scroll = () => {
-		const line = containerHeight / lineHeight; // nombre de lignes au total
-		const height = lineHeight * count;
-
-		console.log(containerHeight, lineHeight, line, count, height);
-		
-		setHeight(`${height}px`);
-		setCount(count => count + 1);
-	};
-
 	const stopsRef = useCallback(node => {
 		if (node !== null) {
 			setContainerHeight(node.getBoundingClientRect().height);
-			console.log(node.getBoundingClientRect().height);
 		}
 	}, []);
 
 	const stopRef = useCallback(node => {
 		if (node !== null) {
 			setLineHeight(node.getBoundingClientRect().height);
-			console.log(node.getBoundingClientRect().height);
 		}
 	}, []);
 
+	function getStyle() {
+		const height = (lineHeight * count) % containerHeight;
+		return { top: `-${height}px` };
+	}
+
+	function getAnim() {
+		const height = (lineHeight * count) % containerHeight;
+		if (height == 0) {
+			return 'init';
+		}
+	}
+
 	return <div>
 		<div className='stops-container'>
-			<div className='stops' ref={stopsRef} style={{top: height}}>
-				{stops.map((stop, i) => (
+			<div className={`stops ${getAnim()}`} ref={stopsRef} style={getStyle()}>
+				{stops.map((stop) => (
 					<span className='stop' ref={stopRef} key={stop.stop_point.name}>
-						{stop.stop_point.name}
 						<span className='dot'>
 							<span className='dot-inner' />
 							<span className='dot-outer' />
 						</span>
+						{stop.stop_point.name}
 					</span>
 				))}
 			</div>
 		</div>
 	</div>;
-};
+}
 
 function IENAClock() {
 	const [time, setTime] = useState(new Date());
