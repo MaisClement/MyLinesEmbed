@@ -9,17 +9,9 @@ import '../assets/css/IENA.css';
 const IENA = ({ trains, setType, setStop, setAuth, setStyle }) => {
 	let { type, stop, auth } = useParams();
 
-	const [showInfo, setShowInfo] = useState(true);
-
 	useEffect(() => {
 		init();
-
-		const interval = setInterval(() => {
-			setShowInfo(info => !info);
-		}, 3000);
-
-		return () => clearInterval(interval);
-	}, []);
+	}, [type, stop, auth]);
 
 	const init = () => {
 		setType(type);
@@ -54,7 +46,6 @@ const IENA = ({ trains, setType, setStop, setAuth, setStyle }) => {
 					informations={train.informations}
 					stop_date_time={train.stop_date_time}
 					stops={train.stops}
-					showInfo={showInfo}
 				/>
 				)
 			}
@@ -133,8 +124,10 @@ function IENATime({ time }) {
 
 function IENAMarquee({ stops }) {
 	const [count, setCount] = useState(null);
-	const [containerHeight, setContainerHeight] = useState(null);
+	const [stopsHeight, setStopsHeight] = useState(null);
+	// eslint-disable-next-line no-unused-vars
 	const [lineHeight, setLineHeight] = useState(null);
+	const [containerHeight, setContainerHeight] = useState(null);
 
 	useEffect(() => {
 		const interval = setInterval(() => {
@@ -146,7 +139,7 @@ function IENAMarquee({ stops }) {
 
 	const stopsRef = useCallback(node => {
 		if (node !== null) {
-			setContainerHeight(node.getBoundingClientRect().height);
+			setStopsHeight(node.getBoundingClientRect().height);
 		}
 	}, []);
 
@@ -156,23 +149,36 @@ function IENAMarquee({ stops }) {
 		}
 	}, []);
 
+	const containerRef = useCallback(node => {
+		if (node !== null) {
+			setContainerHeight(node.getBoundingClientRect().height);
+		}
+	}, []);
+
 	function getStyle() {
-		const height = (lineHeight * count) % containerHeight;
+		const nb_line =	stopsHeight / lineHeight;
+		const height = (containerHeight * count) % (containerHeight * nb_line);
 		return { top: `-${height}px` };
 	}
 
+	function getStopHeight() {
+		return { height: `${containerHeight}px` };
+	}
+
 	function getAnim() {
-		const height = (lineHeight * count) % containerHeight;
+		const nb_line =	stopsHeight / lineHeight;
+		const height = (containerHeight * count) % (containerHeight * nb_line);
 		if (height == 0) {
 			return 'init';
 		}
+		return '';
 	}
 
 	return <div>
-		<div className='stops-container'>
+		<div className='stops-container' ref={containerRef}>
 			<div className={`stops ${getAnim()}`} ref={stopsRef} style={getStyle()}>
 				{stops.map((stop) => (
-					<span className='stop' ref={stopRef} key={stop.stop_point.name}>
+					<span className='stop' ref={stopRef} key={stop.stop_point.name} style={getStopHeight()}>
 						<span className='dot'>
 							<span className='dot-inner' />
 							<span className='dot-outer' />

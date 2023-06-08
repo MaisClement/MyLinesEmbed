@@ -22,6 +22,10 @@ const SNCF = ({ trains, setType, setStop, setAuth, setStyle }) => {
 		return () => clearInterval(interval);
 	}, []);
 
+	useEffect(() => {
+		init();
+	}, [type, stop, auth]);
+
 	const init = () => {
 		setType(type);
 		setStop(stop);

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import logo from '../assets/img/Logo.png';
@@ -10,19 +11,28 @@ import discord from '../assets/img/discord.svg';
 import mail from '../assets/img/mail.svg';
 import del from '../assets/img/delete.svg';
 
+import RadioCard from '../helpers/RadioCard';
+import Card from '../helpers/Card';
+
 // eslint-disable-next-line no-unused-vars
-const GUI = ({ auth, type, style, forceOpen, setError}) => {
+const GUI = ({ auth, type, style, forceOpen, setError }) => {
 
 	const [isOpened, setIsOpened] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 	const [value, setValue] = useState('');
-	// eslint-disable-next-line no-unused-vars
 	const [stops, setStops] = useState(null);
 
-	// eslint-disable-next-line no-unused-vars
 	const [selectedType, setType] = useState(type);
-	// eslint-disable-next-line no-unused-vars
 	const [selectedStyle, setStyle] = useState(style);
+
+	useEffect(() => {
+		getStops();
+	}, []);
+
+	useEffect(() => {
+		setType(type);
+		setStyle(style);
+	}, [type, style]);
 
 	function handleToogleOpen() {
 		setIsOpened(isOpened => !isOpened);
@@ -97,6 +107,7 @@ const GUI = ({ auth, type, style, forceOpen, setError}) => {
 							onClick={handleOnChange}
 							key={stop.stop_point.name}>
 							<Link
+								onClick={handleToogleOpen}
 								to={`/${selectedStyle}/${selectedType}/${stop.stop_point.uic_code}?gui`}
 								className='overmouse'
 							>
@@ -132,6 +143,41 @@ const GUI = ({ auth, type, style, forceOpen, setError}) => {
 			</div>
 
 			<div className='gui-menu'>
+				<h3>Style d’affichage</h3>
+				<RadioCard>
+					<Card
+						value={'SNCF/departure'}
+						name={'opt'}
+						img={SNCFd}
+					/>
+					<Card
+						value={'SNCF/arrival'}
+						name={'opt'}
+						img={SNCFa}
+					/>
+					<br /><br />
+					<Card
+						value={'IENA/departure'}
+						name={'opt'}
+						img={IENAd}
+					/>
+					<Card
+						value={'IENA/arrival'}
+						name={'opt'}
+						img={IENAa}
+					/>
+					<br /><br />
+					<Card
+						value={'TALOS/departure'}
+						name={'opt'}
+						img={TALOSd}
+					/>
+					<Card
+						value={'TALOS/arrival'}
+						name={'opt'}
+						img={TALOSa}
+					/>
+				</RadioCard>
 			</div>
 			<div className='gui-back' onClick={handleToogleOpen} />
 		</>;
@@ -141,5 +187,12 @@ const GUI = ({ auth, type, style, forceOpen, setError}) => {
 		</div>;
 	}
 };
+
+import IENAd from '../assets/img/IENAd.png';
+import SNCFa from '../assets/img/SNCFa.png';
+import SNCFd from '../assets/img/SNCFd.png';
+import TALOSa from '../assets/img/TALOSa.png';
+import TALOSd from '../assets/img/TALOSd.png';
+import IENAa from '../assets/img/IENAa.png';
 
 export default GUI;

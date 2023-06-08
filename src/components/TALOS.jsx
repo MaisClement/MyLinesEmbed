@@ -14,17 +14,9 @@ import error from '../assets/img/error.png';
 const TALOS = ({ trains, setType, setStop, setAuth, setStyle }) => {
 	let { type, stop, auth } = useParams();
 
-	const [showInfo, setShowInfo] = useState(true);
-
 	useEffect(() => {
 		init();
-
-		const interval = setInterval(() => {
-			setShowInfo(info => !info);
-		}, 3000);
-
-		return () => clearInterval(interval);
-	}, []);
+	}, [type, stop, auth]);
 
 	const init = () => {
 		setType(type);
@@ -34,8 +26,8 @@ const TALOS = ({ trains, setType, setStop, setAuth, setStyle }) => {
 	};
 
 	const title = {
-		'departure': 'Prochains Trains',
-		'arrival': 'Prochaines Arrivées'
+		'departure': 'Prochains départs',
+		'arrival': 'Prochaines arrivées'
 	};
 
 	return <div className='TALOS'>
@@ -60,7 +52,6 @@ const TALOS = ({ trains, setType, setStop, setAuth, setStyle }) => {
 					informations={train.informations}
 					stop_date_time={train.stop_date_time}
 					stops={train.stops}
-					showInfo={showInfo}
 				/>
 				)
 			}
