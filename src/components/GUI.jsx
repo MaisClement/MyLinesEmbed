@@ -19,19 +19,16 @@ const GUI = ({ auth, type, style, forceOpen, setError }) => {
 
 	const [isOpened, setIsOpened] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
+	const [display, setDisplay] = useState(`${style}/${type}`);
 	const [value, setValue] = useState('');
 	const [stops, setStops] = useState(null);
-
-	const [selectedType, setType] = useState(type);
-	const [selectedStyle, setStyle] = useState(style);
 
 	useEffect(() => {
 		getStops();
 	}, []);
 
 	useEffect(() => {
-		setType(type);
-		setStyle(style);
+		setDisplay(`${style}/${type}`);
 	}, [type, style]);
 
 	function handleToogleOpen() {
@@ -41,6 +38,10 @@ const GUI = ({ auth, type, style, forceOpen, setError }) => {
 	async function handleOnChange(event) {
 		setValue(event.currentTarget.value);
 		await getStops();
+	}
+
+	async function handleOnChangeRadio(event) {
+		setDisplay(event);
 	}
 
 	const getStops = async () => {
@@ -74,9 +75,6 @@ const GUI = ({ auth, type, style, forceOpen, setError }) => {
 
 	if (isOpened || forceOpen) {
 		return <>
-			<div className='gui-show' onClick={handleToogleOpen} >
-				<span className='bigger'> Options disponible en appuyant sur la gauche </span>
-			</div>
 			<div className='gui'>
 				<div className='is-flex' style={{ justifyContent: 'end' }}>
 					<button className='fluent_btn' onClick={handleToogleOpen} style={{ width: 110 }}>
@@ -106,13 +104,24 @@ const GUI = ({ auth, type, style, forceOpen, setError }) => {
 						stops && stops.map(stop => <span
 							onClick={handleOnChange}
 							key={stop.stop_point.name}>
-							<Link
-								onClick={handleToogleOpen}
-								to={`/${selectedStyle}/${selectedType}/${stop.stop_point.uic_code}?gui`}
-								className='overmouse'
-							>
-								{stop.stop_point.name}
-							</Link>
+							{
+								auth
+									? <Link
+										onClick={handleToogleOpen}
+										to={`/${display}/${stop.stop_point.uic_code}/${auth}?gui`}
+										className='overmouse'
+									>
+										{stop.stop_point.name}
+									</Link>
+									: <Link
+										onClick={handleToogleOpen}
+										to={`/${display}/${stop.stop_point.uic_code}?gui`}
+										className='overmouse'
+									>
+										{stop.stop_point.name}
+									</Link>
+							}
+
 						</span>
 						)
 					}
@@ -126,7 +135,7 @@ const GUI = ({ auth, type, style, forceOpen, setError }) => {
 						<span>
 							MyLines 2021 - {new Date().getFullYear()} • Version {packageJson.version}
 							<br />
-							Made with 💖
+							Made with 💖 / In Tartiflette we trust 
 						</span>
 						<br />
 						<a className='mini_btn' href='https://github.com/MaisClement/MyLinesEmbed'>
@@ -144,36 +153,44 @@ const GUI = ({ auth, type, style, forceOpen, setError }) => {
 
 			<div className='gui-menu'>
 				<h3>Style d’affichage</h3>
-				<RadioCard>
+				<RadioCard
+					onChange={handleOnChangeRadio}
+				>
 					<Card
-						value={'SNCF/departure'}
+						content={'SNCF/departure'}
+						value={display}
 						name={'opt'}
 						img={SNCFd}
 					/>
 					<Card
-						value={'SNCF/arrival'}
+						content={'SNCF/arrival'}
+						value={display}
 						name={'opt'}
 						img={SNCFa}
 					/>
 					<br /><br />
 					<Card
-						value={'IENA/departure'}
+						content={'IENA/departure'}
+						value={display}
 						name={'opt'}
 						img={IENAd}
 					/>
 					<Card
-						value={'IENA/arrival'}
+						content={'IENA/arrival'}
+						value={display}
 						name={'opt'}
 						img={IENAa}
 					/>
 					<br /><br />
 					<Card
-						value={'TALOS/departure'}
+						content={'TALOS/departure'}
+						value={display}
 						name={'opt'}
 						img={TALOSd}
 					/>
 					<Card
-						value={'TALOS/arrival'}
+						content={'TALOS/arrival'}
+						value={display}
 						name={'opt'}
 						img={TALOSa}
 					/>
@@ -181,7 +198,8 @@ const GUI = ({ auth, type, style, forceOpen, setError }) => {
 			</div>
 			<div className='gui-back' onClick={handleToogleOpen} />
 		</>;
-	} else {
+	}
+	if (!forceOpen) {
 		return <div className='gui-show' onClick={handleToogleOpen} >
 			<span className='bigger'> Options disponible en appuyant sur la gauche </span>
 		</div>;

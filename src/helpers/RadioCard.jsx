@@ -1,6 +1,6 @@
 import React from 'react';
 
-const RadioCard = ({ children, onChange, ...props }) => {
+const RadioCard = ({ children, onChange, value, ...props }) => {
 	const handleOnChange = (event) => {
 		if (onChange) {
 			onChange(event.target.value);
@@ -23,8 +23,6 @@ const RadioCard = ({ children, onChange, ...props }) => {
 				background-size: contain;
 				background-repeat: no-repeat;
 				display: inline-block;
-				width: 200px;
-				height: 111px;
 				margin-left: 20px;
 				border-radius: 5px;
 				transition: all 250ms ease;
@@ -42,7 +40,7 @@ const RadioCard = ({ children, onChange, ...props }) => {
 			}
 			`}
 		</style>
-		<form className='cc-selector' onChange={handleOnChange} {...props}>
+		<form className='cc-selector' onChange={handleOnChange} value={value} {...props}>
 			{children}
 		</form>
 	</>;

@@ -4,12 +4,13 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Error from './Error';
 import NotFound from './NotFound';
+import Auth from './Auth';
 import Gui from './components/GUI';
 
 import { routes } from './routes';
 
 function App() {
-	const isTe = false;
+	const isTe = window.location.host == 'mylines.fr';
 	const [error, setError] = useState(null);
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [trains, setTrains] = useState(null);
@@ -88,15 +89,26 @@ function App() {
 		<Routes>
 
 			<Route path='/'>
+				<Route path='/:auth' element={ <Auth setAuth={setAuth} /> } />
 				{renderRoutes(routes)}
 			</Route>
 			{renderRoutes(routes)}
-			<Route element={<NotFound />} path='*' />
+			
+			<Route index element={
+				<NotFound
+					showGui={isTe == false || isTe && auth}
+				/>
+			} />
+			<Route path='*' element={
+				<NotFound
+					showGui={isTe == false || isTe && auth}
+				/>
+			} />
 
 		</Routes>
 		<div className='hover' />
 		{
-			window.location.href.indexOf('gui') !== -1
+			window.location.href.indexOf('?gui') !== -1
 			&& <Gui
 				style={style}
 				type={type}

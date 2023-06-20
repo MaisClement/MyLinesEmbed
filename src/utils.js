@@ -20,4 +20,11 @@ function getService(network, auth = null) {
 	return `https://mylines.fr/embed?serv=${network}`;
 }
 
-export { createDate, formatTime, getService };
+function getServiceDark(network, auth = null) {
+	if (auth) {
+		return `https://mylines.fr/image?serv=${network}&auth=${auth}`;
+	}
+	return `https://mylines.fr/image?serv=${network}`;
+}
+
+export { createDate, formatTime, getService, getServiceDark };

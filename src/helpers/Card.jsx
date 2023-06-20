@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Card = ({ value, name, id, img }) => {
+const Card = ({ content, value, name, id, img }) => {
 	const style = () => {
 		return {
 			backgroundImage: `url("${img}")`
@@ -8,8 +8,8 @@ const Card = ({ value, name, id, img }) => {
 	};
 
 	return <>
-		<input type='radio' id={id ?? value} name={name} value={value} />
-		<label className='selectcard-cc' style={style()} htmlFor={id ?? value} />
+		<input type='radio' id={id ?? content} name={name} value={content} checked={content == value} />
+		<label className='selectcard-cc' style={style()} htmlFor={id ?? content} />
 	</>;
 };
 

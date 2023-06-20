@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
-import md5 from 'md5';
 
 import { createDate, formatTime, getService } from '../utils';
 
@@ -62,12 +61,7 @@ const Train = ({ index, type, auth, informations, stop_date_time, stops }) => {
 	const time = createDate(stop_date_time[`base_${type}_date_time`]);
 	const head = informations[tail[type]].name;
 
-	let hsah = md5(head + informations.code);
-	const track = auth
-		? isNaN(hsah.substring(0, 1))
-			? '-'
-			: (Math.random() * 10)
-		: '-';
+	const track = '-';
 
 	return <div className='départ'>
 		<table className={index < 2 ? 'départmax' : 'départmin'}>

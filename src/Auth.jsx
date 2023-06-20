@@ -1,16 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 import logo from './assets/img/Logo.png';
 import Gui from './components/GUI';
 
-function NotFound({showGui}) {
+const Auth = ({ setAuth }) => {
+	let { auth } = useParams();
+
+	useEffect(() => {
+		setAuth(auth);
+	}, []);
+
 	return <div className='error'>
 		{
-			showGui && <Gui
+			<Gui
 				style={''}
 				type={''}
 				stop={''}
-				auth={''}
+				auth={auth}
 				forceOpen
 				setError={() => {}}
 			/>
@@ -20,6 +27,6 @@ function NotFound({showGui}) {
 			<img src={logo} className='logo' alt='Logo MyLines Embed' />
 		</div>
 	</div>;
-}
+};
 
-export default NotFound;
+export default Auth;
