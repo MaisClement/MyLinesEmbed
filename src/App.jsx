@@ -10,7 +10,7 @@ import Gui from './components/GUI';
 import { routes } from './routes';
 
 function App() {
-	const isTe = window.location.host == 'mylines.fr';
+	const isTe = true; // window.location.host == 'mylines.fr';
 	const [error, setError] = useState(null);
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [trains, setTrains] = useState(null);

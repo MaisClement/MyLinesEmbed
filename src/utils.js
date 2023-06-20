@@ -15,14 +15,14 @@ function formatTime(value) {
 
 function getService(network, auth = null) {
 	if (auth) {
-		return `https://mylines.fr/embed?serv=${network}&auth=${auth}`;
+		return `https://mylines.fr/embed?serv=${network}&company=${auth}`;
 	}
 	return `https://mylines.fr/embed?serv=${network}`;
 }
 
 function getServiceDark(network, auth = null) {
 	if (auth) {
-		return `https://mylines.fr/image?serv=${network}&auth=${auth}`;
+		return `https://mylines.fr/image?serv=${network}&company=${auth}`;
 	}
 	return `https://mylines.fr/image?serv=${network}`;
 }

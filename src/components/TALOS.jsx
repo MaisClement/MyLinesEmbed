@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { Textfit } from 'react-textfit';
 
 import { createDate, formatTime } from '../utils';
 
@@ -71,7 +72,7 @@ const Train = ({ type, auth, informations, stop_date_time }) => {
 
 	function getService(network, auth = null) {
 		if (auth) {
-			return `https://mylines.fr/image?serv=${network}&auth=${auth}`;
+			return `https://mylines.fr/image?serv=${network}&company=${auth}`;
 		}
 		return `https://mylines.fr/image?serv=${network}`;
 	}
@@ -100,9 +101,9 @@ const Train = ({ type, auth, informations, stop_date_time }) => {
 function TALOSTime({ informations, time, base_time }) {
 	return <>
 		<div className='time'>
-			<span>
+			<Textfit mode='single'>
 				{`${formatTime(time.getHours())}:${formatTime(time.getMinutes())}`}
-			</span>
+			</Textfit>
 		</div>
 		<TALOSMessage
 			informations={informations}
@@ -164,9 +165,11 @@ function TALOSClock() {
 
 	return <span className='TALOS-time'>
 		<span className='hour'>
-			{hours}
-			<span style={{ opacity: time.getMilliseconds() < 500 ? 1 : 0 }}>:</span>
-			{minutes}
+			<Textfit mode='single'>
+				{hours}
+				<span style={{ opacity: time.getMilliseconds() < 500 ? 1 : 0 }}>:</span>
+				{minutes}
+			</Textfit>
 		</span>
 	</span>;
 }

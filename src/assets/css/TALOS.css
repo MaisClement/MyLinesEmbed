@@ -59,19 +59,22 @@
 
 .TALOS .time {
 	font-family: 'Transilien';
-	font-size: 7vh;
 	color: #f6cd2f;
 	background-color: #141414;
-	padding: 5px;
+	padding: 15px;
 	border-radius: 10px;
 	position: relative;
-	height: calc(100% - 13px);
+	height: calc(100% - 33px);
 	width: 9vw;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	margin: 0 0 0 2vh;
-  }
+}
+
+.TALOS .time div {
+	width: 100%;
+}
 
 .TALOS .hour {
 	font-family: 'Transilien';
@@ -154,7 +157,7 @@
 
 /* --- */
 
-.TALOS .trafic{
+.TALOS .trafic {
 	max-height: 5.5vh;
 	position: absolute;
 	margin-top: -4vh;
@@ -162,7 +165,7 @@
 	z-index: 5;
 }
 
-.TALOS .message{
+.TALOS .message {
 	font-size: 3vh;
 	background-color: #f58f53;
 	color: #fff;
@@ -173,7 +176,8 @@
 	top: 2px;
 	z-index: -10;
 }
-.TALOS .message_info{
+
+.TALOS .message_info {
 	font-size: 3vh;
 	background-color: #005bbc;
 	color: #fff;
@@ -184,7 +188,8 @@
 	top: 2px;
 	z-index: -10;
 }
-.TALOS .message_delete{
+
+.TALOS .message_delete {
 	font-size: 3vh;
 	background-color: #eb2031;
 	color: #fff;
