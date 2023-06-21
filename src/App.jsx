@@ -10,7 +10,7 @@ import Gui from './components/GUI';
 import { routes } from './routes';
 
 function App() {
-	const isTe = true; // window.location.host == 'mylines.fr';
+	const isTe = window.location.host == 'mylines.fr';
 	const [error, setError] = useState(null);
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [trains, setTrains] = useState(null);
@@ -24,6 +24,20 @@ function App() {
 		if (type && stop) {
 			getData();
 		}
+
+		let delay = 50;
+		if (typeof getUrlVars()['update'] !== 'undefined') {
+			delay = getUrlVars()['update'];
+		}
+
+		if (delay < 10)
+			delay = 50;
+
+		const interval = setInterval(async () => {
+			await getData();
+		}, delay * 1000);
+
+		return () => clearInterval(interval);
 	}, [type, stop, auth]);
 
 	const getData = async () => {
@@ -118,6 +132,14 @@ function App() {
 			/>
 		}
 	</BrowserRouter >;
+}
+
+function getUrlVars() {
+	var vars = {};
+	window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+		vars[key] = value;
+	});
+	return vars;
 }
 
 export default App;
