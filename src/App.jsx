@@ -10,7 +10,7 @@ import Gui from './components/GUI';
 import { routes } from './routes';
 
 function App() {
-	const isTe = window.location.host == 'mylines.fr';
+	const isTe = useState(window.location.host == 'mylines.fr');
 	const [error, setError] = useState(null);
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [trains, setTrains] = useState(null);
@@ -76,8 +76,10 @@ function App() {
 
 	const makePath = (url) => {
 		if (isTe) {
+			console.log(`${url}/:type/:stop/:auth`);
 			return `${url}/:type/:stop/:auth`;
 		}
+		console.log(`${url}/:type/:stop`);
 		return `${url}/:type/:stop`;
 	};
 
@@ -105,9 +107,8 @@ function App() {
 
 	return <BrowserRouter>
 		<Routes>
-
 			<Route path='/'>
-				<Route path='/:auth' element={ <Auth setAuth={setAuth} /> } />
+				<Route path='/embed/:auth' element={ <Auth setAuth={setAuth} /> } />
 				{renderRoutes(routes)}
 			</Route>
 			{renderRoutes(routes)}

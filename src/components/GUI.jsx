@@ -108,14 +108,14 @@ const GUI = ({ auth, type, style, forceOpen, setError }) => {
 								auth
 									? <Link
 										onClick={handleToogleOpen}
-										to={`${display}/${stop.stop_point.uic_code}/${auth}?gui`}
+										to={`/${display}/${stop.stop_point.uic_code}/${auth}?gui`}
 										className='overmouse'
 									>
-										{stop.stop_point.uic_code}{stop.stop_point.name}
+										{stop.stop_point.name}
 									</Link>
 									: <Link
 										onClick={handleToogleOpen}
-										to={`${display}/${stop.stop_point.uic_code}?gui`}
+										to={`/${display}/${stop.stop_point.uic_code}?gui`}
 										className='overmouse'
 									>	
 										{stop.stop_point.name}
