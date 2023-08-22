@@ -7,8 +7,8 @@ function NotFound({showGui}) {
 	return <div className='error'>
 		{
 			showGui && <Gui
-				style={''}
-				type={''}
+				style={'SNCF'}
+				type={'departure'}
 				stop={''}
 				auth={''}
 				forceOpen

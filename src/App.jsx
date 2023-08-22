@@ -15,8 +15,8 @@ function App() {
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [trains, setTrains] = useState(null);
 
-	const [style, setStyle] = useState(null);
-	const [type, setType] = useState(null);
+	const [style, setStyle] = useState('SNCF');
+	const [type, setType] = useState('departure');
 	const [stop, setStop] = useState(null);
 	const [auth, setAuth] = useState(null);
 
@@ -42,9 +42,13 @@ function App() {
 
 	const getData = async () => {
 		try {
+			if (stop == null) {
+				return ;
+			}
+
 			const count = 7;
 
-			const url = auth
+			const url = isTe
 				? `https://api.mylines.fr/te/${type}?stop=${stop}&auth=${auth}&count=${count}`
 				: `https://api.mylines.fr/sncf/${type}?stop=${stop}&count=${count}`;
 

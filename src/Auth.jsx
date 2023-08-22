@@ -14,8 +14,8 @@ const Auth = ({ setAuth }) => {
 	return <div className='error'>
 		{
 			<Gui
-				style={''}
-				type={''}
+				style={'SNCF'}
+				type={'departure'}
 				stop={''}
 				auth={auth}
 				forceOpen
