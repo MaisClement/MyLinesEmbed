@@ -72,7 +72,7 @@ const Train = ({ type, auth, informations, stop_date_time }) => {
 
 	function getService(network, auth = null) {
 		if (auth) {
-			return `https://mylines.fr/image?serv=${network}&company=${auth}`;
+			return `https://mylines.fr/image?serv=${network}&auth=${auth}`;
 		}
 		return `https://mylines.fr/image?serv=${network}`;
 	}

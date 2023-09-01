@@ -11,6 +11,7 @@ import { routes } from './routes';
 
 function App() {
 	const [isTe] = useState(window.location.host == 'mylines.fr');
+	// const [isTe] = useState(true);
 	const [error, setError] = useState(null);
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [trains, setTrains] = useState(null);

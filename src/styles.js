@@ -1,6 +1,6 @@
 const wallpaper = (usr = '') => {
 	return {
-		background: `url(https://mylines.fr/image?serv=Wallpaper&company=${usr})`,
+		background: `url(https://mylines.fr/image?serv=Wallpaper&auth=${usr})`,
 		backgroundPosition: 'center center',
 		backgroundSize: 'cover'
 	};
