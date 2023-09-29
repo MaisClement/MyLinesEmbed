@@ -111,7 +111,7 @@ function IENATime({ time }) {
 		return <b>à quai</b>;
 
 	if (h < 1)
-		return `${m} mn`;
+		return <span>{m}<span style={{color: '#cccccc'}}>mn</span></span>;
 
 	return `${formatTime(time.getHours())}:${formatTime(time.getMinutes())}`;
 }
